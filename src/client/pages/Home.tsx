@@ -1,13 +1,14 @@
 import { ArrowRight } from "lucide-react";
 import templates from "../../shared/templates.json";
 import type { TemplateId } from "../../shared/api";
+import { signInHref, useOwner } from "../auth";
 import { Link } from "../router";
-import { ownerLinksPath } from "../ownerLink";
 
 const order: TemplateId[] = ["requirements", "pre_audit"];
 
 export function Home() {
-  const ownerPath = ownerLinksPath();
+  const [owner] = useOwner();
+  const signInFailed = new URLSearchParams(window.location.search).get("signin") === "failed";
   return (
     <main className="mx-auto flex max-w-[720px] flex-col gap-6 px-5 py-10 sm:py-16">
       <div className="flex items-start justify-between gap-4 border-b border-border pb-4">
@@ -17,12 +18,22 @@ export function Home() {
             Send one link. They answer in their own time. You get a clear brief back, no meeting needed.
           </p>
         </div>
-        {ownerPath && (
-          <Link href={ownerPath} className="flex min-h-11 flex-none items-center text-sm font-semibold">
+        {owner && (
+          <Link href="/links" className="flex min-h-11 flex-none items-center text-sm font-semibold">
             Your links
           </Link>
         )}
+        {owner === null && (
+          <a href={signInHref("/links")} className="flex min-h-11 flex-none items-center text-sm font-semibold">
+            Sign in
+          </a>
+        )}
       </div>
+      {signInFailed && (
+        <p role="alert" className="text-sm font-medium text-danger">
+          Sign-in didn't finish. Try again.
+        </p>
+      )}
       <h1 className="font-display text-[26px] font-semibold leading-tight">What do you need to learn?</h1>
       <div className="grid gap-3 sm:grid-cols-2">
         {order.map((id) => (

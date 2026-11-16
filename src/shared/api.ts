@@ -3,8 +3,12 @@
 //
 // Errors: every non-2xx response has the body `ApiError`.
 // Endpoints (all JSON):
-//   POST /api/setup/draft               DraftRequest      -> SetupDraft
-//   POST /api/sessions                  CreateSession     -> CreatedSession  (sets owner cookie)
+// Owner routes need a signed-in owner (Google, ADR-003): GET /auth/google
+// starts sign-in; a 401 "unauthorized" means sign in first.
+//   GET  /api/me                                          -> Me
+//   POST /api/auth/logout                                 -> Me
+//   POST /api/setup/draft               DraftRequest      -> SetupDraft      (owner)
+//   POST /api/sessions                  CreateSession     -> CreatedSession  (owner)
 //   GET  /api/s/:token                                    -> RespondentView
 //   POST /api/s/:token/start                              -> RespondentView  (R1 Start: status in_progress)
 //   POST /api/s/:token/basics           Basics            -> RespondentView  (saves R2, runs the first turn)
@@ -13,9 +17,8 @@
 //   POST /api/s/:token/priorities       PrioritiesRequest -> RespondentView  (R6; then the landing turn)
 //   POST /api/s/:token/confirm                            -> RespondentView  (R7 Confirm; writes the document)
 //   POST /api/s/:token/delete                             -> RespondentView  (R8 Delete my answers)
-//   GET  /api/o/:ownerKey                                 -> OwnerList
-//   GET  /api/o/:ownerKey/:id                             -> OwnerSession
-//   GET  /api/o/:ownerKey/:id/export.md                   -> text/markdown download
+//   GET  /api/links                                       -> OwnerList       (owner)
+//   GET  /api/links/:id                                   -> OwnerSession    (owner)
 
 export type TemplateId = "requirements" | "pre_audit";
 export type Audience = "colleague" | "client" | "prospect";
@@ -24,7 +27,7 @@ export type Kind = "question" | "reflect" | "offer" | "checkpoint" | "priorities
 
 export type ApiError = {
   error: {
-    code: "not_found" | "invalid_input" | "rate_limited" | "ai_failed" | "conflict" | "turn_cap" | "closed";
+    code: "unauthorized" | "not_found" | "invalid_input" | "rate_limited" | "ai_failed" | "conflict" | "turn_cap" | "closed";
     message: string; // safe to show to the user
   };
 };
@@ -60,11 +63,10 @@ export type SetupInput = {
   assumed: string[];
   off_limits: string[];
   sketch: string[];
-  deliver_to: "me" | "both";
 };
 
 export type CreateSession = { template: TemplateId; setup: SetupInput };
-export type CreatedSession = { session_id: string; share_url: string; owner_key: string; owner_url: string };
+export type CreatedSession = { session_id: string; share_url: string };
 
 // ---- Respondent (R1-R8) ----
 
@@ -121,6 +123,8 @@ export type RespondentView = {
   core_need: string | null;
   question_count: number;
   budget: number;
+  // The respondent's copy of the document once status is "ready" (ADR-003).
+  document_md: string | null;
 };
 
 export type Basics = { basics: Record<string, string | string[]> };
@@ -130,6 +134,8 @@ export type StepsRequest = { steps: Step[] };
 export type PrioritiesRequest = { priorities: Record<string, string> }; // requirement id -> label
 
 // ---- Owner (O1, O2) ----
+
+export type Me = { owner: { name: string | null; email: string | null } | null };
 
 export type OwnerSessionSummary = {
   id: string;

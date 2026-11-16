@@ -2,31 +2,38 @@ import { useEffect, useState } from "react";
 import templates from "../../shared/templates.json";
 import type { OwnerSessionSummary } from "../../shared/api";
 import { api, errorMessage } from "../api";
+import { handleSignedOut, SignInCard, signOut, useOwner } from "../auth";
 import { buttonClass } from "../components/Button";
 import { CopyButton } from "../components/CopyButton";
 import { StatusChip } from "../components/Pill";
 import { ErrorNote, Loading } from "../components/Status";
-import { rememberOwnerUrl } from "../ownerLink";
 import { Link } from "../router";
 
-export function OwnerLinks({ ownerKey }: { ownerKey: string }) {
+export function OwnerLinks() {
+  const [owner, setOwner] = useOwner();
   const [sessions, setSessions] = useState<OwnerSessionSummary[] | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!owner) return;
     let live = true;
     api
-      .ownerList(ownerKey)
-      .then((res) => {
-        if (!live) return;
-        setSessions(res.sessions);
-        rememberOwnerUrl(`/o/${encodeURIComponent(ownerKey)}`);
-      })
-      .catch((err) => live && setError(errorMessage(err)));
+      .links()
+      .then((res) => live && setSessions(res.sessions))
+      .catch((err) => live && !handleSignedOut(err, setOwner) && setError(errorMessage(err)));
     return () => {
       live = false;
     };
-  }, [ownerKey]);
+  }, [owner]);
+
+  if (owner === undefined) return <Loading />;
+  if (owner === null) {
+    return (
+      <main className="mx-auto flex max-w-[480px] flex-col px-4 py-12">
+        <SignInCard next="/links" title="Sign in to see your links" />
+      </main>
+    );
+  }
 
   return (
     <main className="mx-auto flex max-w-[720px] flex-col gap-3 px-4 pb-12 pt-7">
@@ -36,8 +43,11 @@ export function OwnerLinks({ ownerKey }: { ownerKey: string }) {
           New link
         </Link>
       </div>
-      <p className="mb-1.5 px-1 text-[13px] leading-normal text-muted">
-        This page is your private owner link. Bookmark it. If you lose it, these links can't be recovered.
+      <p className="mb-1.5 flex flex-wrap items-center gap-x-2 px-1 text-[13px] leading-normal text-muted">
+        Signed in as {owner.name ?? owner.email ?? "you"}.
+        <button type="button" onClick={signOut} className="min-h-11 cursor-pointer font-semibold text-accent-text underline">
+          Sign out
+        </button>
       </p>
 
       {error && <ErrorNote>{error}</ErrorNote>}
@@ -52,10 +62,7 @@ export function OwnerLinks({ ownerKey }: { ownerKey: string }) {
         const meta = [templates[s.template].name, s.respondent_name, s.role].filter(Boolean).join(" · ");
         return (
           <div key={s.id} className="flex flex-col gap-2.5 rounded-card border border-border bg-surface p-4">
-            <Link
-              href={`/o/${encodeURIComponent(ownerKey)}/${encodeURIComponent(s.id)}`}
-              className="flex items-center gap-2.5 text-ink no-underline"
-            >
+            <Link href={`/links/${encodeURIComponent(s.id)}`} className="flex items-center gap-2.5 text-ink no-underline">
               <span className="flex min-w-0 flex-1 flex-col gap-0.5">
                 <span className="text-[15px] font-semibold">{s.topic}</span>
                 <span className="text-[13px] text-muted">

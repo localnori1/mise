@@ -1,6 +1,5 @@
 import { Hono, type Context } from "hono";
 import { bodyLimit } from "hono/body-limit";
-import { getCookie, setCookie } from "hono/cookie";
 import type {
   ApiError,
   Audience,
@@ -12,6 +11,7 @@ import type {
   TemplateId,
 } from "../shared/api";
 import type { ModelTarget } from "./ai";
+import { auth, requireOwner, type Env } from "./auth";
 import { buildSystemPrompt, InvalidModelOutput, runInterviewerTurn } from "./interviewer";
 import {
   AppError,
@@ -34,8 +34,6 @@ import {
   countDraft,
   hashIp,
   insertSession,
-  newToken,
-  ownerExists,
   purgeExpired,
   recentCreations,
   saveSession,
@@ -45,13 +43,11 @@ import {
   type Session,
 } from "./store";
 
-type Env = Cloudflare.Env & { IP_HASH_SALT?: string };
 type Ctx = Context<{ Bindings: Env }>;
 
-// NFR-03 abuse limits (per day). The owner key alone is easy to replace, so
-// creation and drafting are also limited per IP.
+// NFR-03 abuse limits (per day). Creating and drafting need a signed-in
+// owner (ADR-003); limits are per owner, and per IP against many accounts.
 const LIMITS = { sessionsPerOwner: 20, sessionsPerIp: 30, draftsPerIp: 30 };
-const OWNER_COOKIE = "mise_owner";
 const TEMPLATES: TemplateId[] = ["requirements", "pre_audit"];
 
 const target = (env: Env, model: string): ModelTarget => ({ ai: env.AI, gateway: env.AI_GATEWAY, model });
@@ -93,7 +89,6 @@ function validSetup(template: TemplateId, raw: any): SetupInput {
     assumed: strList(raw?.assumed),
     off_limits: strList(raw?.off_limits),
     sketch: strList(raw?.sketch, 15),
-    deliver_to: raw?.deliver_to === "both" ? "both" : "me",
   };
   if (!setup.topic) throw new AppError(400, "invalid_input", template === "pre_audit" ? "Add the business name." : "Add what this is about.");
   if (!setup.sender) throw new AppError(400, "invalid_input", "Add your name, so they know who's asking.");
@@ -106,6 +101,14 @@ function validSetup(template: TemplateId, raw: any): SetupInput {
 
 const app = new Hono<{ Bindings: Env }>();
 
+// Rejects cross-site writes (CSRF), on top of the SameSite=Lax login cookie.
+app.use("/api/*", async (c, next) => {
+  const origin = c.req.header("Origin");
+  if (c.req.method !== "GET" && origin && origin !== new URL(c.req.url).origin) {
+    return fail(c as Ctx, 403, "unauthorized", "That request came from another site.");
+  }
+  await next();
+});
 app.use("/api/*", bodyLimit({ maxSize: 64 * 1024, onError: (c) => fail(c as Ctx, 400, "invalid_input", "That's too long.") }));
 app.use("/api/*", async (c, next) => {
   await next();
@@ -120,8 +123,11 @@ app.onError((error, c) => {
   return fail(c as Ctx, 500, "ai_failed", "Something went wrong, try again.");
 });
 
+app.route("/", auth);
+
 // FR-02: draft the setup from pasted text.
 app.post("/api/setup/draft", async (c) => {
+  await requireOwner(c);
   const body = await readJson(c);
   const template = body?.template as TemplateId;
   const pasted = str(body?.pasted, 20_000);
@@ -137,37 +143,25 @@ app.post("/api/setup/draft", async (c) => {
   return c.json(draft);
 });
 
-// FR-01, FR-04: create a link; the owner key comes from the cookie or is new.
+// FR-01, FR-04: create a link for the signed-in owner.
 app.post("/api/sessions", async (c) => {
+  const { owner_key: ownerKey } = await requireOwner(c);
   const body = await readJson(c);
   const template = body?.template as TemplateId;
   if (!TEMPLATES.includes(template)) return fail(c, 400, "invalid_input", "Pick a template.");
   const setup = validSetup(template, body?.setup);
 
-  const cookieKey = getCookie(c, OWNER_COOKIE);
-  const known = cookieKey ? await ownerExists(c.env.DB, cookieKey) : false;
-  const ownerKey = known ? cookieKey! : newToken();
   const ip = await ipHash(c);
   const since = new Date(Date.now() - 86_400_000).toISOString();
-  const recent = await recentCreations(c.env.DB, known ? ownerKey : null, ip, since);
+  const recent = await recentCreations(c.env.DB, ownerKey, ip, since);
   if (recent.byOwner >= LIMITS.sessionsPerOwner || recent.byIp >= LIMITS.sessionsPerIp) {
     return fail(c, 429, "rate_limited", "That's the limit of new links for today. Try again tomorrow.");
   }
 
-  const session = await insertSession(c.env.DB, { ownerKey, newOwner: !known, template, setup, ipHash: ip });
-  const origin = new URL(c.req.url).origin;
-  setCookie(c, OWNER_COOKIE, ownerKey, {
-    httpOnly: true,
-    secure: origin.startsWith("https://"),
-    sameSite: "Lax",
-    path: "/",
-    maxAge: 60 * 60 * 24 * 365,
-  });
+  const session = await insertSession(c.env.DB, { ownerKey, template, setup, ipHash: ip });
   return c.json<CreatedSession>({
     session_id: session.id,
-    share_url: `${origin}/s/${session.share_token}`,
-    owner_key: ownerKey,
-    owner_url: `${origin}/o/${ownerKey}`,
+    share_url: `${new URL(c.req.url).origin}/s/${session.share_token}`,
   });
 });
 
@@ -238,33 +232,20 @@ app.post("/api/s/:token/confirm", async (c) => {
 
 app.post("/api/s/:token/delete", async (c) => respond(c, deleteAnswers(await loadByToken(c))));
 
-// ---- owner (O1, O2): the key in the URL is the credential (D-02) ----
+// ---- owner (O1, O2): signed-in owners see only their own links ----
 
-app.get("/api/o/:ownerKey", async (c) => {
+app.get("/api/links", async (c) => {
+  const owner = await requireOwner(c);
   const origin = new URL(c.req.url).origin;
-  const sessions = await sessionsForOwner(c.env.DB, c.req.param("ownerKey"));
+  const sessions = await sessionsForOwner(c.env.DB, owner.owner_key);
   return c.json<OwnerList>({ sessions: sessions.map((s) => ownerSummary(s, origin)) });
 });
 
-async function loadForOwner(c: Ctx): Promise<Session> {
-  const session = await sessionForOwner(c.env.DB, c.req.param("ownerKey") ?? "", c.req.param("id") ?? "");
-  if (!session) throw new AppError(404, "not_found", "That link isn't on this page.");
-  return session;
-}
-
-app.get("/api/o/:ownerKey/:id", async (c) => {
-  const session = await loadForOwner(c);
+app.get("/api/links/:id", async (c) => {
+  const owner = await requireOwner(c);
+  const session = await sessionForOwner(c.env.DB, owner.owner_key, c.req.param("id"));
+  if (!session) throw new AppError(404, "not_found", "That link isn't in your account.");
   return c.json<OwnerSession>({ ...ownerSummary(session, new URL(c.req.url).origin), output_md: session.output_md });
-});
-
-// FR-17: Markdown export.
-app.get("/api/o/:ownerKey/:id/export.md", async (c) => {
-  const session = await loadForOwner(c);
-  if (!session.output_md) return fail(c, 404, "not_found", "There's no document yet.");
-  const slug = session.setup.topic.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") || "mise";
-  c.header("Content-Type", "text/markdown; charset=utf-8");
-  c.header("Content-Disposition", `attachment; filename="${slug}.md"`);
-  return c.body(session.output_md);
 });
 
 app.all("/api/*", (c) => fail(c, 404, "not_found", "Not found."));

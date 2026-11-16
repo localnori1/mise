@@ -7,9 +7,9 @@ import { Button, buttonClass } from "../components/Button";
 import { Card, CardLabel } from "../components/Card";
 import { Chip } from "../components/Chip";
 import { CopyButton } from "../components/CopyButton";
-import { ErrorNote } from "../components/Status";
+import { ErrorNote, Loading } from "../components/Status";
 import { TextField } from "../components/TextField";
-import { ownerLinksPath, rememberOwnerUrl, toPath } from "../ownerLink";
+import { handleSignedOut, SignInCard, useOwner } from "../auth";
 import { Link } from "../router";
 
 const templateIds: TemplateId[] = ["requirements", "pre_audit"];
@@ -42,7 +42,6 @@ const emptyForm = (template: TemplateId): Form => ({
   assumed: [],
   off_limits: [],
   sketch: "",
-  deliver_to: "me",
 });
 
 export function Setup({ search }: { search: string }) {
@@ -57,7 +56,7 @@ export function Setup({ search }: { search: string }) {
   const [creating, setCreating] = useState(false);
   const [createError, setCreateError] = useState<string | null>(null);
   const [created, setCreated] = useState<CreatedSession | null>(null);
-  const ownerPath = ownerLinksPath();
+  const [owner, setOwner] = useOwner();
 
   const set = <K extends keyof Form>(key: K, value: Form[K]) => setForm((f) => ({ ...f, [key]: value }));
 
@@ -95,7 +94,7 @@ export function Setup({ search }: { search: string }) {
     try {
       applyDraft(await api.draft({ template, pasted }));
     } catch (err) {
-      setDraftError(errorMessage(err));
+      if (!handleSignedOut(err, setOwner)) setDraftError(errorMessage(err));
     } finally {
       setDrafting(false);
     }
@@ -134,19 +133,27 @@ export function Setup({ search }: { search: string }) {
           sketch: clean(form.sketch.split("\n")),
         },
       });
-      rememberOwnerUrl(result.owner_url);
       setCreated(result);
       window.scrollTo(0, 0);
     } catch (err) {
-      setCreateError(errorMessage(err));
+      if (!handleSignedOut(err, setOwner)) setCreateError(errorMessage(err));
     } finally {
       setCreating(false);
     }
   };
 
+  if (owner === undefined) return <Loading />;
+  if (owner === null) {
+    return (
+      <Page backHref="/" backLabel="Back">
+        <SignInCard next={`/new${search}`} />
+      </Page>
+    );
+  }
+
   if (created) {
     return (
-      <Page backHref={toPath(created.owner_url)} backLabel="Your links">
+      <Page backHref="/links" backLabel="Your links">
         <div className="flex flex-col gap-1.5">
           <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-accent-text">
             <Check size={24} aria-hidden="true" />
@@ -169,18 +176,18 @@ export function Setup({ search }: { search: string }) {
           />
           <CopyButton text={created.share_url} variant="primary" />
         </Card>
-        <Link href={toPath(created.owner_url)} className={buttonClass("secondary")}>
-          Open your links page
+        <Link href="/links" className={buttonClass("secondary")}>
+          Open your links
         </Link>
         <p className="text-[13px] leading-normal text-muted">
-          Your links page is private to you. Bookmark it: if you lose it, these links can't be recovered.
+          When they confirm their answers, the document appears in your links, on any device you sign in on.
         </p>
       </Page>
     );
   }
 
   return (
-    <Page backHref={ownerPath ?? "/"} backLabel={ownerPath ? "Back to your links" : "Back"}>
+    <Page backHref="/links" backLabel="Back to your links">
       <div className="flex flex-col gap-1.5">
         <h1 className="font-display text-[26px] font-semibold leading-tight">New link</h1>
         <p className="text-sm leading-normal text-muted">
@@ -294,29 +301,6 @@ export function Setup({ search }: { search: string }) {
               />
             </Card>
 
-            <Card>
-              <CardLabel>Who gets the brief</CardLabel>
-              <div role="group" aria-label="Who gets the brief" className="flex flex-col gap-2">
-                {(
-                  [
-                    ["me", "Just me"],
-                    ["both", "Me and them"],
-                  ] as const
-                ).map(([id, label]) => (
-                  <button
-                    key={id}
-                    type="button"
-                    aria-pressed={form.deliver_to === id}
-                    onClick={() => set("deliver_to", id)}
-                    className={`min-h-12 cursor-pointer rounded-btn bg-surface px-3.5 text-left text-sm ${
-                      form.deliver_to === id ? "border-2 border-ink font-semibold text-ink" : "border border-input font-medium text-muted-2"
-                    }`}
-                  >
-                    {label}
-                  </button>
-                ))}
-              </div>
-            </Card>
           </Section>
         </>
       )}
@@ -333,6 +317,9 @@ export function Setup({ search }: { search: string }) {
       </Card>
 
       <div className="flex flex-col gap-2.5">
+        <p className="text-[13px] leading-normal text-muted">
+          When they confirm their answers, you both get the document made from them.
+        </p>
         <Button onClick={create} loading={creating}>
           {creating ? "Creating your link…" : "Create link"}
         </Button>

@@ -1,4 +1,4 @@
-import { StrictMode } from "react";
+import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { buttonClass } from "./components/Button";
 import { Home } from "./pages/Home";
@@ -21,6 +21,14 @@ function NotFound() {
   );
 }
 
+// Owner pages before sign-in (ADR-003) lived at /o/<key>.
+function OldOwnerLink() {
+  useEffect(() => {
+    window.location.replace("/links");
+  }, []);
+  return null;
+}
+
 function App() {
   const { path, search } = useLocation();
   const parts = path.split("/").filter(Boolean).map(decodeURIComponent);
@@ -28,8 +36,9 @@ function App() {
   if (parts.length === 0) return <Home />;
   if (parts[0] === "new" && parts.length === 1) return <Setup key={search} search={search} />;
   if (parts[0] === "s" && parts.length === 2) return <Respondent key={parts[1]} token={parts[1]} />;
-  if (parts[0] === "o" && parts.length === 2) return <OwnerLinks key={parts[1]} ownerKey={parts[1]} />;
-  if (parts[0] === "o" && parts.length === 3) return <OwnerDocument key={path} ownerKey={parts[1]} id={parts[2]} />;
+  if (parts[0] === "links" && parts.length === 1) return <OwnerLinks />;
+  if (parts[0] === "links" && parts.length === 2) return <OwnerDocument key={parts[1]} id={parts[1]} />;
+  if (parts[0] === "o") return <OldOwnerLink />;
   return <NotFound />;
 }
 

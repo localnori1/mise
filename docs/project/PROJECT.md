@@ -46,8 +46,8 @@ last_reviewed: "2026-11-16"
   output tokens per session = roughly 2,000-6,500 Workers AI neurons; free
   allowance is 10,000/day (~1-5 sessions/day).
 - Design headroom: ~10x expected load
-- First likely bottleneck: AI spend and abuse (anyone can create an owner key),
-  then the 10,000 neurons/day free AI allowance — not database load
+- First likely bottleneck: AI spend and abuse (limited by Google sign-in for
+  owners and daily per-owner/per-IP limits, ADR-003), then the 10,000 neurons/day free AI allowance — not database load
 - Product type(s): AI feature inside a small web app; mobile-first respondent
 - Devices and usage conditions: respondent on phone (360-390px, possibly poor
   connection, Taglish); sender on desktop
@@ -81,13 +81,16 @@ last_reviewed: "2026-11-16"
   [ADR-001](../decisions/ADR-001-cloudflare-and-open-models.md). The app, not
   the model, controls the interview flow:
   [ADR-002](../decisions/ADR-002-app-controlled-interview-flow.md).
+  Owners sign in with Google; respondents get the document as PDF/Markdown:
+  [ADR-003](../decisions/ADR-003-google-sign-in-and-respondent-copy.md).
   Supersedes the handoff's Vercel/Supabase/Anthropic plan.
 - Code locations: `src/server/` (Worker API, Hono, D1, AI calls, prompts),
   `src/client/` (React app), `src/shared/` (API contract `api.ts`,
   `templates.json`), `migrations/` (D1 schema), `prompt-evals/` (interviewer evals)
 - Build/test commands: `npm run dev` (Vite + Worker on localhost:5173),
   `npm run db:migrate` (local D1 schema), `npm run typecheck`, `npm test`,
-  `npm run build`; evals: `npm run dev:eval` + `npm run eval -- --model <id>`
+  `npm run build`; local sign-in without Google: `DEV_LOGIN=1` in `.dev.vars`;
+  evals: `npm run dev:eval` + `npm run eval -- --model <id>`
   (needs a build first so `dist/client` exists)
 - Environments: local only (local D1, AI through the owner's gateway). No
   production database or deployment yet.

@@ -119,6 +119,45 @@
     background: var(--color-bg);
     font-weight: 600;
   }
+  /* The copy "Save as PDF" prints (DocumentActions); hidden on screen. */
+  .print-doc {
+    display: none;
+  }
+}
+
+@media print {
+  @page {
+    margin: 16mm 15mm;
+  }
+  body {
+    background: #fff;
+  }
+  body:has(> .print-doc) > :not(.print-doc) {
+    display: none !important;
+  }
+  .print-doc {
+    display: block;
+  }
+  .doc {
+    font-size: 11pt;
+  }
+  .doc table {
+    display: table;
+    width: 100%;
+    font-size: 9.5pt;
+  }
+  .doc h1,
+  .doc h2,
+  .doc h3 {
+    break-after: avoid;
+  }
+  .doc tr,
+  .doc blockquote {
+    break-inside: avoid;
+  }
+  .doc th {
+    print-color-adjust: exact;
+  }
 }
 
 @keyframes typing {

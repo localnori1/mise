@@ -1,4 +1,4 @@
-import type { OwnerSessionSummary, PanelItem, QuickTap, RespondentView, Step } from "../shared/api";
+import type { ApiError, OwnerSessionSummary, PanelItem, QuickTap, RespondentView, Step } from "../shared/api";
 import templates from "../shared/templates.json";
 import type { ModelTarget } from "./ai";
 import { buildSystemPrompt, countsAsQuestion, runInterviewerTurn, type InterviewSetup, type Turn } from "./interviewer";
@@ -12,8 +12,8 @@ export const templateOf = (session: Pick<Session, "template">): Template => temp
 // A user-facing failure; the route turns it into an ApiError response.
 export class AppError extends Error {
   constructor(
-    readonly status: 400 | 404 | 409 | 429 | 502,
-    readonly code: "not_found" | "invalid_input" | "rate_limited" | "ai_failed" | "conflict" | "turn_cap" | "closed",
+    readonly status: 400 | 401 | 404 | 409 | 429 | 502,
+    readonly code: ApiError["error"]["code"],
     message: string,
   ) {
     super(message);
@@ -51,8 +51,38 @@ function quickTaps(session: Session): QuickTap[] {
   }));
 }
 
-// What the respondent's browser may see: never the owner key, the sender's
-// private notes (known/assumed), or the output document (04-architecture.md).
+// The respondent's copy of the finished document (ADR-003). A Pre-Audit
+// Brief's "Where to Dig on the Call" and "Handoff" sections are the
+// consultant's own prep, so the prospect's copy leaves them out. The headings
+// are model-written, so matching is loose, and a brief whose call-prep
+// heading can't be found is withheld rather than sent whole.
+const CONSULTANT_ONLY = /where to dig|hand[\s-]?off/i;
+
+export function respondentCopy(session: Pick<Session, "template" | "status" | "output_md">): string | null {
+  if (session.status !== "ready" || !session.output_md) return null;
+  if (session.template !== "pre_audit") return session.output_md;
+  const kept: string[] = [];
+  let skipLevel = 0; // heading level of the section being dropped, 0 when keeping
+  let foundCallPrep = false;
+  for (const line of session.output_md.split("\n")) {
+    const heading = /^ {0,3}(#{1,6})\s+(.*)$/.exec(line);
+    if (heading) {
+      const level = heading[1].length;
+      if (skipLevel && level <= skipLevel) skipLevel = 0;
+      // The title (level 1) carries the business name, which may contain "handoff".
+      if (!skipLevel && level > 1 && CONSULTANT_ONLY.test(heading[2])) {
+        skipLevel = level;
+        if (/where to dig/i.test(heading[2])) foundCallPrep = true;
+      }
+    }
+    if (!skipLevel) kept.push(line);
+  }
+  return foundCallPrep ? kept.join("\n") : null;
+}
+
+// What the respondent's browser may see: never the owner key or the sender's
+// setup notes as such. The document (respondentCopy) may restate them, as the
+// confirmed facts of the session; Setup tells the sender they get a copy.
 export function respondentView(session: Session): RespondentView {
   const template = templateOf(session);
   const { state, setup } = session;
@@ -94,6 +124,7 @@ export function respondentView(session: Session): RespondentView {
     core_need: state.core_need,
     question_count: state.count,
     budget: template.budget,
+    document_md: respondentCopy(session),
   };
 }
 

@@ -1,22 +1,11 @@
 import { Check } from "lucide-react";
 import { useState } from "react";
-import type { RespondentView } from "../../../shared/api";
 import { api } from "../../api";
 import { Button } from "../../components/Button";
 import { Card, CardLabel } from "../../components/Card";
-import { CopyButton } from "../../components/CopyButton";
+import { DocumentActions, fileSlug } from "../../components/DocumentActions";
 import { ErrorNote } from "../../components/Status";
 import type { ScreenProps } from "../Respondent";
-
-function summary(view: RespondentView) {
-  const parts = [view.intro.topic];
-  if (view.core_need) parts.push(`The core need\n${view.core_need}`);
-  if (view.steps.length) parts.push(`The process you confirmed\n${view.steps.map((s, i) => `${i + 1}. ${s.text}`).join("\n")}`);
-  if (view.panel.length) parts.push(`What we heard\n${view.panel.map((p) => `- ${p.text}`).join("\n")}`);
-  const ranked = view.requirements.filter((r) => r.priority);
-  if (ranked.length) parts.push(`Your priorities\n${ranked.map((r) => `- ${r.text}: ${r.priority}`).join("\n")}`);
-  return parts.join("\n\n");
-}
 
 export function Done({ view, busy, error, run, token }: ScreenProps) {
   const [confirming, setConfirming] = useState(false);
@@ -28,7 +17,8 @@ export function Done({ view, busy, error, run, token }: ScreenProps) {
       </span>
       <h1 className="font-display text-[28px] font-semibold leading-tight">Thanks, that's everything</h1>
       <p className="text-[15px] leading-relaxed">
-        {view.intro.sender} now has what you shared. Here's your copy, in case it helps.
+        {view.intro.sender} now has what you shared.
+        {view.document_md && " The document made from your answers is yours to keep too."}
       </p>
       {(view.core_need || view.steps.length > 0) && (
         <Card className="gap-2">
@@ -46,7 +36,7 @@ export function Done({ view, busy, error, run, token }: ScreenProps) {
           )}
         </Card>
       )}
-      <CopyButton text={summary(view)} label="Copy my answers" />
+      {view.document_md && <DocumentActions markdown={view.document_md} name={fileSlug(view.intro.topic)} hint />}
 
       <div className="mt-auto flex flex-col gap-2 pt-4">
         {error && <ErrorNote>{error}</ErrorNote>}

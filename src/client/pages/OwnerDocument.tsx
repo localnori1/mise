@@ -1,13 +1,12 @@
-import { ArrowLeft, Download } from "lucide-react";
+import { ArrowLeft } from "lucide-react";
 import { useEffect, useState } from "react";
-import Markdown from "react-markdown";
-import remarkGfm from "remark-gfm";
 import templates from "../../shared/templates.json";
 import type { OwnerSession } from "../../shared/api";
 import { api, errorMessage } from "../api";
-import { buttonClass } from "../components/Button";
+import { handleSignedOut, SignInCard, useOwner } from "../auth";
 import { Card } from "../components/Card";
 import { CopyButton } from "../components/CopyButton";
+import { DocumentActions, DocumentView, fileSlug } from "../components/DocumentActions";
 import { StatusChip } from "../components/Pill";
 import { ErrorNote, Loading } from "../components/Status";
 import { Link } from "../router";
@@ -19,25 +18,36 @@ const statusNote: Record<OwnerSession["status"], string> = {
   deleted: "They deleted their answers, so there's nothing to show.",
 };
 
-export function OwnerDocument({ ownerKey, id }: { ownerKey: string; id: string }) {
+export function OwnerDocument({ id }: { id: string }) {
+  const [owner, setOwner] = useOwner();
   const [session, setSession] = useState<OwnerSession | null>(null);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
+    if (!owner) return;
     let live = true;
     api
-      .ownerSession(ownerKey, id)
+      .link(id)
       .then((res) => live && setSession(res))
-      .catch((err) => live && setError(errorMessage(err)));
+      .catch((err) => live && !handleSignedOut(err, setOwner) && setError(errorMessage(err)));
     return () => {
       live = false;
     };
-  }, [ownerKey, id]);
+  }, [owner, id]);
+
+  if (owner === undefined) return <Loading />;
+  if (owner === null) {
+    return (
+      <main className="mx-auto flex max-w-[480px] flex-col px-4 py-12">
+        <SignInCard next={`/links/${encodeURIComponent(id)}`} title="Sign in to see this document" />
+      </main>
+    );
+  }
 
   return (
     <main className="mx-auto flex max-w-[860px] flex-col gap-4 px-4 pb-16 pt-5 sm:pt-8">
       <Link
-        href={`/o/${encodeURIComponent(ownerKey)}`}
+        href="/links"
         className="flex min-h-11 items-center gap-1.5 self-start text-sm font-semibold no-underline"
       >
         <ArrowLeft size={16} aria-hidden="true" />
@@ -62,16 +72,11 @@ export function OwnerDocument({ ownerKey, id }: { ownerKey: string; id: string }
 
           {session.output_md ? (
             <>
-              <div className="flex flex-wrap gap-2">
-                <a href={api.exportUrl(ownerKey, id)} download className={buttonClass("primary", "", "sm")}>
-                  <Download size={18} aria-hidden="true" />
-                  Export as Markdown
-                </a>
-                <CopyButton text={session.output_md} label="Copy" size="sm" />
-              </div>
-              <article className="doc rounded-card border border-border bg-surface px-5 py-6 sm:px-10 sm:py-10">
-                <Markdown remarkPlugins={[remarkGfm]}>{session.output_md}</Markdown>
-              </article>
+              <DocumentActions markdown={session.output_md} name={fileSlug(session.topic)} />
+              <DocumentView
+                markdown={session.output_md}
+                className="rounded-card border border-border bg-surface px-5 py-6 sm:px-10 sm:py-10"
+              />
             </>
           ) : (
             <Card>

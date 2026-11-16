@@ -3,6 +3,7 @@ import type {
   CreateSession,
   CreatedSession,
   DraftRequest,
+  Me,
   OwnerList,
   OwnerSession,
   PrioritiesRequest,
@@ -44,10 +45,10 @@ export function errorMessage(err: unknown): string {
 }
 
 const s = (token: string, action = "") => `/api/s/${encodeURIComponent(token)}${action && `/${action}`}`;
-const o = (key: string, id?: string) =>
-  `/api/o/${encodeURIComponent(key)}${id ? `/${encodeURIComponent(id)}` : ""}`;
 
 export const api = {
+  me: () => request<Me>("/api/me"),
+  logout: () => request<Me>("/api/auth/logout", {}),
   draft: (body: DraftRequest) => request<SetupDraft>("/api/setup/draft", body),
   createSession: (body: CreateSession) => request<CreatedSession>("/api/sessions", body),
 
@@ -62,7 +63,6 @@ export const api = {
   confirm: (token: string) => request<RespondentView>(s(token, "confirm"), {}),
   deleteAnswers: (token: string) => request<RespondentView>(s(token, "delete"), {}),
 
-  ownerList: (key: string) => request<OwnerList>(o(key)),
-  ownerSession: (key: string, id: string) => request<OwnerSession>(o(key, id)),
-  exportUrl: (key: string, id: string) => `${o(key, id)}/export.md`,
+  links: () => request<OwnerList>("/api/links"),
+  link: (id: string) => request<OwnerSession>(`/api/links/${encodeURIComponent(id)}`),
 };

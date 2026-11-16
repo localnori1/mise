@@ -106,14 +106,10 @@ export async function sessionsForOwner(db: D1Database, ownerKey: string): Promis
   return results.map(fromRow);
 }
 
-export async function ownerExists(db: D1Database, ownerKey: string): Promise<boolean> {
-  return Boolean(await db.prepare("SELECT 1 FROM owners WHERE owner_key = ?").bind(ownerKey).first());
-}
-
 // Sessions created since `since` by this owner, and by this IP hash.
-export async function recentCreations(db: D1Database, ownerKey: string | null, ipHash: string, since: string) {
+export async function recentCreations(db: D1Database, ownerKey: string, ipHash: string, since: string) {
   const [owner, ip] = await db.batch<{ n: number }>([
-    db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE owner_key = ? AND created_at >= ?").bind(ownerKey ?? "", since),
+    db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE owner_key = ? AND created_at >= ?").bind(ownerKey, since),
     db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE creator_ip_hash = ? AND created_at >= ?").bind(ipHash, since),
   ]);
   return { byOwner: owner.results[0]?.n ?? 0, byIp: ip.results[0]?.n ?? 0 };
@@ -121,7 +117,7 @@ export async function recentCreations(db: D1Database, ownerKey: string | null, i
 
 export async function insertSession(
   db: D1Database,
-  input: { ownerKey: string; newOwner: boolean; template: TemplateId; setup: SetupInput; ipHash: string },
+  input: { ownerKey: string; template: TemplateId; setup: SetupInput; ipHash: string },
 ): Promise<Session> {
   const now = new Date();
   const session: Session = {
@@ -142,19 +138,14 @@ export async function insertSession(
     updated_at: now.toISOString(),
   };
   const expires = new Date(now.getTime() + RETENTION_DAYS * DAY_MS).toISOString();
-  const statements = [
-    db
-      .prepare(
-        `INSERT INTO sessions (id, owner_key, share_token, template, setup, turns, state, status, creator_ip_hash, created_at, updated_at, expires_at)
-         VALUES (?, ?, ?, ?, ?, '[]', ?, 'not_started', ?, ?, ?, ?)`,
-      )
-      .bind(session.id, session.owner_key, session.share_token, session.template, JSON.stringify(session.setup),
-        JSON.stringify(session.state), input.ipHash, session.created_at, session.updated_at, expires),
-  ];
-  if (input.newOwner) {
-    statements.unshift(db.prepare("INSERT INTO owners (owner_key, created_at) VALUES (?, ?)").bind(session.owner_key, session.created_at));
-  }
-  await db.batch(statements);
+  await db
+    .prepare(
+      `INSERT INTO sessions (id, owner_key, share_token, template, setup, turns, state, status, creator_ip_hash, created_at, updated_at, expires_at)
+       VALUES (?, ?, ?, ?, ?, '[]', ?, 'not_started', ?, ?, ?, ?)`,
+    )
+    .bind(session.id, session.owner_key, session.share_token, session.template, JSON.stringify(session.setup),
+      JSON.stringify(session.state), input.ipHash, session.created_at, session.updated_at, expires)
+    .run();
   return session;
 }
 
@@ -195,12 +186,14 @@ export async function countDraft(db: D1Database, ipHash: string, day: string): P
   return row?.count ?? 1;
 }
 
-// NFR-05: daily cleanup of expired sessions and old usage counters.
+// NFR-05: daily cleanup of expired sessions, sign-ins and old usage counters.
 export async function purgeExpired(db: D1Database, now = new Date()) {
   const cutoffDay = new Date(now.getTime() - 2 * DAY_MS).toISOString().slice(0, 10);
   await db.batch([
     db.prepare("DELETE FROM sessions WHERE expires_at < ?").bind(now.toISOString()),
     db.prepare("DELETE FROM draft_usage WHERE day < ?").bind(cutoffDay),
-    db.prepare("DELETE FROM owners WHERE owner_key NOT IN (SELECT owner_key FROM sessions)"),
+    db.prepare("DELETE FROM logins WHERE expires_at < ?").bind(now.toISOString()),
+    // Anonymous owners from before sign-in (ADR-003) go once their links do.
+    db.prepare("DELETE FROM owners WHERE google_sub IS NULL AND owner_key NOT IN (SELECT owner_key FROM sessions)"),
   ]);
 }

@@ -1,6 +1,7 @@
 import { describe, expect, it } from "vitest";
+import { safeNext } from "./auth";
 import { flowRule } from "./interviewer";
-import { reserveCall, setPriorities } from "./sessions";
+import { reserveCall, respondentCopy, setPriorities } from "./sessions";
 import { applyOps } from "./state";
 import { emptyState, type Session } from "./store";
 
@@ -49,7 +50,7 @@ const session = (): Session => ({
   template: "requirements",
   setup: {
     topic: "T", summary: "", sender: "Ana", respondent_name: "Jo", role: "Dispatcher", audience: "colleague",
-    focus: [], known: [], assumed: [], off_limits: [], sketch: [], deliver_to: "me",
+    focus: [], known: [], assumed: [], off_limits: [], sketch: [],
   },
   basics: {},
   turns: [],
@@ -88,5 +89,50 @@ describe("setPriorities (FR-13)", () => {
     const { session: next, answer } = setPriorities(session(), { r1: "Must have", r2: "Not needed" });
     expect(next.state.requirements.map((r) => r.priority)).toEqual(["Must have", "Not needed"]);
     expect(answer).toContain('"Two": Not needed');
+  });
+});
+
+describe("respondentCopy (ADR-003)", () => {
+  const doc = "# Pre-Audit Brief: X\n\n## 5. Success\nQuote\n\n## 6. Where to Dig on the Call\n| D-01 | Ask |\n\n### Notes\nprep\n\n## 7. Owner's Questions\nNone\n\n## 8. Handoff\nInterview Jo next";
+  const copy = (template: "requirements" | "pre_audit", output_md: string) => respondentCopy({ template, status: "ready", output_md });
+
+  it("is withheld until the document is ready", () => {
+    expect(respondentCopy({ template: "requirements", status: "in_progress", output_md: "x" })).toBeNull();
+  });
+
+  it("gives the full requirements document", () => {
+    expect(copy("requirements", doc)).toBe(doc);
+  });
+
+  it("leaves the consultant's call prep and handoff out of a Pre-Audit Brief", () => {
+    const text = copy("pre_audit", doc)!;
+    expect(text).not.toMatch(/Where to Dig|D-01|prep|Handoff|Interview Jo/);
+    expect(text).toContain("## 5. Success");
+    expect(text).toContain("## 7. Owner's Questions");
+  });
+
+  it("matches drifted headings", () => {
+    expect(copy("pre_audit", "# B\n### 6) **Where to dig on the call**\nD-01\n## 7. Q\nok")).toBe("# B\n## 7. Q\nok");
+  });
+
+  it("keeps a title that mentions handoff and drops an indented Hand-off section", () => {
+    expect(copy("pre_audit", "# Brief: Shift Handoff Co\n## 6. Where to Dig\nD-01\n  ## 8. Hand-off\nnext\n## 9. End\nok")).toBe(
+      "# Brief: Shift Handoff Co\n## 9. End\nok",
+    );
+  });
+
+  it("withholds a brief whose call-prep heading can't be found", () => {
+    expect(copy("pre_audit", "# B\n## 6. Questions for the call\nD-01")).toBeNull();
+  });
+});
+
+describe("safeNext (sign-in redirect)", () => {
+  const origin = "https://mise.example";
+  it.each(["/\t/evil.example", "//evil.example", "/\\evil.example", "https://evil.example", "/.//evil.example", "/x/..//evil.example", "/%2e//evil.example", "evil", undefined])(
+    "refuses %j",
+    (next) => expect(safeNext(next, origin)).toBe("/links"),
+  );
+  it("keeps same-site paths", () => {
+    expect(safeNext("/new?template=pre_audit", origin)).toBe("/new?template=pre_audit");
   });
 });

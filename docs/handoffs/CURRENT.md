@@ -27,6 +27,11 @@ review, a first commit, then deployment to Cloudflare.
 - Independent review (Fable): High/Medium findings fixed (model can't end a
   session; calls reserved before spending; near-cap wrap-up).
 - AI spend so far ~$2 of the $10 gateway credit (estimate).
+- First commit 5d9bbb4 (local `main`, no remote).
+- ADR-003: owners sign in with Google (`/links`), "Who gets the brief"
+  removed, respondents get the document (PDF via browser print, Markdown,
+  copy; pre-audit call prep and handoff left out). Reviewed; fixes applied.
+  Verified locally with `DEV_LOGIN=1`; real Google sign-in not yet tested.
 
 ## In progress
 
@@ -36,27 +41,17 @@ review, a first commit, then deployment to Cloudflare.
 
 - `src/server/prompts/interviewer.txt` and `setup-drafter.txt` diverge from
   `source/handoff/05-prompts/` on purpose (eval fixes; short off-limits names).
-- Out of scope: FR-18 (start requirements session from a brief), FR-19
-  (preview), FR-20 (upload).
-- Local D1 uses a placeholder `database_id`; production needs a real one.
+- Out of## Blockers and decisions needed
 
-## Relevant files
-
-- `docs/project/PROJECT.md` (technical map, commands), `docs/project/SERVICES.md`
-- `docs/decisions/ADR-001-…`, `ADR-002-…`; `prompt-evals/results/SUMMARY.md`
-
-## Blockers and decisions needed
-
-1. "Who gets the brief" (Just me / Me and them) is stored but has no effect
-   yet: implement, or hide it.
-2. Owner page across devices: new links made from a second device start a
-   separate owner page (the owner key is in a cookie). Accept, or send the
-   remembered key when creating.
-3. Deployment (owner approval): create the production D1 database, set the
-   `IP_HASH_SALT` secret, add security headers, `wrangler deploy`.
-4. First commit of this work (nothing committed yet).
+1. Owner creates a Google OAuth client (free) and sets `GOOGLE_CLIENT_ID`
+   and the `GOOGLE_CLIENT_SECRET` Worker secret; redirect URIs
+   `http://localhost:5173/auth/google/callback` and the production
+   `https://<host>/auth/google/callback`.
+2. Deployment (owner approval): production D1 (`database_id`), migrations
+   0001-0002 remote, `IP_HASH_SALT` secret, security headers, `wrangler deploy`.
+3. Later: account deletion for signed-in owners (name/email kept until then).
 
 ## Exact next step
 
-Owner reviews the app at `npm run dev` (localhost:5173) and the screenshots,
-decides items 1–2, approves a commit, then deployment.
+Owner approves committing the sign-in work, then the Google OAuth setup and
+deployment.
