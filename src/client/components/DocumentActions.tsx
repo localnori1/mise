@@ -35,10 +35,20 @@ function downloadMarkdown(markdown: string, name: string) {
 
 // Save as PDF, Markdown and Copy for a finished document, plus the print-only
 // copy of it that "Save as PDF" prints.
-export function DocumentActions({ markdown, name, hint = false }: { markdown: string; name: string; hint?: boolean }) {
+export function DocumentActions({
+  markdown,
+  name,
+  hint = false,
+  centered = false,
+}: {
+  markdown: string;
+  name: string;
+  hint?: boolean;
+  centered?: boolean;
+}) {
   return (
-    <div className="flex flex-col gap-2">
-      <div className="flex flex-wrap gap-2">
+    <div className={`flex flex-col gap-2 ${centered ? "items-center text-center" : ""}`}>
+      <div className={`flex flex-wrap gap-2 ${centered ? "justify-center" : ""}`}>
         <Button size="sm" onClick={() => savePdf(name)}>
           <FileText size={18} aria-hidden="true" />
           Save as PDF

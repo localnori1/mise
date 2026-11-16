@@ -12,10 +12,12 @@ export function Done({ view, busy, error, run, token }: ScreenProps) {
 
   return (
     <main className="flex flex-1 flex-col gap-4 px-5 pb-6 pt-12">
-      <span className="flex h-[52px] w-[52px] items-center justify-center rounded-full bg-accent-soft text-accent-text">
-        <Check size={26} strokeWidth={2.5} aria-hidden="true" />
-      </span>
-      <h1 className="font-display text-[28px] font-semibold leading-tight">Thanks, that's everything</h1>
+      <h1 className="font-display text-[28px] font-semibold leading-tight">
+        Thanks, that's everything
+        <span className="ml-3 inline-flex h-11 w-11 items-center justify-center rounded-full bg-accent-soft align-middle text-accent-text">
+          <Check size={22} strokeWidth={2.5} aria-hidden="true" />
+        </span>
+      </h1>
       <p className="text-[15px] leading-relaxed">
         {view.intro.sender} now has what you shared.
         {view.document_md && " The document made from your answers is yours to keep too."}
@@ -36,7 +38,7 @@ export function Done({ view, busy, error, run, token }: ScreenProps) {
           )}
         </Card>
       )}
-      {view.document_md && <DocumentActions markdown={view.document_md} name={fileSlug(view.intro.topic)} hint />}
+      {view.document_md && <DocumentActions markdown={view.document_md} name={fileSlug(view.intro.topic)} hint centered />}
 
       <div className="mt-auto flex flex-col gap-2 pt-4">
         {error && <ErrorNote>{error}</ErrorNote>}
