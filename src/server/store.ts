@@ -106,13 +106,14 @@ export async function sessionsForOwner(db: D1Database, ownerKey: string): Promis
   return results.map(fromRow);
 }
 
-// Sessions created since `since` by this owner, and by this IP hash.
+// Sessions created since `since` by this owner, by this IP hash, and in total.
 export async function recentCreations(db: D1Database, ownerKey: string, ipHash: string, since: string) {
-  const [owner, ip] = await db.batch<{ n: number }>([
+  const [owner, ip, site] = await db.batch<{ n: number }>([
     db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE owner_key = ? AND created_at >= ?").bind(ownerKey, since),
     db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE creator_ip_hash = ? AND created_at >= ?").bind(ipHash, since),
+    db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE created_at >= ?").bind(since),
   ]);
-  return { byOwner: owner.results[0]?.n ?? 0, byIp: ip.results[0]?.n ?? 0 };
+  return { byOwner: owner.results[0]?.n ?? 0, byIp: ip.results[0]?.n ?? 0, site: site.results[0]?.n ?? 0 };
 }
 
 export async function insertSession(
@@ -173,17 +174,17 @@ export async function saveSession(db: D1Database, session: Session): Promise<Ses
   return { ...session, version: session.version + 1, updated_at: updatedAt };
 }
 
-// Draft calls are limited per IP per day; returns the count after this call.
-export async function countDraft(db: D1Database, ipHash: string, day: string): Promise<number> {
-  const row = await db
-    .prepare(
-      `INSERT INTO draft_usage (ip_hash, day, count) VALUES (?, ?, 1)
-       ON CONFLICT (ip_hash, day) DO UPDATE SET count = count + 1
-       RETURNING count`,
-    )
-    .bind(ipHash, day)
-    .first<{ count: number }>();
-  return row?.count ?? 1;
+// Daily draft counters: adds one to each key and returns the new counts.
+// Keys are an IP hash, "owner:<key>", or "site" (the column predates the
+// owner and site counters, hence its name).
+export async function countDraft(db: D1Database, keys: string[], day: string): Promise<number[]> {
+  const statement = db.prepare(
+    `INSERT INTO draft_usage (ip_hash, day, count) VALUES (?, ?, 1)
+     ON CONFLICT (ip_hash, day) DO UPDATE SET count = count + 1
+     RETURNING count`,
+  );
+  const results = await db.batch<{ count: number }>(keys.map((key) => statement.bind(key, day)));
+  return results.map((result) => result.results[0]?.count ?? 1);
 }
 
 // NFR-05: daily cleanup of expired sessions, sign-ins and old usage counters.

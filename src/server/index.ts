@@ -46,8 +46,18 @@ import {
 type Ctx = Context<{ Bindings: Env }>;
 
 // NFR-03 abuse limits (per day). Creating and drafting need a signed-in
-// owner (ADR-003); limits are per owner, and per IP against many accounts.
-const LIMITS = { sessionsPerOwner: 20, sessionsPerIp: 30, draftsPerIp: 30 };
+// owner (ADR-003). Limits are per owner, per IP (against many accounts), and
+// site-wide, so no one visitor can use up the month's AI spend limit and take
+// the demo offline for everyone (ADR-003).
+const LIMITS = {
+  sessionsPerOwner: 3,
+  sessionsPerIp: 5,
+  sessionsSite: 15,
+  draftsPerOwner: 10,
+  draftsPerIp: 15,
+  draftsSite: 60,
+};
+const BUSY_TODAY = "Mise has had a busy day and isn't taking new links until tomorrow.";
 const TEMPLATES: TemplateId[] = ["requirements", "pre_audit"];
 
 const target = (env: Env, model: string): ModelTarget => ({ ai: env.AI, gateway: env.AI_GATEWAY, model });
@@ -136,14 +146,17 @@ app.route("/", auth);
 
 // FR-02: draft the setup from pasted text.
 app.post("/api/setup/draft", async (c) => {
-  await requireOwner(c);
+  const { owner_key: ownerKey } = await requireOwner(c);
   const body = await readJson(c);
   const template = body?.template as TemplateId;
   const pasted = str(body?.pasted, 20_000);
   if (!TEMPLATES.includes(template)) return fail(c, 400, "invalid_input", "Pick a template.");
   if (pasted.length < 20) return fail(c, 400, "invalid_input", "Paste a little more, at least a couple of sentences.");
-  const used = await countDraft(c.env.DB, await ipHash(c), new Date().toISOString().slice(0, 10));
-  if (used > LIMITS.draftsPerIp) return fail(c, 429, "rate_limited", "That's the drafting limit for today. Fill the fields by hand, or try tomorrow.");
+  const [byOwner, byIp, site] = await countDraft(c.env.DB, [`owner:${ownerKey}`, await ipHash(c), "site"], new Date().toISOString().slice(0, 10));
+  if (site > LIMITS.draftsSite) return fail(c, 429, "rate_limited", "Drafting is paused until tomorrow. Fill the fields by hand instead.");
+  if (byOwner > LIMITS.draftsPerOwner || byIp > LIMITS.draftsPerIp) {
+    return fail(c, 429, "rate_limited", "That's the drafting limit for today. Fill the fields by hand, or try tomorrow.");
+  }
   const draft = await draftSetup(target(c.env, c.env.MODEL_SETUP), template, pasted).catch((error) => {
     console.error("Setup draft failed", error instanceof Error ? error.message : error);
     return null;
@@ -163,8 +176,9 @@ app.post("/api/sessions", async (c) => {
   const ip = await ipHash(c);
   const since = new Date(Date.now() - 86_400_000).toISOString();
   const recent = await recentCreations(c.env.DB, ownerKey, ip, since);
+  if (recent.site >= LIMITS.sessionsSite) return fail(c, 429, "rate_limited", BUSY_TODAY);
   if (recent.byOwner >= LIMITS.sessionsPerOwner || recent.byIp >= LIMITS.sessionsPerIp) {
-    return fail(c, 429, "rate_limited", "That's the limit of new links for today. Try again tomorrow.");
+    return fail(c, 429, "rate_limited", `You can create ${LIMITS.sessionsPerOwner} links a day. Try again tomorrow.`);
   }
 
   const session = await insertSession(c.env.DB, { ownerKey, template, setup, ipHash: ip });

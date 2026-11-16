@@ -46,6 +46,14 @@ including as a PDF, with no new paid service.
   signature verification (OIDC Core 3.1.3.7); issuer, audience and expiry are
   checked.
 
+## Update 2026-11-16: daily limits
+
+So one visitor can't use up the gateway's $5/month limit and take the demo's
+AI offline for everyone (owner-approved): new links 3 per account, 5 per IP
+and 15 site-wide per rolling 24 hours; AI setup drafts 10 per account, 15 per
+IP and 60 site-wide per day. Respondents still never sign in; each link stays
+capped at its own AI calls (ADR-002, reserveCall).
+
 ## Provenance and authority
 
 - Owner decisions (chat, 2026-11-16): tie links to the person ("I want it
