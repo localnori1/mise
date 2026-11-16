@@ -4,6 +4,7 @@ import templates from "../../shared/templates.json";
 import type { OwnerSession } from "../../shared/api";
 import { api, errorMessage } from "../api";
 import { handleSignedOut, SignInCard, useOwner } from "../auth";
+import { AccountMenu } from "../components/AccountMenu";
 import { Card } from "../components/Card";
 import { CopyButton } from "../components/CopyButton";
 import { DocumentActions, DocumentView, fileSlug } from "../components/DocumentActions";
@@ -46,13 +47,13 @@ export function OwnerDocument({ id }: { id: string }) {
 
   return (
     <main className="mx-auto flex max-w-[860px] flex-col gap-4 px-4 pb-16 pt-5 sm:pt-8">
-      <Link
-        href="/links"
-        className="flex min-h-11 items-center gap-1.5 self-start text-sm font-semibold no-underline"
-      >
-        <ArrowLeft size={16} aria-hidden="true" />
-        Your links
-      </Link>
+      <div className="flex items-center justify-between gap-3">
+        <Link href="/links" className="flex min-h-11 items-center gap-1.5 text-sm font-semibold no-underline">
+          <ArrowLeft size={16} aria-hidden="true" />
+          Your links
+        </Link>
+        <AccountMenu />
+      </div>
 
       {error && <ErrorNote>{error}</ErrorNote>}
       {!error && !session && <Loading />}

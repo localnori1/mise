@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import templates from "../../shared/templates.json";
 import type { OwnerSessionSummary } from "../../shared/api";
 import { api, errorMessage } from "../api";
-import { handleSignedOut, SignInCard, signOut, useOwner } from "../auth";
+import { handleSignedOut, SignInCard, useOwner } from "../auth";
+import { AccountMenu } from "../components/AccountMenu";
 import { buttonClass } from "../components/Button";
 import { CopyButton } from "../components/CopyButton";
 import { StatusChip } from "../components/Pill";
@@ -39,16 +40,13 @@ export function OwnerLinks() {
     <main className="mx-auto flex max-w-[720px] flex-col gap-3 px-4 pb-12 pt-7">
       <div className="flex items-center justify-between gap-3 px-1">
         <h1 className="font-display text-[26px] font-semibold">Your links</h1>
-        <Link href="/new" className={buttonClass("primary", "", "sm")}>
-          New link
-        </Link>
+        <div className="flex items-center gap-2">
+          <AccountMenu />
+          <Link href="/new" className={buttonClass("primary", "", "sm")}>
+            New link
+          </Link>
+        </div>
       </div>
-      <p className="mb-1.5 flex flex-wrap items-center gap-x-2 px-1 text-[13px] leading-normal text-muted">
-        Signed in as {owner.name ?? owner.email ?? "you"}.
-        <button type="button" onClick={signOut} className="min-h-11 cursor-pointer font-semibold text-accent-text underline">
-          Sign out
-        </button>
-      </p>
 
       {error && <ErrorNote>{error}</ErrorNote>}
       {!error && !sessions && <Loading />}

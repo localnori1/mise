@@ -4,6 +4,7 @@ import templates from "../../shared/templates.json";
 import type { Audience, CreatedSession, FocusArea, SetupDraft, SetupInput, TemplateId } from "../../shared/api";
 import { api, errorMessage } from "../api";
 import { Button, buttonClass } from "../components/Button";
+import { AccountMenu } from "../components/AccountMenu";
 import { Card, CardLabel } from "../components/Card";
 import { Chip } from "../components/Chip";
 import { CopyButton } from "../components/CopyButton";
@@ -332,10 +333,13 @@ export function Setup({ search }: { search: string }) {
 function Page({ backHref, backLabel, children }: { backHref: string; backLabel: string; children: ReactNode }) {
   return (
     <main className="mx-auto flex max-w-[720px] flex-col gap-4 px-4 pb-12 pt-5 sm:pt-8">
-      <Link href={backHref} className="flex min-h-11 items-center gap-1.5 self-start text-sm font-semibold no-underline">
-        <ArrowLeft size={16} aria-hidden="true" />
-        {backLabel}
-      </Link>
+      <div className="flex items-center justify-between gap-3">
+        <Link href={backHref} className="flex min-h-11 items-center gap-1.5 text-sm font-semibold no-underline">
+          <ArrowLeft size={16} aria-hidden="true" />
+          {backLabel}
+        </Link>
+        <AccountMenu />
+      </div>
       {children}
     </main>
   );

@@ -1,6 +1,7 @@
 import { Check } from "lucide-react";
 import type { ReactNode } from "react";
-import { signInHref, useOwner } from "../auth";
+import { GoogleSignInButton, useOwner } from "../auth";
+import { AccountMenu } from "../components/AccountMenu";
 import { Link } from "../router";
 import { Carousel } from "./landing/Carousel";
 import { REPO_URL } from "./landing/content";
@@ -36,11 +37,10 @@ function FeatureSection({ tint, children }: { tint: string; children: ReactNode 
   );
 }
 
-function AccountLink({ owner }: { owner: ReturnType<typeof useOwner>[0] }) {
-  const base = `${pill} min-h-11 border border-border bg-pill px-4 text-sm lg:px-5 lg:text-[15px]`;
-  if (owner === undefined) return <span className="min-h-11 w-[168px]" />;
-  if (owner) return <Link href="/links" className={`${base} text-ink`}>Your links</Link>;
-  return <a href={signInHref("/links")} className={`${base} text-ink`}>Sign in with Google</a>;
+function Account({ owner }: { owner: ReturnType<typeof useOwner>[0] }) {
+  if (owner === undefined) return <span className="min-h-11 w-[190px]" />;
+  if (owner) return <AccountMenu />;
+  return <GoogleSignInButton next="/links" />;
 }
 
 export function Home() {
@@ -59,7 +59,7 @@ export function Home() {
           <a href={REPO_URL} target="_blank" rel="noreferrer noopener" className={navLink}>
             GitHub
           </a>
-          <AccountLink owner={owner} />
+          <Account owner={owner} />
         </nav>
       </header>
 
