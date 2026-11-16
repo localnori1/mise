@@ -41,7 +41,19 @@ review, a first commit, then deployment to Cloudflare.
 
 ## Important decisions and risks
 
-- `src/serv## Blockers and decisions needed
+- `src/server/prompts/interviewer.txt` and `setup-drafter.txt` diverge from
+  `source/handoff/05-prompts/` on purpose (eval fixes; short off-limits names).
+- Out of scope: FR-18 (start requirements session from a brief), FR-19
+  (preview), FR-20 (upload).
+- Owners sign in with Google; D-02's secret owner URL is superseded (ADR-003).
+
+## Relevant files
+
+- `docs/project/PROJECT.md` (technical map, commands, deploy), `docs/project/SERVICES.md`
+- `docs/decisions/ADR-001-…`, `ADR-002-…`, `ADR-003-…`; `prompt-evals/results/SUMMARY.md`
+- `src/server/auth.ts` (sign-in), `public/_headers` (security headers)
+
+## Blockers and decisions needed
 
 1. Custom domain: the owner's partner is adding it (Worker > Domains & Routes).
    `emmnlsttn1` in the workers.dev address comes from the owner's email;

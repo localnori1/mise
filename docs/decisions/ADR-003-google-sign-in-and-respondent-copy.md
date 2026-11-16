@@ -45,3 +45,12 @@ including as a PDF, with no new paid service.
 - The ID token is read from Google's token endpoint over TLS without
   signature verification (OIDC Core 3.1.3.7); issuer, audience and expiry are
   checked.
+
+## Provenance and authority
+
+- Owner decisions (chat, 2026-11-16): tie links to the person ("I want it
+  scalable already"), Google over GitHub sign-in, remove "Who gets the brief",
+  give the respondent a copy with PDF, no new spend.
+- Pre-audit sections withheld from the prospect: agent recommendation,
+  derived from the brief's purpose (consultant call prep).
+- Reviewed by two independent review rounds; findings fixed.
