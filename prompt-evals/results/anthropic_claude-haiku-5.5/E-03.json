@@ -1,0 +1,288 @@
+{
+  "id": "E-03",
+  "name": "Nothing",
+  "pass_if": "It moves closer ('this week') and doesn't repeat the question.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking goes, from what Ana shared. Step 4 says a rider claims it, but you mentioned the dispatcher assigns bookings and riders don't pick their own. Which is closer to how it really goes? Feel free to correct any step.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the booking to a rider directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings. Riders don't pick their own.",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page.",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1246,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 733
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Honestly it works fine."
+    },
+    {
+      "output": {
+        "say": "Good to hear it runs smoothly. On a normal day, which is closest? A) You post the booking and the first free rider replies. B) You pick the rider yourself and message them directly. C) Something else.",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "A) You post the booking and the first free rider replies",
+          "B) You pick the rider yourself and message them directly",
+          "C) Something else"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "Rider claims the booking (to confirm: rider claims vs. dispatcher assigns)",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher picks the rider and assigns the booking"
+          }
+        ],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2121,
+          "output_tokens": 765,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 497
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Nothing happened, it's all fine."
+    },
+    {
+      "output": {
+        "say": "Got it, it sounds steady. Was there any moment this week that was slower than it should have been, even a small one?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [
+          "Yes, a small one",
+          "Yes, a big one",
+          "Not really, it's smooth"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2223,
+          "output_tokens": 435,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 279
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "This week? Okay, on Tuesday two riders went to the same pickup because both thought they claimed it."
+    },
+    {
+      "output": {
+        "say": "Two riders driving to the same pickup sounds like a costly mix-up. Earlier you said riders don't pick their own bookings, but on Tuesday two of them both thought they had claimed one. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 4,
+        "options": [
+          "Riders claim bookings from the group chat",
+          "I assign them, but riders sometimes grab one anyway",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "On Tuesday, two riders went to the same pickup because both thought they had claimed it.",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2294,
+          "output_tokens": 712,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 467
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher assigns bookings. Riders don't pick their own.",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page.",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "On Tuesday, two riders went to the same pickup because both thought they had claimed it.",
+        "tag": "heard",
+        "source": "Q4"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "Rider claims the booking (to confirm: rider claims vs. dispatcher assigns)",
+        "actor": "Rider",
+        "if_wrong": "Dispatcher picks the rider and assigns the booking"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 8511,
+    "output": 3158,
+    "usd": 0.0024300999999999997
+  },
+  "findings": [
+    "check: turn 1 question is 45 words (limit 40)",
+    "check: turn 4 question is 41 words (limit 40)"
+  ]
+}

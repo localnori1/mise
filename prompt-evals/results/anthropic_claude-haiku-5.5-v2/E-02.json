@@ -1,0 +1,378 @@
+{
+  "id": "E-02",
+  "name": "Oversimplifier",
+  "pass_if": "It asks for the last real time and gets before/during/after steps, at least one hidden step.",
+  "turns": [
+    {
+      "output": {
+        "say": "Let's start with a typical day. Here's how I understand a booking gets from a message to a rider. Which steps are off, or missing?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 828,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 471
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "It's simple. They message, I post it, someone takes it. That's it."
+    },
+    {
+      "output": {
+        "say": "Thanks. You said the booking goes from message to post to rider, but I had a spreadsheet step between the message and the post. Do you copy the booking into a spreadsheet before you post it, or does that step not happen?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "Yes, I copy it to the spreadsheet first",
+          "No, I post straight from the message",
+          "Sometimes, depends on the booking"
+        ],
+        "steps": [
+          {
+            "id": "s2",
+            "op": "update",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": "Dispatcher posts straight from the message, no spreadsheet step"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Booking comes in as a message on the company Facebook page, is posted to the riders' group chat, and one rider claims it.",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2228,
+          "output_tokens": 613,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 237
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Last time was this morning. A customer messaged at 7, I copied it to the sheet, posted it, and Jun took it."
+    },
+    {
+      "output": {
+        "say": "When nobody claims a booking in the group chat for a while, what do you do next?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher copies each booking into the spreadsheet before posting it to the group chat (confirmed by this morning's 7am booking).",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2385,
+          "output_tokens": 262,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 214
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2444,
+          "output_tokens": 550,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 377
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Oh, before posting I check the address on Google Maps because customers only write landmarks."
+    },
+    {
+      "output": {
+        "say": "Good catch, thanks. So before posting, you check the address on Google Maps, since customers write landmarks. I'll note that. Earlier I asked what happens when nobody claims a booking; you didn't answer that part. Does that happen often, or is it rare?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [],
+        "steps": [
+          {
+            "id": "s5",
+            "op": "add",
+            "text": "Dispatcher checks the address on Google Maps, since customers write only landmarks",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Before posting, the dispatcher checks the address on Google Maps because customers write only landmarks.",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2489,
+          "output_tokens": 293,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "If no one claims it in 10 minutes I call riders one by one."
+    },
+    {
+      "output": {
+        "say": "Got it. When the 10 minutes pass, you call riders one by one. When did that last happen, and what did it cost you in time or missed bookings?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 5,
+        "options": [],
+        "steps": [
+          {
+            "id": "s6",
+            "op": "add",
+            "text": "If no one claims within 10 minutes, the dispatcher calls riders one by one",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "process",
+            "text": "If no rider claims a booking within 10 minutes, the dispatcher calls riders one by one.",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2663,
+          "output_tokens": 951,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 663
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Booking comes in as a message on the company Facebook page, is posted to the riders' group chat, and one rider claims it.",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher copies each booking into the spreadsheet before posting it to the group chat (confirmed by this morning's 7am booking).",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Before posting, the dispatcher checks the address on Google Maps because customers write only landmarks.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p4",
+        "section": "process",
+        "text": "If no rider claims a booking within 10 minutes, the dispatcher calls riders one by one.",
+        "tag": "heard",
+        "source": "Q5"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": "Dispatcher posts straight from the message, no spreadsheet step"
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking",
+        "actor": "Rider",
+        "if_wrong": null
+      },
+      {
+        "id": "s5",
+        "text": "Dispatcher checks the address on Google Maps, since customers write only landmarks",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s6",
+        "text": "If no one claims within 10 minutes, the dispatcher calls riders one by one",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      }
+    ],
+    "requirements": []
+  },
+  "count": 5,
+  "cost": {
+    "input": 14271,
+    "output": 3497,
+    "usd": 0.0031756
+  },
+  "findings": [
+    "note: needed JSON retry 1x",
+    "check: turn 2 question is 42 words (limit 40)",
+    "check: turn 4 question is 43 words (limit 40)"
+  ]
+}

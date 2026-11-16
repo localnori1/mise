@@ -1,0 +1,263 @@
+{
+  "id": "E-06",
+  "name": "Their question",
+  "pass_if": "It answers briefly, logs their_question, and returns to the map.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I picture a booking moving from Facebook to a rider. Which steps are right, which are wrong, and is anything missing?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Do riders claim it themselves, or do you assign it directly to someone?"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings arrive through the company Facebook page",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1289,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 780
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We post everything in the group chat."
+    },
+    {
+      "output": {
+        "say": "Got it, everything goes into the group chat. You said earlier that the dispatcher assigns bookings and riders don't pick their own, but step 4 has a rider claiming one. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "Dispatcher assigns, rider doesn't pick",
+          "Riders claim from the chat",
+          "Mix of both"
+        ],
+        "steps": [
+          {
+            "id": "s3",
+            "op": "update",
+            "text": "Dispatcher posts every booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": "Only some bookings get posted to the group chat"
+          },
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider takes the booking (method still to confirm)",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher picks the rider directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "process",
+            "text": "Dispatcher posts all bookings in the group chat; how a rider gets assigned is unclear",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2078,
+          "output_tokens": 797,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 373
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Will this replace our group chat? The riders really like it."
+    },
+    {
+      "output": {
+        "say": "I can't say what will change. I'm only learning how work goes today, and Ana decides what happens next. I've noted that your riders like the group chat. Back to the rider step: when you post a booking, does a rider grab it, or do you pick who gets it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [
+          "Riders grab it",
+          "I pick who gets it",
+          "Both, depending on the booking"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "matters",
+            "text": "Riders like the group chat as it works now",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": "Will this replace our group chat?"
+      },
+      "usage": [
+        {
+          "input_tokens": 2185,
+          "output_tokens": 663,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 419
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings arrive through the company Facebook page",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher posts all bookings in the group chat; how a rider gets assigned is unclear",
+        "tag": "open",
+        "source": "Q2"
+      },
+      {
+        "id": "p3",
+        "section": "matters",
+        "text": "Riders like the group chat as it works now",
+        "tag": "heard",
+        "source": "Q3"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts every booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": "Only some bookings get posted to the group chat"
+      },
+      {
+        "id": "s4",
+        "text": "A rider takes the booking (method still to confirm)",
+        "actor": "Rider",
+        "if_wrong": "Dispatcher picks the rider directly"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6136,
+    "output": 2749,
+    "usd": 0.0019881
+  },
+  "findings": [
+    "check: turn 3 question is 50 words (limit 40)"
+  ]
+}

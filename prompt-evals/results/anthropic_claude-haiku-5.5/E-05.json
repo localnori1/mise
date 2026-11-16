@@ -1,0 +1,295 @@
+{
+  "id": "E-05",
+  "name": "Correction",
+  "pass_if": "It accepts the correction and adjusts without defending.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking moves so far. Which steps are wrong, or is anything missing? Tell me where I've got it off.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page to book a delivery",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": "Tell me what goes in the spreadsheet and why."
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Who actually decides which rider gets it?"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1185,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 663
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Most delays happen around the group chat posts."
+    },
+    {
+      "output": {
+        "say": "Got it, most delays happen around the group chat posts. Think of the last booking that got stuck there. What happened, and how much time did it cost you?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Most delays happen around the group chat posts",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2087,
+          "output_tokens": 657,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 493
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Mornings, mostly."
+    },
+    {
+      "output": {
+        "say": "Mornings, got it. Think of one specific morning this past week. What booking got stuck in the group chat, and how long did it sit before someone took it?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "hurts",
+            "text": "Most delays happen around the group chat posts, mostly in the mornings",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2163,
+          "output_tokens": 406,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 197
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Usually me and whoever is online."
+    },
+    {
+      "output": {
+        "say": "So it sounds like the wait depends on who's online that morning. Which is closer to how it goes?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 4,
+        "options": [
+          "Riders are slow to claim, so the booking sits in the chat until someone responds",
+          "Only you and a few riders are around in the mornings, so nobody picks it up fast",
+          "You end up messaging riders one by one to get a booking taken",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "In the mornings, bookings wait in the group chat because only a few people are online",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2233,
+          "output_tokens": 675,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 423
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Most delays happen around the group chat posts, mostly in the mornings",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "In the mornings, bookings wait in the group chat because only a few people are online",
+        "tag": "heard",
+        "source": "Q4"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page to book a delivery",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": "Tell me what goes in the spreadsheet and why."
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking",
+        "actor": "Rider",
+        "if_wrong": "Who actually decides which rider gets it?"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 8356,
+    "output": 2923,
+    "usd": 0.0022971
+  },
+  "findings": []
+}

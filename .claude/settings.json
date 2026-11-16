@@ -1,0 +1,16 @@
+{
+  "hooks": {
+    "Stop": [
+      {
+        "hooks": [
+          {
+            "type": "command",
+            "command": "test ! -f \"$CLAUDE_PROJECT_DIR/runtimes/claude/hooks/review_gate.py\" || python \"$CLAUDE_PROJECT_DIR/runtimes/claude/hooks/review_gate.py\" || true",
+            "timeout": 30,
+            "statusMessage": "Checking for independent review"
+          }
+        ]
+      }
+    ]
+  }
+}

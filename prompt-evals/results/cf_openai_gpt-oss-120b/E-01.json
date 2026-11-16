@@ -1,0 +1,163 @@
+{
+  "id": "E-01",
+  "name": "Stuck",
+  "pass_if": "After two 'not sure' answers it offers 2-4 descriptions of their situation, not another open question, and never a solution.",
+  "turns": [
+    {
+      "output": {
+        "say": "Can you walk me through a typical day as a dispatcher, from the moment a customer messages the Facebook page to the point a rider claims the booking?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 252,
+          "total_tokens": 1579,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 59.404296875
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Not sure."
+    },
+    {
+      "output": {
+        "say": "Is your typical flow more like: A) You copy the Facebook message into the spreadsheet right away, then post the booking in the riders' group chat, waiting for a rider to claim it; or B) You first check the order details, maybe confirm with the customer, then add it to the spreadsheet before sharing it?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "A",
+          "B"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1370,
+          "completion_tokens": 330,
+          "total_tokens": 1700,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 66.09065246582031
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Hmm, not sure really."
+    },
+    {
+      "output": {
+        "say": "When a new booking arrives on the Facebook page, what’s the first step you take?\nA) Open the Facebook message and immediately copy the booking details into the spreadsheet.\nB) Open the Facebook message, then review or confirm the order with the customer before adding it to the spreadsheet.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "A) Open the Facebook message and immediately copy the booking details into the spreadsheet.",
+          "B) Open the Facebook message, then review or confirm the order with the customer before adding it to the spreadsheet."
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1451,
+          "completion_tokens": 164,
+          "total_tokens": 1615,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 57.3497314453125
+        },
+        {
+          "prompt_tokens": 1541,
+          "completion_tokens": 366,
+          "total_tokens": 1907,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 73.98607635498047
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3,
+      "reply": "I guess the second one."
+    },
+    {
+      "output": {
+        "say": "After confirming the order with the customer and adding it to the spreadsheet, what do you do next?\nA) Post the booking in the riders’ group chat right away.\nB) Run checks (e.g., availability, distance) before posting it in the group chat.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1524,
+          "completion_tokens": 178,
+          "total_tokens": 1702,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 60.626991271972656
+        },
+        {
+          "prompt_tokens": 1610,
+          "completion_tokens": 328,
+          "total_tokens": 1938,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 73.59060668945312
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 8823,
+    "output": 1618,
+    "neurons": 391
+  },
+  "findings": [
+    "note: needed JSON retry 2x",
+    "check: turn 3 question is 49 words (limit 40)",
+    "check: turn 4 question is 42 words (limit 40)"
+  ]
+}

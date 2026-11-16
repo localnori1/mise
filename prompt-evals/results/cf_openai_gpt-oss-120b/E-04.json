@@ -1,0 +1,309 @@
+{
+  "id": "E-04",
+  "name": "Contradiction",
+  "pass_if": "It names both statements the moment the second appears.",
+  "turns": [
+    {
+      "output": {
+        "say": "Walk me through the last time you assigned a delivery booking, from the customer message to posting it in the riders' group chat. What steps did you take, and who else was involved?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 296,
+          "total_tokens": 1623,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 62.404296875
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "I assign every booking myself. Riders never pick their own."
+    },
+    {
+      "output": {
+        "say": "Can you describe the most recent booking you handled? Start with the customer’s Facebook message, then tell me how you recorded it, what you checked before posting it in the riders’ group chat, and what happened right after you posted it.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1387,
+          "completion_tokens": 301,
+          "total_tokens": 1688,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 64.65428161621094
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Mornings are the busiest."
+    },
+    {
+      "output": {
+        "say": "Please label each item as Must have, Nice to have, or Not needed.",
+        "kind": "priorities",
+        "topic": "hurts",
+        "count": 8,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "hurts",
+            "text": "You assign every booking yourself; riders never pick their own.",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Mornings are the busiest period for bookings.",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "The hardest step is the one that takes extra time or often hiccups (please specify).",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "When that step fails, it delays deliveries and adds workload, requiring manual intervention.",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "A recent example where the delay happened and affected the delivery timeline.",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "hurts",
+            "text": "You want to keep the manual assignment method unchanged.",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "hurts",
+            "text": "You’d hate to lose the ability to see all bookings in one spreadsheet before posting.",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p8",
+            "op": "add",
+            "section": "hurts",
+            "text": "If everything worked perfectly, your day would feel smoother and less stressful.",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1452,
+          "completion_tokens": 925,
+          "total_tokens": 2377,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 109.26789855957031
+        },
+        {
+          "prompt_tokens": 1977,
+          "completion_tokens": 938,
+          "total_tokens": 2915,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 126.85870361328125
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "My priorities: the first thing is Must have, the rest are Nice to have."
+    },
+    {
+      "output": {
+        "say": "When was the last time a booking assignment caused a delay or extra work for you? What happened and how did it affect your day?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 5,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1651,
+          "completion_tokens": 444,
+          "total_tokens": 2095,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 82.80423736572266
+        },
+        {
+          "prompt_tokens": 1695,
+          "completion_tokens": 222,
+          "total_tokens": 1917,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 69.06786346435547
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Riders just grab whatever booking they want from the group chat, first come first served."
+    },
+    {
+      "output": {
+        "say": "Can you recall a recent time when the first‑come‑first‑served approach caused a problem or delay? What happened and how did it affect your workflow?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 5,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1706,
+          "completion_tokens": 656,
+          "total_tokens": 2362,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 99.0087661743164
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "hurts",
+        "text": "You assign every booking yourself; riders never pick their own.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Mornings are the busiest period for bookings.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "The hardest step is the one that takes extra time or often hiccups (please specify).",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "When that step fails, it delays deliveries and adds workload, requiring manual intervention.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "A recent example where the delay happened and affected the delivery timeline.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p6",
+        "section": "hurts",
+        "text": "You want to keep the manual assignment method unchanged.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p7",
+        "section": "hurts",
+        "text": "You’d hate to lose the ability to see all bookings in one spreadsheet before posting.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p8",
+        "section": "hurts",
+        "text": "If everything worked perfectly, your day would feel smoother and less stressful.",
+        "tag": "heard",
+        "source": "Q4"
+      }
+    ],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 11195,
+    "output": 3782,
+    "neurons": 614
+  },
+  "findings": [
+    "note: needed JSON retry 2x",
+    "check: turn 2 question is 41 words (limit 40)",
+    "check: turn 4 has more than one \"?\"",
+    "check: turn 5 has more than one \"?\""
+  ]
+}

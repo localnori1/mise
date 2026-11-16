@@ -1,0 +1,1156 @@
+{
+  "id": "E-11",
+  "name": "Budget",
+  "pass_if": "It never exceeds the budget and still reaches priorities and landing.",
+  "turns": [
+    {
+      "output": {
+        "say": "Salamat sa pag-tap. Here's how Ana sketched it, from the last booking you handled. Which step doesn't match? I'm least sure about step 4, since I understood you assign the bookings.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own (to confirm, and it may conflict with step 4 'rider claims it')",
+            "tag": "assumed",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1070,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 601
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Okay so where do I start, every morning I open the page and there are like twenty messages, some are bookings, some are people asking prices, some are complaints from yesterday, and I have to sort them all while my coffee gets cold, and then my boss also messages me asking for yesterday's count, which I have to count manually from the sheet because the sheet has no totals, and then the riders start arriving and asking what's first."
+    },
+    {
+      "output": {
+        "say": "Salamat, busy talaga ang umaga. Pag dumating na ang riders at nagtanong kung ano ang una, ikaw ba ang nagsasabi kung kaninong booking ang kanila, o sila ang pumipili sa group chat?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "Ako ang nag-aassign sa bawat rider",
+          "Sila ang pumipili sa group chat",
+          "Depende sa booking"
+        ],
+        "steps": [
+          {
+            "id": "s5",
+            "op": "add",
+            "text": "Dispatcher sorts the page messages by hand: bookings vs price questions vs complaints",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Every morning about 20 messages on the page: bookings, price questions, complaints from yesterday, all mixed together",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Boss asks for yesterday's count; dispatcher counts it manually from the sheet because the sheet has no totals",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "process",
+            "text": "Riders arrive and ask the dispatcher what's first",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2216,
+          "output_tokens": 1547,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 546
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 3195,
+          "output_tokens": 931,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 343
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Well it depends, on Mondays it's worse because weekend bookings pile up, and also when it rains everyone books at once, and last December was crazy because of Christmas, we had to borrow riders from my cousin's shop, which was a whole other story because they didn't know the routes, and one of them got lost in Marikina for two hours."
+    },
+    {
+      "output": {
+        "say": "Salamat, malinaw: mas grabe pag Lunes, pag umuulan, at noong December. Yung rider na na-lost sa Marikina, paano napunta sa kanya yung booking na iyon? Ikaw ba ang nagbigay, o siya ang kumuha sa group chat?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [
+          "Ako ang nag-assign",
+          "Siya ang kumuha sa group chat",
+          "Depende"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "Busiest and hardest times: Mondays (weekend bookings pile up), when it rains (everyone books at once), and Christmas season",
+            "tag": "heard",
+            "source": "Q3"
+          },
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "hurts",
+            "text": "Last December, riders were borrowed from dispatcher's cousin's shop; they didn't know the routes and one got lost in Marikina for two hours",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2549,
+          "output_tokens": 1022,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 582
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "The group chat is a mess honestly, there are like forty riders in it, people post memes, someone always asks 'is this still available' after it's been claimed, and the important posts get buried, and I end up re-posting the same booking three times, sometimes four, and then two riders show up."
+    },
+    {
+      "output": {
+        "say": "Salamat, klaro yung gulo sa group chat. Pero may tanong ako: akala ko ikaw ang nag-a-assign, tapos ang kwento mo parang nagpo-post ka at sila ang kumukuha. Alin ang mas malapit sa totoo?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 4,
+        "options": [
+          "Ako ang pumipili ng rider para sa bawat booking",
+          "Nagpo-post ako, kung sino ang unang mag-claim ang kumukuha",
+          "Depende sa araw o sa booking"
+        ],
+        "steps": [
+          {
+            "id": "s3",
+            "op": "update",
+            "text": "Dispatcher posts it in the riders' group chat (about 40 riders, mixed with memes)",
+            "actor": "Dispatcher",
+            "if_wrong": "Post gets buried; dispatcher re-posts the same booking 3-4 times"
+          },
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims it (to confirm: does the dispatcher choose, or first to claim?)",
+            "actor": "Rider",
+            "if_wrong": "Others ask 'is this still available' after it's claimed; sometimes two riders show up for the same booking"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "text": "Who decides which rider gets a booking is unclear: dispatcher said to assign, but the group chat story sounds like riders claim",
+            "tag": "open",
+            "source": "Q4"
+          },
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "hurts",
+            "text": "Riders' group chat has about 40 people; memes and 'is this still available' questions bury the important booking posts",
+            "tag": "heard",
+            "source": "Q4"
+          },
+          {
+            "id": "p8",
+            "op": "add",
+            "section": "hurts",
+            "text": "Dispatcher re-posts the same booking 3-4 times, and sometimes two riders show up for it",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2838,
+          "output_tokens": 1364,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 626
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "I think what I'd really want is to stop doing everything twice, but also I don't want to lose how quick the group chat is, because riders read it on their phones while waiting at stoplights, and they won't install anything new, we tried that once with some app my boss found and nobody used it."
+    },
+    {
+      "output": {
+        "say": "Noted: ayaw mong gawin lahat nang dalawang beses, pero gusto mong manatiling mabilis ang group chat. Balikan ko lang, kasi hindi pa klaro sa akin. Alin ang mas malapit kapag may bagong booking?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 5,
+        "options": [
+          "A: Ako ang pumipili ng rider at sinasabi ko sa chat",
+          "B: Nagpo-post ako, first rider na mag-reply ang makakakuha",
+          "C: Depende, minsan ako pumipili, minsan first come"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p9",
+            "op": "add",
+            "section": "success",
+            "text": "Stop doing everything twice",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p10",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The group chat's speed: riders read it on their phones while waiting at stoplights",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p11",
+            "op": "add",
+            "section": "matters",
+            "text": "Riders won't install anything new; an app the boss found once went unused",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3131,
+          "output_tokens": 1140,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 642
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5,
+      "reply": "Mostly the same as I said."
+    },
+    {
+      "output": {
+        "say": "Sige, subukan natin sa ibang paraan. Sa pinakahuling booking mo, alin ang pinakamalapit sa nangyari?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 10,
+        "options": [
+          "Ako ang pumili ng rider",
+          "Nag-post ako, unang sumagot ang nakakuha",
+          "Nag-post ako, sumagot sila, ako ang pumili",
+          "Iba-iba, depende sa booking"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider gets the booking (to confirm: dispatcher picks, first to reply, or dispatcher picks from repliers)",
+            "actor": "Dispatcher / rider",
+            "if_wrong": "Two riders show up for the same booking"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "text": "Who decides which rider gets a booking is still unclear: dispatcher said they assign, but the group chat story sounds like riders claim. Asked several times, no direct answer yet",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3305,
+          "output_tokens": 1336,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 375
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 4265,
+          "output_tokens": 955,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 586
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 6,
+      "reply": "It happens a few times a week."
+    },
+    {
+      "output": {
+        "say": "Pasensya, inulit-ulit ko na ang tanong. Subukan natin sa ibang paraan. Kapag nag-post ka ng booking sa group chat, alin ang pinakamalapit sa nangyayari?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 7,
+        "options": [
+          "A: Ako ang nag-post, at ang unang rider na sumagot ang nakakakuha",
+          "B: Maraming sumasagot, tapos ako ang pumipili",
+          "C: Ako ang kumokontak sa isang rider, at nagpo-post lang ako kapag walang kumuha",
+          "D: Iba-iba, depende sa booking"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p12",
+            "op": "add",
+            "section": "hurts",
+            "text": "Something happens 'a few times a week'. Unclear if it means two riders showing up for one booking or the confusion over who picks the rider",
+            "tag": "open",
+            "source": "Q7"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3394,
+          "output_tokens": 900,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 512
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Usually just me and the riders."
+    },
+    {
+      "output": {
+        "say": "Pasensya, ihihinto ko muna yung tanong na yan. Ito ang narinig ko:\n• Umaga: ~20 messages sa page, ikaw ang nag-aayos, tapos bilang para sa boss.\n• Group chat: 40 riders, natatabunan ang posts, 3-4 ulit nire-repost, minsan dalawang rider ang dumarating.\n• Pinakamahirap: Lunes, ulan, December.\n• Mabilis na group chat, walang bagong app.\n\nKung sino ang pumipili ng rider, iiwan kong bukas kay Ana. Tuloy, tapusin na, o may aayusin?",
+        "kind": "checkpoint",
+        "topic": "Where it hurts",
+        "count": 7,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider gets the booking (still unclear who decides: dispatcher picks, first to reply, or dispatcher picks from repliers)",
+            "actor": "Dispatcher / riders",
+            "if_wrong": "Two riders show up for the same booking"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "process",
+            "text": "Who decides which rider gets a booking is still unclear. Dispatcher said they assign, but the group chat story sounds like riders claim. Asked several times; last answer was only 'usually just me and the riders'. Left open for Ana.",
+            "tag": "open",
+            "source": "Q7"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop doing everything twice, without losing the speed of the group chat.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3531,
+          "output_tokens": 1367,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 748
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Sige, tuloy tayo. Balikan natin yung dalawang rider na dumating para sa iisang booking. Kailan ito huling nangyari, at ano ang nawala sa'yo?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 8,
+        "options": [
+          "Oras",
+          "Pera",
+          "Reklamo ng customer",
+          "Walang masyadong nawala"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3784,
+          "output_tokens": 703,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 325
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 4161,
+          "output_tokens": 440,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 278
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 8,
+      "reply": "It costs maybe 30 minutes a day."
+    },
+    {
+      "output": {
+        "say": "Salamat, 30 minutes a day, malaki yan. Saan mas napupunta yung oras na yon: sa pag-re-repost ng booking, sa pag-aayos kapag dalawang rider ang dumating, o halo ng dalawa?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [
+          "Mostly re-posting",
+          "Mostly sorting out double riders",
+          "Both mixed",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p13",
+            "op": "add",
+            "section": "hurts",
+            "text": "Costs maybe 30 minutes a day (re-posting and/or double riders showing up; which part takes most still to confirm)",
+            "tag": "heard",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop doing everything twice, while keeping the group chat's speed for riders.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3869,
+          "output_tokens": 1067,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 533
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 4334,
+          "output_tokens": 833,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 493
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 9,
+      "reply": "I'd hate to lose the group chat, everyone is used to it."
+    },
+    {
+      "output": {
+        "say": "Noted, mananatili ang group chat dahil sanay na lahat. Hindi ko na pipilitin yung hatian ng 30 minutes. May iba pa bang ayaw mong galawin, o ayaw mong i-share sa AI?",
+        "kind": "question",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p14",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The riders' group chat stays; everyone is used to it",
+            "tag": "heard",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop doing everything twice without losing the group chat that riders already use",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4023,
+          "output_tokens": 793,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 458
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Nothing else really."
+    },
+    {
+      "output": {
+        "say": "Salamat. Bago tayo mag-wrap, ito ang narinig ko:\n• Umaga: ~20 messages sa page na ikaw ang nag-aayos, tapos mano-manong bilang para sa boss.\n• Group chat: 40 riders, natatabunan ang posts, 3-4 beses nire-repost, minsan dalawang rider ang dumarating.\n• Nawawala ~30 minutes a day.\n• Mananatili ang group chat; walang bagong app.\n• Kung sino ang pumipili ng rider: bukas kay Ana.\n\nTuloy pa, tapusin na, o may aayusin?",
+        "kind": "checkpoint",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p15",
+            "op": "add",
+            "section": "not_for_ai",
+            "text": "Nothing else to keep from AI or leave unchanged beyond the group chat staying",
+            "tag": "heard",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop doing everything twice, while keeping the fast group chat the riders already use",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4138,
+          "output_tokens": 959,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 534
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Salamat. Naubos na ang mga tanong ko, kaya priorities na lang ang huling hakbang. Ito ang mga problemang narinig ko. Lagyan mo ng Must have, Nice to have, o Not needed ang bawat isa.",
+        "kind": "priorities",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [
+          "Must have",
+          "Nice to have",
+          "Not needed"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Every morning the ~20 page messages (bookings, price questions, complaints) are mixed together and I sort them by hand",
+            "priority": null,
+            "source": "Q2"
+          },
+          {
+            "id": "r2",
+            "text": "My boss asks for yesterday's count and I count it manually because the sheet has no totals",
+            "priority": null,
+            "source": "Q2"
+          },
+          {
+            "id": "r3",
+            "text": "Booking posts get buried in the 40-person group chat by memes and 'is this still available' questions",
+            "priority": null,
+            "source": "Q4"
+          },
+          {
+            "id": "r4",
+            "text": "I re-post the same booking 3-4 times and sometimes two riders show up for it (about 30 minutes a day)",
+            "priority": null,
+            "source": "Q4"
+          },
+          {
+            "id": "r5",
+            "text": "On Mondays, when it rains, and at Christmas, bookings pile up and riders arrive asking what's first",
+            "priority": null,
+            "source": "Q3"
+          }
+        ],
+        "core_need": "Stop doing everything twice, while keeping the fast group chat the riders are used to.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4392,
+          "output_tokens": 1026,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 533
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "My priorities: \"Every morning the ~20 page messages (bookings, price questions, complaints) are mixed together and I sort them by hand\": Must have; \"My boss asks for yesterday's count and I count it manually because the sheet has no totals\": Nice to have; \"Booking posts get buried in the 40-person group chat by memes and 'is this still available' questions\": Nice to have; \"I re-post the same booking 3-4 times and sometimes two riders show up for it (about 30 minutes a day)\": Nice to have; \"On Mondays, when it rains, and at Christmas, bookings pile up and riders arrive asking what's first\": Not needed."
+    },
+    {
+      "output": {
+        "say": "Ito ang kabuuan.\n\nAng core need: \"stop doing everything twice,\" habang nananatili ang mabilis na group chat na gamit na ng riders.\n\nAng narinig namin:\n• Umaga: ~20 page messages na mano-mano mong sini-sort, tapos mano-manong bilang para sa boss.\n• Group chat: 40 riders, natatabunan ang posts, 3-4 beses nire-repost, minsan dalawang rider ang dumarating (~30 minutes a day).\n• Pinakamabigat: Lunes, ulan, December.\n\nPriorities mo:\n• Must have: sorting ng page messages tuwing umaga\n• Nice to have: bilang para sa boss, natatabunang posts, pag-re-repost at dobleng rider\n• Not needed: peak days at riders na nagtatanong kung ano ang una\n\nBukas pa para kay Ana:\n• Sino ang pumipili ng rider: ikaw, unang sumagot, o ikaw mula sa mga sumagot\n• Alin ang pinakamalaking parte ng 30 minutes\n• Ano ang \"a few times a week\": dobleng rider o gulo sa pagpili\n\nMananatili: ang group chat, at walang bagong app. Wala ka nang ibang binanggit na ayaw i-share sa AI.\n\nTama ba ito, o may aayusin? Salamat sa oras mo.",
+        "kind": "landing",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Every morning the ~20 page messages (bookings, price questions, complaints) are mixed together and I sort them by hand",
+            "priority": "Must have",
+            "source": "Q1"
+          },
+          {
+            "id": "r2",
+            "text": "My boss asks for yesterday's count and I count it manually because the sheet has no totals",
+            "priority": "Nice to have",
+            "source": "Q1"
+          },
+          {
+            "id": "r3",
+            "text": "Booking posts get buried in the 40-person group chat by memes and 'is this still available' questions",
+            "priority": "Nice to have",
+            "source": "Q3"
+          },
+          {
+            "id": "r4",
+            "text": "I re-post the same booking 3-4 times and sometimes two riders show up for it (about 30 minutes a day)",
+            "priority": "Nice to have",
+            "source": "Q3"
+          },
+          {
+            "id": "r5",
+            "text": "On Mondays, when it rains, and at Christmas, bookings pile up and riders arrive asking what's first",
+            "priority": "Not needed",
+            "source": "Q2"
+          }
+        ],
+        "core_need": "To stop doing everything twice, while keeping the group chat that riders already use and are fast on.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4888,
+          "output_tokens": 1625,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 662
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes, that's right. Confirm."
+    },
+    {
+      "output": {
+        "say": "Salamat sa oras at sa pagiging bukas mo. Ipapasa namin ito kay Ana, kasama ang mga tanong na bukas pa.",
+        "kind": "done",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Every morning the ~20 page messages (bookings, price questions, complaints) are mixed together and I sort them by hand",
+            "priority": "Must have",
+            "source": "Q1"
+          },
+          {
+            "id": "r2",
+            "text": "My boss asks for yesterday's count and I count it manually because the sheet has no totals",
+            "priority": "Nice to have",
+            "source": "Q1"
+          },
+          {
+            "id": "r3",
+            "text": "Booking posts get buried in the 40-person group chat by memes and 'is this still available' questions",
+            "priority": "Nice to have",
+            "source": "Q3"
+          },
+          {
+            "id": "r4",
+            "text": "I re-post the same booking 3-4 times and sometimes two riders show up for it (about 30 minutes a day)",
+            "priority": "Nice to have",
+            "source": "Q3"
+          },
+          {
+            "id": "r5",
+            "text": "On Mondays, when it rains, and at Christmas, bookings pile up and riders arrive asking what's first",
+            "priority": "Not needed",
+            "source": "Q2"
+          }
+        ],
+        "core_need": "Stop doing everything twice, while keeping the fast group chat the riders already use.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 5378,
+          "output_tokens": 668,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 155
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Who decides which rider gets a booking is still unclear. Dispatcher said they assign, but the group chat story sounds like riders claim. Asked several times; last answer was only 'usually just me and the riders'. Left open for Ana.",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Every morning about 20 messages on the page: bookings, price questions, complaints from yesterday, all mixed together",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Boss asks for yesterday's count; dispatcher counts it manually from the sheet because the sheet has no totals",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p4",
+        "section": "process",
+        "text": "Riders arrive and ask the dispatcher what's first",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "Busiest and hardest times: Mondays (weekend bookings pile up), when it rains (everyone books at once), and Christmas season",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p6",
+        "section": "hurts",
+        "text": "Last December, riders were borrowed from dispatcher's cousin's shop; they didn't know the routes and one got lost in Marikina for two hours",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p7",
+        "section": "hurts",
+        "text": "Riders' group chat has about 40 people; memes and 'is this still available' questions bury the important booking posts",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p8",
+        "section": "hurts",
+        "text": "Dispatcher re-posts the same booking 3-4 times, and sometimes two riders show up for it",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p9",
+        "section": "success",
+        "text": "Stop doing everything twice",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p10",
+        "section": "stays_same",
+        "text": "The group chat's speed: riders read it on their phones while waiting at stoplights",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p11",
+        "section": "matters",
+        "text": "Riders won't install anything new; an app the boss found once went unused",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p12",
+        "section": "hurts",
+        "text": "Something happens 'a few times a week'. Unclear if it means two riders showing up for one booking or the confusion over who picks the rider",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p13",
+        "section": "hurts",
+        "text": "Costs maybe 30 minutes a day (re-posting and/or double riders showing up; which part takes most still to confirm)",
+        "tag": "heard",
+        "source": "Q9"
+      },
+      {
+        "id": "p14",
+        "section": "stays_same",
+        "text": "The riders' group chat stays; everyone is used to it",
+        "tag": "heard",
+        "source": "Q10"
+      },
+      {
+        "id": "p15",
+        "section": "not_for_ai",
+        "text": "Nothing else to keep from AI or leave unchanged beyond the group chat staying",
+        "tag": "heard",
+        "source": "Q10"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat (about 40 riders, mixed with memes)",
+        "actor": "Dispatcher",
+        "if_wrong": "Post gets buried; dispatcher re-posts the same booking 3-4 times"
+      },
+      {
+        "id": "s4",
+        "text": "A rider gets the booking (still unclear who decides: dispatcher picks, first to reply, or dispatcher picks from repliers)",
+        "actor": "Dispatcher / riders",
+        "if_wrong": "Two riders show up for the same booking"
+      },
+      {
+        "id": "s5",
+        "text": "Dispatcher sorts the page messages by hand: bookings vs price questions vs complaints",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      }
+    ],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Every morning the ~20 page messages (bookings, price questions, complaints) are mixed together and I sort them by hand",
+        "priority": "Must have",
+        "source": "Q1"
+      },
+      {
+        "id": "r2",
+        "text": "My boss asks for yesterday's count and I count it manually because the sheet has no totals",
+        "priority": "Nice to have",
+        "source": "Q1"
+      },
+      {
+        "id": "r3",
+        "text": "Booking posts get buried in the 40-person group chat by memes and 'is this still available' questions",
+        "priority": "Nice to have",
+        "source": "Q3"
+      },
+      {
+        "id": "r4",
+        "text": "I re-post the same booking 3-4 times and sometimes two riders show up for it (about 30 minutes a day)",
+        "priority": "Nice to have",
+        "source": "Q3"
+      },
+      {
+        "id": "r5",
+        "text": "On Mondays, when it rains, and at Christmas, bookings pile up and riders arrive asking what's first",
+        "priority": "Not needed",
+        "source": "Q2"
+      }
+    ]
+  },
+  "count": 10,
+  "cost": {
+    "input": 69264,
+    "output": 19746,
+    "usd": 0.335988
+  },
+  "findings": [
+    "note: needed JSON retry 4x",
+    "check: turn 3 has more than one \"?\""
+  ]
+}

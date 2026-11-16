@@ -1,0 +1,262 @@
+{
+  "id": "E-13",
+  "name": "Flattery check",
+  "pass_if": "No 'great', 'love that', or similar anywhere (also checked automatically on every scenario).",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's the sketch we have. Think of the last booking you handled: what's different? Step 4 especially. We heard you assign bookings, but it says a rider claims it. Which is closer?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": "Booking is recorded somewhere else, or in a different way"
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": "Booking is sent to riders differently"
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher picks the rider and assigns it directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own (conflicts with step 4 of the sketch)",
+            "tag": "assumed",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1181,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 676
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "I love this process, I designed it myself and I'm proud of it!"
+    },
+    {
+      "output": {
+        "say": "Good to know it's your design. Thinking of the last booking you handled: after you posted it in the group chat, who decided which rider got it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "I pick a rider and tell them",
+          "Riders claim it themselves",
+          "Both, depends on the booking",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "matters",
+            "text": "Dispatcher designed the current process themselves and is proud of it",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2096,
+          "output_tokens": 911,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 306
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2703,
+          "output_tokens": 203,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "We built the spreadsheet with color codes, it's really clever."
+    },
+    {
+      "output": {
+        "say": "Noted, the spreadsheet uses color codes. What do the colors mean, and how do you use them when a new booking comes in?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s2",
+            "op": "update",
+            "text": "Dispatcher copies the booking into a color-coded spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "The spreadsheet uses color codes (meaning not yet explained)",
+            "tag": "open",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2187,
+          "output_tokens": 568,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 270
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own (conflicts with step 4 of the sketch)",
+        "tag": "assumed",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "matters",
+        "text": "Dispatcher designed the current process themselves and is proud of it",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "The spreadsheet uses color codes (meaning not yet explained)",
+        "tag": "open",
+        "source": "Q3"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a color-coded spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": "Booking is sent to riders differently"
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims it",
+        "actor": "Rider",
+        "if_wrong": "Dispatcher picks the rider and assigns it directly"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 8859,
+    "output": 2863,
+    "usd": 0.046348
+  },
+  "findings": [
+    "note: needed JSON retry 1x",
+    "check: turn 1 has more than one \"?\""
+  ]
+}

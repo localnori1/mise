@@ -1,0 +1,320 @@
+{
+  "id": "E-05",
+  "name": "Correction",
+  "pass_if": "It accepts the correction and adjusts without defending.",
+  "turns": [
+    {
+      "output": {
+        "say": "Salamat sa time. Ito ang rough sketch ni Ana kung paano dumadaan ang isang booking. Base sa huling booking na hinawakan mo, alin ang mali, kulang, o iba ang ayos?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own",
+            "tag": "assumed",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 973,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 517
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Most delays happen around the group chat posts."
+    },
+    {
+      "output": {
+        "say": "Got it, the group chat is where it slows down. Think of the last time that happened: what happened after you posted the booking, and how long did it take?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 2,
+        "options": [],
+        "steps": [
+          {
+            "id": "s3",
+            "op": "update",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": "Delays happen around this step (details to come)"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Most delays happen around the group chat posts",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2091,
+          "output_tokens": 1088,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 516
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2665,
+          "output_tokens": 784,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 542
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Mornings, mostly."
+    },
+    {
+      "output": {
+        "say": "Mornings, noted. Think of the last morning it dragged. What happened to the booking after you posted it, and about how long before a rider took it?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Delays in the group chat happen mostly in the mornings",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2165,
+          "output_tokens": 758,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 590
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Usually me and whoever is online."
+    },
+    {
+      "output": {
+        "say": "Thanks. Pag nag-post ka sa group chat, ikaw ba ang pumipili kung sinong rider, o yung unang online ang kumukuha? Medyo magkaiba kasi ito sa sketch ni Ana, gusto kong tama.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [
+          "Ako ang pumipili ng rider",
+          "Unang online ang kumukuha",
+          "Depende sa booking"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": "Unclear whether the dispatcher picks the rider or whoever is online takes it"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "process",
+            "text": "In the mornings, it's usually the dispatcher and whichever rider is online who handle a booking",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2247,
+          "output_tokens": 831,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 424
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own",
+        "tag": "assumed",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Most delays happen around the group chat posts",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Delays in the group chat happen mostly in the mornings",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p4",
+        "section": "process",
+        "text": "In the mornings, it's usually the dispatcher and whichever rider is online who handle a booking",
+        "tag": "heard",
+        "source": "Q4"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": "Delays happen around this step (details to come)"
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims it",
+        "actor": "Rider",
+        "if_wrong": "Unclear whether the dispatcher picks the rider or whoever is online takes it"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 11041,
+    "output": 4434,
+    "usd": 0.066422
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

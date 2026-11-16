@@ -1,0 +1,1072 @@
+{
+  "id": "E-11",
+  "name": "Budget",
+  "pass_if": "It never exceeds the budget and still reaches priorities and landing.",
+  "turns": [
+    {
+      "output": {
+        "say": "Thanks for making time. I'll ask about how bookings get handed out, then where it gets stuck. Here's my understanding so far: a customer messages the Facebook page, you copy the booking into a spreadsheet, post it in the riders' group chat, and a rider claims it. Correct anything that's off. Also, I thought you assign bookings and riders don't pick their own. Which is closer?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "I assign them, riders don't pick",
+          "Riders claim them from the chat",
+          "It's a mix, depends on the booking"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the booking instead"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in via the Facebook page, get copied to a spreadsheet, then posted to the riders' group chat",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Whether riders claim or dispatcher assigns is unclear",
+            "tag": "open",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1058,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 416
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Okay so where do I start, every morning I open the page and there are like twenty messages, some are bookings, some are people asking prices, some are complaints from yesterday, and I have to sort them all while my coffee gets cold, and then my boss also messages me asking for yesterday's count, which I have to count manually from the sheet because the sheet has no totals, and then the riders start arriving and asking what's first."
+    },
+    {
+      "output": {
+        "say": "That's a lot before the first booking even goes out. Let me check the sketch first: you said riders claim bookings, but I had that you assign them. Which is closer to how it goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "I assign bookings, riders don't pick their own",
+          "Riders claim bookings themselves in the group chat",
+          "A bit of both, depending on the day or rider"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "update",
+            "text": "Customer messages the company Facebook page, mornings often start with around twenty messages",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "update",
+            "text": "Dispatcher sorts messages into bookings, price questions, and complaints, then copies bookings into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": "Tell me how the sorting really goes"
+          },
+          {
+            "id": "s3",
+            "op": "update",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Is it the rider claiming, or you assigning?"
+          },
+          {
+            "id": "s5",
+            "op": "add",
+            "text": "Boss asks for yesterday's booking count, dispatcher counts it by hand from the sheet",
+            "actor": "Boss",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Sorting about twenty morning messages into bookings, price questions, and complaints takes a long time",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "Yesterday's count has to be tallied by hand because the sheet has no totals",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "Riders arrive and ask what's first, with no clear order ready",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "process",
+            "text": "Mornings start with the Facebook inbox: sorting, copying, counting, then riders arrive",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Getting from a messy morning inbox to a clear, ordered set of bookings for riders",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2298,
+          "output_tokens": 836,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Well it depends, on Mondays it's worse because weekend bookings pile up, and also when it rains everyone books at once, and last December was crazy because of Christmas, we had to borrow riders from my cousin's shop, which was a whole other story because they didn't know the routes, and one of them got lost in Marikina for two hours."
+    },
+    {
+      "output": {
+        "say": "You mentioned it depends, so I want to pin that down. Which is closer on a normal day?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [
+          "You pick a rider and assign each booking to them",
+          "You post it in the group chat and whoever is free claims it",
+          "It changes: you assign on slow days, riders grab bookings on busy days",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "hurts",
+            "text": "Busy days like Mondays, rainy days, and Christmas season pile up bookings all at once",
+            "tag": "heard",
+            "source": "Q3"
+          },
+          {
+            "id": "p8",
+            "op": "add",
+            "section": "hurts",
+            "text": "Borrowed riders who don't know the routes get lost and cost hours",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2656,
+          "output_tokens": 697,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 408
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "The group chat is a mess honestly, there are like forty riders in it, people post memes, someone always asks 'is this still available' after it's been claimed, and the important posts get buried, and I end up re-posting the same booking three times, sometimes four, and then two riders show up."
+    },
+    {
+      "output": {
+        "say": "On a normal day, do you assign bookings to specific riders, or do riders claim them from the chat?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 5,
+        "options": [
+          "I assign them",
+          "Riders claim them",
+          "A mix of both"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p9",
+            "op": "add",
+            "section": "hurts",
+            "text": "The group chat has about forty riders, memes, and 'is this still available' messages, so bookings get buried and re-posted three or four times",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2836,
+          "output_tokens": 4096,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 714
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 3019,
+          "output_tokens": 800,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 603
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 4,
+      "reply": "I think what I'd really want is to stop doing everything twice, but also I don't want to lose how quick the group chat is, because riders read it on their phones while waiting at stoplights, and they won't install anything new, we tried that once with some app my boss found and nobody used it."
+    },
+    {
+      "output": {
+        "say": "So the chat's speed matters, and riders won't move to a new app. Which is closer on a normal day: riders grab bookings from the chat as they come in, you pick a rider, or it's a mix depending on the booking?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 5,
+        "options": [
+          "Riders grab bookings from the chat as they come in",
+          "I pick a rider and tell them in the chat",
+          "A mix, depending on the booking or the day"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p10",
+            "op": "add",
+            "section": "should_do",
+            "text": "Stop doing the same work twice: sorting, copying, and re-posting bookings",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p11",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The group chat stays the riders' channel. They read it on their phones and won't install a new app",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop doing bookings twice without losing the quick group chat riders already use",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3001,
+          "output_tokens": 1029,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 633
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5,
+      "reply": "Mostly the same as I said."
+    },
+    {
+      "output": {
+        "say": "Earlier I had that you assign bookings, but you also said two riders show up for one booking. Is it more like A, or B?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 6,
+        "options": [
+          "A: Riders grab bookings from the chat, first one to claim gets it, and you don't pick",
+          "B: You choose the rider and post the booking to them, even though it's in the chat",
+          "C: Both happen, and it depends on the booking or who's free"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims the booking (or dispatcher assigns, to be confirmed)",
+            "actor": "Rider or dispatcher",
+            "if_wrong": "Dispatcher picks the rider directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "process",
+            "text": "Whether riders claim or dispatcher assigns is still unclear, and riders sometimes show up together for one booking",
+            "tag": "open",
+            "source": "Q6"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop doing the same work twice, without losing the chat's speed or making riders use a new app",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3146,
+          "output_tokens": 858,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 440
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "It happens a few times a week."
+    },
+    {
+      "output": {
+        "say": "I've asked this a few times, so let's make it concrete. When you post a booking and two riders show up, which sounds closest?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 7,
+        "options": [
+          "I post it, and whoever replies first in the chat gets it",
+          "I pick a rider and tell them in the chat, but others reply anyway",
+          "Riders reply to say they're free, and I choose between them",
+          "Something else. Tell me in your own words"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "process",
+            "text": "Whether riders claim or dispatcher assigns is still unclear. Two riders sometimes show up for one booking, a few times a week",
+            "tag": "open",
+            "source": "Q7"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3231,
+          "output_tokens": 637,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 315
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Usually just me and the riders."
+    },
+    {
+      "output": {
+        "say": "I'm still not sure who decides. When you post a booking and riders reply, which is closest to what happens?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 8,
+        "options": [
+          "First rider to reply gets it, and you just confirm",
+          "You pick the rider, even if others replied",
+          "Several riders reply, and you choose based on who's nearest or free",
+          "It depends on the booking or the rider"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims the booking, or the dispatcher assigns it (still unclear, two riders sometimes show up for one booking)",
+            "actor": "Rider or dispatcher",
+            "if_wrong": "Dispatcher picks the rider after replies come in"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "process",
+            "text": "Whether riders claim or dispatcher assigns is still unclear. Two riders sometimes show up for one booking, a few times a week",
+            "tag": "open",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3289,
+          "output_tokens": 748,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 393
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "It costs maybe 30 minutes a day."
+    },
+    {
+      "output": {
+        "say": "Quick check before we go on. So far I have: mornings go to sorting about twenty messages and copying bookings, the yesterday count is tallied by hand, and the group chat buries bookings so they get re-posted. It costs you about 30 minutes a day. The chat has to stay quick because riders won't use a new app. Who decides between a rider claiming and you assigning is still open for Ana to follow up. Keep going, wrap up here, or fix something?",
+        "kind": "checkpoint",
+        "topic": "Where it hurts",
+        "count": 9,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p12",
+            "op": "add",
+            "section": "hurts",
+            "text": "Costs about 30 minutes a day",
+            "tag": "heard",
+            "source": "Q9"
+          },
+          {
+            "id": "p13",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The group chat stays, because riders read it on their phones and won't install a new app",
+            "tag": "heard",
+            "source": "Q7"
+          },
+          {
+            "id": "p14",
+            "op": "add",
+            "section": "process",
+            "text": "Who decides between riders claiming and the dispatcher assigning is still unclear",
+            "tag": "open",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Get bookings out to riders quickly and only once, without the morning sorting and re-posting eating your time.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3354,
+          "output_tokens": 860,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 396
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Thanks, that's clear. Here's what I think matters most, in your words. Mark each one: Must have, Nice to have, or Not needed.\n\n1. Sorting the morning messages into bookings, price questions, and complaints takes too long.\n2. Re-posting the same booking three or four times wastes time.\n3. Bookings get buried in the group chat.\n4. Yesterday's count is tallied by hand because the sheet has no totals.\n5. Riders arrive and don't know what's first.\n6. Busy days and borrowed riders who don't know the routes cost hours.",
+        "kind": "priorities",
+        "topic": "Where it hurts",
+        "count": 8,
+        "options": [
+          "Must have",
+          "Nice to have",
+          "Not needed"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Sorting the morning messages into bookings, price questions, and complaints takes too long",
+            "priority": null,
+            "source": "Q2"
+          },
+          {
+            "id": "r2",
+            "text": "Re-posting the same booking three or four times wastes time",
+            "priority": null,
+            "source": "Q7"
+          },
+          {
+            "id": "r3",
+            "text": "Bookings get buried in the group chat",
+            "priority": null,
+            "source": "Q7"
+          },
+          {
+            "id": "r4",
+            "text": "Yesterday's count is tallied by hand because the sheet has no totals",
+            "priority": null,
+            "source": "Q2"
+          },
+          {
+            "id": "r5",
+            "text": "Riders arrive and don't know what's first",
+            "priority": null,
+            "source": "Q2"
+          },
+          {
+            "id": "r6",
+            "text": "Busy days and borrowed riders who don't know the routes cost hours",
+            "priority": null,
+            "source": "Q3"
+          }
+        ],
+        "core_need": "Stop doing the same work twice without losing the group chat's speed.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3582,
+          "output_tokens": 1395,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 806
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "My priorities: \"Sorting the morning messages into bookings, price questions, and complaints takes too long\": Must have; \"Re-posting the same booking three or four times wastes time\": Nice to have; \"Bookings get buried in the group chat\": Nice to have; \"Yesterday's count is tallied by hand because the sheet has no totals\": Nice to have; \"Riders arrive and don't know what's first\": Nice to have; \"Busy days and borrowed riders who don't know the routes cost hours\": Not needed."
+    },
+    {
+      "output": {
+        "say": "Here's where we landed. The core need seems to be: getting morning bookings sorted and out to riders quickly, without doing the same work twice, while keeping the group chat as it is. What I heard: mornings go to sorting about twenty messages and copying bookings. Bookings get buried in the chat and re-posted three or four times. The yesterday count is tallied by hand. Riders arrive without a clear order. Busy days and borrowed riders cost time. This takes about 30 minutes a day. Your top priority is sorting the morning messages, marked Must have. Still open for Ana to follow up: whether riders claim bookings or you assign them, and who decides when two riders reply to one booking. Staying as it is: the group chat, since riders read it on their phones and won't install a new app. Not yet covered: anything you don't want shared with AI. Please confirm or tell me what to fix. Thanks, this was really helpful.",
+        "kind": "landing",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p15",
+            "op": "add",
+            "section": "process",
+            "text": "Whether riders claim bookings or the dispatcher assigns them, and who decides when two riders reply to one booking",
+            "tag": "open",
+            "source": "Q8"
+          },
+          {
+            "id": "p16",
+            "op": "add",
+            "section": "not_for_ai",
+            "text": "Nothing stated yet about what should not be shared with AI",
+            "tag": "open",
+            "source": "Landing"
+          },
+          {
+            "id": "p17",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The group chat stays, because riders read it on their phones and won't install a new app",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Sorting the morning messages into bookings, price questions, and complaints takes too long",
+            "priority": "Must have",
+            "source": "Priorities"
+          },
+          {
+            "id": "r2",
+            "text": "Re-posting the same booking three or four times wastes time",
+            "priority": "Nice to have",
+            "source": "Priorities"
+          },
+          {
+            "id": "r3",
+            "text": "Bookings get buried in the group chat",
+            "priority": "Nice to have",
+            "source": "Priorities"
+          },
+          {
+            "id": "r4",
+            "text": "Yesterday's count is tallied by hand because the sheet has no totals",
+            "priority": "Nice to have",
+            "source": "Priorities"
+          },
+          {
+            "id": "r5",
+            "text": "Riders arrive and don't know what's first",
+            "priority": "Nice to have",
+            "source": "Priorities"
+          },
+          {
+            "id": "r6",
+            "text": "Busy days and borrowed riders who don't know the routes cost hours",
+            "priority": "Not needed",
+            "source": "Priorities"
+          }
+        ],
+        "core_need": "Get morning bookings sorted and out to riders quickly, without doing the same work twice, while keeping the group chat as it is",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4080,
+          "output_tokens": 1565,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 593
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Yes, that's right. Confirm."
+    },
+    {
+      "output": {
+        "say": "Thanks, that's confirmed. Ana will follow up on the open points. Thanks for your time.",
+        "kind": "done",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p16",
+            "op": "update",
+            "section": "not_for_ai",
+            "text": "Nothing stated yet about what should not be shared with AI",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Sorting the morning messages into bookings, price questions, and complaints takes too long",
+            "priority": "Must have",
+            "source": "Q10"
+          },
+          {
+            "id": "r2",
+            "text": "Re-posting the same booking three or four times wastes time",
+            "priority": "Nice to have",
+            "source": "Q10"
+          },
+          {
+            "id": "r3",
+            "text": "Bookings get buried in the group chat",
+            "priority": "Nice to have",
+            "source": "Q10"
+          },
+          {
+            "id": "r4",
+            "text": "Yesterday's count is tallied by hand because the sheet has no totals",
+            "priority": "Nice to have",
+            "source": "Q10"
+          },
+          {
+            "id": "r5",
+            "text": "Riders arrive and don't know what's first",
+            "priority": "Nice to have",
+            "source": "Q10"
+          },
+          {
+            "id": "r6",
+            "text": "Busy days and borrowed riders who don't know the routes cost hours",
+            "priority": "Not needed",
+            "source": "Q10"
+          }
+        ],
+        "core_need": "Getting morning bookings sorted and out to riders quickly, without doing the same work twice, while keeping the group chat as it is",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4483,
+          "output_tokens": 519,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in via the Facebook page, get copied to a spreadsheet, then posted to the riders' group chat",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Whether riders claim or dispatcher assigns is still unclear. Two riders sometimes show up for one booking, a few times a week",
+        "tag": "open",
+        "source": "Q8"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Sorting about twenty morning messages into bookings, price questions, and complaints takes a long time",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "Yesterday's count has to be tallied by hand because the sheet has no totals",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "Riders arrive and ask what's first, with no clear order ready",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p6",
+        "section": "process",
+        "text": "Mornings start with the Facebook inbox: sorting, copying, counting, then riders arrive",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p7",
+        "section": "hurts",
+        "text": "Busy days like Mondays, rainy days, and Christmas season pile up bookings all at once",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p8",
+        "section": "hurts",
+        "text": "Borrowed riders who don't know the routes get lost and cost hours",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p9",
+        "section": "hurts",
+        "text": "The group chat has about forty riders, memes, and 'is this still available' messages, so bookings get buried and re-posted three or four times",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p10",
+        "section": "should_do",
+        "text": "Stop doing the same work twice: sorting, copying, and re-posting bookings",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p11",
+        "section": "stays_same",
+        "text": "The group chat stays the riders' channel. They read it on their phones and won't install a new app",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p12",
+        "section": "hurts",
+        "text": "Costs about 30 minutes a day",
+        "tag": "heard",
+        "source": "Q9"
+      },
+      {
+        "id": "p13",
+        "section": "stays_same",
+        "text": "The group chat stays, because riders read it on their phones and won't install a new app",
+        "tag": "heard",
+        "source": "Q7"
+      },
+      {
+        "id": "p14",
+        "section": "process",
+        "text": "Who decides between riders claiming and the dispatcher assigning is still unclear",
+        "tag": "open",
+        "source": "Q5"
+      },
+      {
+        "id": "p15",
+        "section": "process",
+        "text": "Whether riders claim bookings or the dispatcher assigns them, and who decides when two riders reply to one booking",
+        "tag": "open",
+        "source": "Q8"
+      },
+      {
+        "id": "p16",
+        "section": "not_for_ai",
+        "text": "Nothing stated yet about what should not be shared with AI",
+        "tag": "open",
+        "source": "Q10"
+      },
+      {
+        "id": "p17",
+        "section": "stays_same",
+        "text": "The group chat stays, because riders read it on their phones and won't install a new app",
+        "tag": "heard",
+        "source": "Q5"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page, mornings often start with around twenty messages",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher sorts messages into bookings, price questions, and complaints, then copies bookings into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": "Tell me how the sorting really goes"
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking, or the dispatcher assigns it (still unclear, two riders sometimes show up for one booking)",
+        "actor": "Rider or dispatcher",
+        "if_wrong": "Dispatcher picks the rider after replies come in"
+      },
+      {
+        "id": "s5",
+        "text": "Boss asks for yesterday's booking count, dispatcher counts it by hand from the sheet",
+        "actor": "Boss",
+        "if_wrong": null
+      }
+    ],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Sorting the morning messages into bookings, price questions, and complaints takes too long",
+        "priority": "Must have",
+        "source": "Q10"
+      },
+      {
+        "id": "r2",
+        "text": "Re-posting the same booking three or four times wastes time",
+        "priority": "Nice to have",
+        "source": "Q10"
+      },
+      {
+        "id": "r3",
+        "text": "Bookings get buried in the group chat",
+        "priority": "Nice to have",
+        "source": "Q10"
+      },
+      {
+        "id": "r4",
+        "text": "Yesterday's count is tallied by hand because the sheet has no totals",
+        "priority": "Nice to have",
+        "source": "Q10"
+      },
+      {
+        "id": "r5",
+        "text": "Riders arrive and don't know what's first",
+        "priority": "Nice to have",
+        "source": "Q10"
+      },
+      {
+        "id": "r6",
+        "text": "Busy days and borrowed riders who don't know the routes cost hours",
+        "priority": "Not needed",
+        "source": "Q10"
+      }
+    ]
+  },
+  "count": 8,
+  "cost": {
+    "input": 40848,
+    "output": 15098,
+    "usd": 0.0116338
+  },
+  "findings": [
+    "note: needed JSON retry 1x",
+    "check: turn 1 question is 66 words (limit 40)"
+  ]
+}

@@ -1,0 +1,250 @@
+{
+  "id": "E-10",
+  "name": "Multi-pick",
+  "pass_if": "When they pick two options, it checks if they're one thread before merging.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking moves. Step 4 says a rider claims it, but I understood that you assign bookings and riders don't pick their own. Which is closer, and what's wrong with these steps?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Does the dispatcher assign it instead, or is it first-come, first-served?"
+          }
+        ],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1079,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 674
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Not sure."
+    },
+    {
+      "output": {
+        "say": "No problem. Which of these is closest to what happens after you post a booking in the group chat?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "I pick a rider myself and message them directly",
+          "I post it and whoever is free replies first",
+          "Riders reply, and then I choose who gets it",
+          "It's different from these, and I'll explain"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "How a rider ends up with a booking after it's posted in the group chat",
+            "tag": "open",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2044,
+          "output_tokens": 457,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 235
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Not sure, maybe."
+    },
+    {
+      "output": {
+        "say": "No worries. Which of these is closest to what happens after you post a booking in the group chat?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 2,
+        "options": [
+          "I post it, and the first rider who replies gets it",
+          "I post it, riders reply, and I choose one from those who answered",
+          "I pick a rider myself, based on who's free or close by, then tell the group",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2114,
+          "output_tokens": 425,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 258
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Both the first and the second."
+    },
+    {
+      "output": {
+        "say": "Thanks. I didn't list the options clearly before, so let me restate them. When a booking goes into the group chat, which of these is closest? A: you pick one rider and assign it to them. B: the first free rider who replies gets it. Or do both happen, depending on the booking?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [
+          "You pick one rider and assign it to them",
+          "The first free rider who replies gets it",
+          "Both happen, depending on the booking"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2153,
+          "output_tokens": 581,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 382
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "How a rider ends up with a booking after it's posted in the group chat",
+        "tag": "open",
+        "source": "Q1"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking",
+        "actor": "Rider",
+        "if_wrong": "Does the dispatcher assign it instead, or is it first-come, first-served?"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 8184,
+    "output": 2542,
+    "usd": 0.0020894
+  },
+  "findings": [
+    "check: turn 4 has more than one \"?\""
+  ]
+}

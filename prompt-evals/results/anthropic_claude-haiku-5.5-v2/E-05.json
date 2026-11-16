@@ -1,0 +1,249 @@
+{
+  "id": "E-05",
+  "name": "Correction",
+  "pass_if": "It accepts the correction and adjusts without defending.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking moves today. Step 4 says a rider claims the booking, but you said riders don't pick their own. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the booking directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page",
+            "tag": "heard",
+            "source": "Known"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "The dispatcher assigns bookings; riders don't pick their own",
+            "tag": "heard",
+            "source": "To confirm"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 1459,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 949
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Most delays happen because riders are slow to respond."
+    },
+    {
+      "output": {
+        "say": "Got it, slow rider responses cause most of the delays. When did that last happen? What was the booking, and what did the delay cost, in time or customer trouble?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Most delays happen because riders are slow to respond",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2283,
+          "output_tokens": 601,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 396
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "That's not what I said. The riders aren't slow. They just don't see the post because it gets buried under other messages."
+    },
+    {
+      "output": {
+        "say": "Thanks for correcting me. So the riders are ready, but the booking post gets buried in the group chat. Is that right? Can you think of the last time a booking got buried, and what it cost?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims the booking (riders see it only if they spot the post in the group chat)",
+            "actor": "Rider",
+            "if_wrong": "Riders choose bookings themselves"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "hurts",
+            "text": "Delays happen because the booking post gets buried under other messages in the group chat, not because riders are slow",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2390,
+          "output_tokens": 280,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page",
+        "tag": "heard",
+        "source": "Known"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "The dispatcher assigns bookings; riders don't pick their own",
+        "tag": "heard",
+        "source": "To confirm"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Delays happen because the booking post gets buried under other messages in the group chat, not because riders are slow",
+        "tag": "heard",
+        "source": "Q3"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking (riders see it only if they spot the post in the group chat)",
+        "actor": "Rider",
+        "if_wrong": "Riders choose bookings themselves"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6735,
+    "output": 2340,
+    "usd": 0.0018435
+  },
+  "findings": [
+    "check: turn 2 has more than one \"?\"",
+    "check: turn 3 has more than one \"?\""
+  ]
+}

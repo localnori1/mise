@@ -1,0 +1,889 @@
+{
+  "id": "E-09",
+  "name": "Prospect",
+  "pass_if": "It stays within budget, offers tappable options, keeps questions short.",
+  "turns": [
+    {
+      "output": {
+        "say": "Tell me about Lola's Bakeshop: what makes it unique and how you describe its purpose to customers?",
+        "kind": "question",
+        "topic": "Your business",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1313,
+          "completion_tokens": 239,
+          "total_tokens": 1552,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 58.072479248046875
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Bakery."
+    },
+    {
+      "output": {
+        "say": "Walk me through the last time you opened Lola’s Bakeshop in the morning—from the moment you arrived, what you did first, what you checked, and any hiccups you ran into.",
+        "kind": "question",
+        "topic": "Your business",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1348,
+          "completion_tokens": 213,
+          "total_tokens": 1561,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 57.413387298583984
+        },
+        {
+          "prompt_tokens": 1464,
+          "completion_tokens": 291,
+          "total_tokens": 1755,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 66.42245483398438
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Busy."
+    },
+    {
+      "output": {
+        "say": "What I’m hearing is mornings feel busy. Can you describe a specific morning—what you had to handle, any steps that got delayed, and how it affected the shop that day?",
+        "kind": "question",
+        "topic": "Your time",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "hurts",
+            "text": "Mornings feel busy",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1399,
+          "completion_tokens": 147,
+          "total_tokens": 1546,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 54.53610610961914
+        },
+        {
+          "prompt_tokens": 1451,
+          "completion_tokens": 572,
+          "total_tokens": 2023,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 85.16790771484375
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Walk-ins mostly."
+    },
+    {
+      "output": {
+        "say": "During a typical day, how do you split your time between baking, serving walk‑ins, handling orders, and any other tasks?",
+        "kind": "question",
+        "topic": "Your time",
+        "count": 4,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1474,
+          "completion_tokens": 205,
+          "total_tokens": 1679,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 60.87699890136719
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Me."
+    },
+    {
+      "output": {
+        "say": "Think of the most recent customer who discovered Lola’s through a referral or social media post. How did they first contact you, and what steps did you take to turn that interest into a sale?",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 5,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1513,
+          "completion_tokens": 342,
+          "total_tokens": 1855,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 71.45880889892578
+        },
+        {
+          "prompt_tokens": 1610,
+          "completion_tokens": 310,
+          "total_tokens": 1920,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 72.36333465576172
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 5,
+      "reply": "Orders on Messenger get lost."
+    },
+    {
+      "output": {
+        "say": "What I’m hearing is that orders coming through Messenger sometimes disappear, causing issues. Can you walk me through how you handle a Messenger order—from when it arrives, through preparation, to delivery?",
+        "kind": "question",
+        "topic": "Operations and support",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Orders on Messenger get lost",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1568,
+          "completion_tokens": 1042,
+          "total_tokens": 2610,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 120.93605041503906
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "Fine."
+    },
+    {
+      "output": {
+        "say": "What I’m hearing is Messenger orders sometimes disappear, which can cause missed sales or unhappy customers. Can you share a recent example where an order got lost—what step failed, how you found out, and what the result was?",
+        "kind": "question",
+        "topic": "Operations and support",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1628,
+          "completion_tokens": 436,
+          "total_tokens": 2064,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 81.52696228027344
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Ok."
+    },
+    {
+      "output": {
+        "say": "Can you walk me through a recent Messenger order that got lost—what happened, how you realized it was missing, and what the outcome was for you and the customer?",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 8,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "hurts",
+            "text": "Mornings feel busy",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "hurts",
+            "text": "Orders on Messenger get lost",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1686,
+          "completion_tokens": 498,
+          "total_tokens": 2184,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 87.59968566894531
+        },
+        {
+          "prompt_tokens": 1735,
+          "completion_tokens": 621,
+          "total_tokens": 2356,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 97.54512023925781
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Not really."
+    },
+    {
+      "output": {
+        "say": "What I’m hearing so far:\n- Mornings feel busy.\n- You mainly serve walk‑ins and handle orders yourself.\n- Orders that come through Messenger sometimes get lost, which can cause missed sales.\nIs that a fair summary?",
+        "kind": "checkpoint",
+        "topic": "summary",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1733,
+          "completion_tokens": 295,
+          "total_tokens": 2028,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 75.25421905517578
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "When a customer pays through GCash, walk me through the steps you take to record the payment, confirm the order, and update your notebook. What happens if something goes wrong in that flow?",
+        "kind": "question",
+        "topic": "Operations and support",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "GCash payment recording process",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1794,
+          "completion_tokens": 425,
+          "total_tokens": 2219,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 86.05875396728516
+        },
+        {
+          "prompt_tokens": 1848,
+          "completion_tokens": 519,
+          "total_tokens": 2367,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 94.18601989746094
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 9,
+      "reply": "Sometimes."
+    },
+    {
+      "output": {
+        "say": "If you could add an AI assistant to Lola’s Bakeshop, what specific tasks would you want it to handle, and which parts of the business would you prefer to keep completely human‑only?",
+        "kind": "question",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1855,
+          "completion_tokens": 612,
+          "total_tokens": 2467,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 100.74964904785156
+        },
+        {
+          "prompt_tokens": 1910,
+          "completion_tokens": 449,
+          "total_tokens": 2359,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 91.38600158691406
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes."
+    },
+    {
+      "output": {
+        "say": "Which tasks would you love an AI assistant to handle, and which tasks would you definitely keep yourself?",
+        "kind": "question",
+        "topic": "AI and boundaries",
+        "count": 7,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1907,
+          "completion_tokens": 1044,
+          "total_tokens": 2951,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 131.8587188720703
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 11,
+      "reply": "Don't know."
+    },
+    {
+      "output": {
+        "say": "Which of these would feel useful for an AI assistant, and which would you prefer to keep yourself?\nA) Track incoming Messenger orders and flag missing ones.\nB) Send payment reminders and confirm GCash receipts.\nC) Suggest daily baking schedules based on orders.\nD) Answer common customer FAQs via Messenger.",
+        "kind": "offer",
+        "topic": "AI and boundaries",
+        "count": 0,
+        "options": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1940,
+          "completion_tokens": 423,
+          "total_tokens": 2363,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 90.56781768798828
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 12,
+      "reply": "Ok."
+    },
+    {
+      "output": {
+        "say": "Here’s what I’ve heard so far:\n- Mornings are busy and you handle everything yourself.\n- Most sales are walk‑ins; you also get orders via Messenger, which sometimes get lost.\n- Payments come through GCash and you record them in a notebook.\n- You’re unsure what an AI could help with, but ideas include tracking Messenger orders, payment reminders, baking schedules, and FAQs.\nIs this accurate? Would you like to keep going, or wrap up now?",
+        "kind": "checkpoint",
+        "topic": "overall",
+        "count": 0,
+        "options": [
+          "keep going",
+          "wrap up"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "hurts",
+            "text": "Mornings feel busy",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "hurts",
+            "text": "Orders on Messenger get lost",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "hurts",
+            "text": "GCash payment recording process",
+            "tag": "heard",
+            "source": "Q11"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2013,
+          "completion_tokens": 777,
+          "total_tokens": 2790,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 117.02688598632812
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 12,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Here are the key points we’ve identified. Please label each as **Biggest**, **Annoying**, or **Can live with it**:",
+        "kind": "priorities",
+        "topic": "Your business",
+        "count": 0,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "hurts",
+            "text": "Mornings feel busy",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "hurts",
+            "text": "Orders on Messenger get lost",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "hurts",
+            "text": "GCash payment recording process (notebook)",
+            "tag": "heard",
+            "source": "Q8"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "should_do",
+            "text": "Clarify which AI tasks you’d want (order tracking, reminders, schedule, FAQs)",
+            "tag": "heard",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2124,
+          "completion_tokens": 1029,
+          "total_tokens": 3153,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 137.74050903320312
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 12,
+      "reply": "My priorities: the first thing is Biggest, the rest are Annoying."
+    },
+    {
+      "output": {
+        "say": "Got it. Here’s how you’ve labeled each point:",
+        "kind": "priorities",
+        "topic": "Your time",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "process",
+            "text": "Mornings feel busy",
+            "tag": "Biggest",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "hurts",
+            "text": "Orders on Messenger get lost",
+            "tag": "Annoying",
+            "source": "Q5"
+          },
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "process",
+            "text": "GCash payment recording process (notebook)",
+            "tag": "Annoying",
+            "source": "Q10"
+          },
+          {
+            "id": "p4",
+            "op": "update",
+            "section": "should_do",
+            "text": "Clarify which AI tasks you’d want (order tracking, reminders, schedule, FAQs)",
+            "tag": "Annoying",
+            "source": "Q13"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2205,
+          "completion_tokens": 788,
+          "total_tokens": 2993,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 123.88594055175781
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 12,
+      "reply": "My priorities: the first thing is Biggest, the rest are Annoying."
+    },
+    {
+      "output": {
+        "say": "Got it. Here’s how you’ve labeled each point:",
+        "kind": "priorities",
+        "topic": "Operations and support",
+        "count": 13,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Mornings are busy and you handle everything yourself.",
+            "priority": "Biggest",
+            "source": "Q7"
+          },
+          {
+            "id": "r2",
+            "text": "Most sales are walk‑ins; Messenger orders sometimes get lost.",
+            "priority": "Annoying",
+            "source": "Q7"
+          },
+          {
+            "id": "r3",
+            "text": "Payments come through GCash and are recorded in a notebook.",
+            "priority": "Annoying",
+            "source": "Q7"
+          },
+          {
+            "id": "r4",
+            "text": "Unclear which AI tasks would help; ideas include order tracking, payment reminders, baking schedule, FAQs.",
+            "priority": "Annoying",
+            "source": "Q7"
+          }
+        ],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2243,
+          "completion_tokens": 494,
+          "total_tokens": 2737,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 105.0495834350586
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 12,
+      "reply": "My priorities: \"Mornings are busy and you handle everything yourself.\": Biggest; \"Most sales are walk‑ins; Messenger orders sometimes get lost.\": Annoying; \"Payments come through GCash and are recorded in a notebook.\": Annoying; \"Unclear which AI tasks would help; ideas include order tracking, payment reminders, baking schedule, FAQs.\": Can live with it."
+    },
+    {
+      "output": {
+        "say": "Got it. Here’s what we’ve captured and how you’ve prioritized it. Does this look correct? Let me know if we should adjust anything or move on to wrap‑up.",
+        "kind": "checkpoint",
+        "topic": "operations and support",
+        "count": 16,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "process",
+            "text": "Mornings feel busy",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "hurts",
+            "text": "Orders on Messenger get lost",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "process",
+            "text": "GCash payment recording process (notebook)",
+            "tag": "heard",
+            "source": "Q6"
+          },
+          {
+            "id": "p4",
+            "op": "update",
+            "section": "should_do",
+            "text": "Unclear which AI tasks would help (order tracking, reminders, schedule, FAQs)",
+            "tag": "heard",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Mornings are busy and you handle everything yourself.",
+            "priority": "Biggest",
+            "source": "Q2"
+          },
+          {
+            "id": "r2",
+            "text": "Most sales are walk‑ins; Messenger orders sometimes get lost.",
+            "priority": "Annoying",
+            "source": "Q5"
+          },
+          {
+            "id": "r3",
+            "text": "Payments come through GCash and are recorded in a notebook.",
+            "priority": "Annoying",
+            "source": "Q6"
+          },
+          {
+            "id": "r4",
+            "text": "Unclear which AI tasks would help; ideas include order tracking, payment reminders, baking schedule, FAQs.",
+            "priority": "Can live with it",
+            "source": "Q8"
+          }
+        ],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2423,
+          "completion_tokens": 1507,
+          "total_tokens": 3930,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 179.844970703125
+        }
+      ],
+      "retried": false,
+      "anomalies": [
+        "add of existing id r1",
+        "add of existing id r2",
+        "add of existing id r3",
+        "add of existing id r4"
+      ],
+      "count": 12,
+      "reply": "Keep going."
+    }
+  ],
+  "stopReason": "turn cap reached",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Mornings feel busy",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Orders on Messenger get lost",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "GCash payment recording process (notebook)",
+        "tag": "heard",
+        "source": "Q6"
+      },
+      {
+        "id": "p4",
+        "section": "should_do",
+        "text": "Unclear which AI tasks would help (order tracking, reminders, schedule, FAQs)",
+        "tag": "heard",
+        "source": "Q8"
+      }
+    ],
+    "steps": [],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Mornings are busy and you handle everything yourself.",
+        "priority": "Biggest",
+        "source": "Q2"
+      },
+      {
+        "id": "r2",
+        "text": "Most sales are walk‑ins; Messenger orders sometimes get lost.",
+        "priority": "Annoying",
+        "source": "Q5"
+      },
+      {
+        "id": "r3",
+        "text": "Payments come through GCash and are recorded in a notebook.",
+        "priority": "Annoying",
+        "source": "Q6"
+      },
+      {
+        "id": "r4",
+        "text": "Unclear which AI tasks would help; ideas include order tracking, payment reminders, baking schedule, FAQs.",
+        "priority": "Can live with it",
+        "source": "Q8"
+      }
+    ]
+  },
+  "count": 12,
+  "cost": {
+    "input": 42184,
+    "output": 13278,
+    "neurons": 2248
+  },
+  "findings": [
+    "note: needed JSON retry 6x",
+    "FAIL asked 12 questions, budget 10",
+    "check: turn 18 add of existing id r1",
+    "check: turn 18 add of existing id r2",
+    "check: turn 18 add of existing id r3",
+    "check: turn 18 add of existing id r4",
+    "FAIL never reached landing"
+  ]
+}

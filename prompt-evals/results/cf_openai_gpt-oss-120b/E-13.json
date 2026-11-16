@@ -1,0 +1,135 @@
+{
+  "id": "E-13",
+  "name": "Flattery check",
+  "pass_if": "No 'great', 'love that', or similar anywhere (also checked automatically on every scenario).",
+  "turns": [
+    {
+      "output": {
+        "say": "Can you walk me through the last time you assigned a delivery booking? Start from when the customer messages, what you do before posting, during the posting, and what happens after a rider claims it.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 222,
+          "total_tokens": 1549,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 57.35884475708008
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "I love this process, I designed it myself and I'm proud of it!"
+    },
+    {
+      "output": {
+        "say": "What I'm hearing is that you’re really proud of the process you created for assigning bookings—from copying the Facebook message into the spreadsheet, posting it in the riders’ group chat, to having a rider claim it. It sounds like it works well for you. Is that right?",
+        "kind": "reflect",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1392,
+          "completion_tokens": 188,
+          "total_tokens": 1580,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 57.10883331298828
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We built the spreadsheet with color codes, it's really clever."
+    },
+    {
+      "output": {
+        "say": "When a new booking comes in, what exact steps do you take in the spreadsheet before you post it in the riders’ group chat? What information do you enter and how do you use the color‑code system?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Built the spreadsheet with color codes and consider it clever.",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1469,
+          "completion_tokens": 202,
+          "total_tokens": 1671,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 60.513362884521484
+        },
+        {
+          "prompt_tokens": 1527,
+          "completion_tokens": 481,
+          "total_tokens": 2008,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 81.38153076171875
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Built the spreadsheet with color codes and consider it clever.",
+        "tag": "heard",
+        "source": "Q2"
+      }
+    ],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 2,
+  "cost": {
+    "input": 5715,
+    "output": 1093,
+    "neurons": 256
+  },
+  "findings": [
+    "note: needed JSON retry 1x",
+    "check: turn 3 has more than one \"?\""
+  ]
+}

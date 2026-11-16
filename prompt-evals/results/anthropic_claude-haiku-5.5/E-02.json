@@ -1,0 +1,420 @@
+{
+  "id": "E-02",
+  "name": "Oversimplifier",
+  "pass_if": "It asks for the last real time and gets before/during/after steps, at least one hidden step.",
+  "turns": [
+    {
+      "output": {
+        "say": "Salamat sa pag-share. Here's how I understand a booking goes, from the Facebook message to a rider taking it. Correct me where I'm off. One thing: the last step says a rider claims it, but I understood you assign riders yourself. Which is closer?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 0,
+        "options": [
+          "I assign the rider",
+          "Riders claim it themselves",
+          "It's a bit of both"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the rider directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page",
+            "tag": "heard",
+            "source": "Known"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher copies each booking into a spreadsheet",
+            "tag": "assumed",
+            "source": "Sketch"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "tag": "assumed",
+            "source": "Sketch"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "process",
+            "text": "Who gets the booking: dispatcher assigns, riders don't pick their own",
+            "tag": "open",
+            "source": "Confirm"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1430,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 734
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "It's simple. They message, I post it, someone takes it. That's it."
+    },
+    {
+      "output": {
+        "say": "Got it, simple. Just so I get the last step right: when you post it, which is closer? A) You pick a rider and tell them directly. B) You post it, and whoever is free replies first.",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "You pick a rider and tell them directly",
+          "You post it, and whoever is free replies first"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2177,
+          "output_tokens": 496,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 336
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Last time was this morning. A customer messaged at 7, I copied it to the sheet, posted it, and Jun took it."
+    },
+    {
+      "output": {
+        "say": "Salamat. So this morning: 7am message, you copied it, posted it, and Jun took it. Earlier you said you assign riders, though. Did you pick Jun, or did Jun claim it first?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider takes it (first to reply, or dispatcher picks)",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the rider directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "process",
+            "text": "Example from this morning: 7am booking, copied to sheet, posted, Jun took it",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2278,
+          "output_tokens": 666,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 356
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Oh, before posting I check the address on Google Maps because customers only write landmarks."
+    },
+    {
+      "output": {
+        "say": "Got it, you check the address on Google Maps before posting. Then, for this morning's booking, which is closer? Was it A) you picked Jun and told him directly, B) you posted it and Jun replied first, or C) it depends on the rider or the booking?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [
+          "I pick the rider and message them directly",
+          "I post it and whoever replies first gets it",
+          "It depends on the rider or the booking"
+        ],
+        "steps": [
+          {
+            "id": "s5",
+            "op": "add",
+            "text": "Dispatcher checks the landmark on Google Maps to get the real address",
+            "actor": "Dispatcher",
+            "if_wrong": "Maybe you check the address somewhere else, or only sometimes?"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "process",
+            "text": "Customers write landmarks, so I check the address on Google Maps before posting",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2421,
+          "output_tokens": 833,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 449
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "If no one claims it in 10 minutes I call riders one by one."
+    },
+    {
+      "output": {
+        "say": "So if nobody claims a booking within 10 minutes, you call riders one by one. Earlier I wrote down that you assign riders and they don't pick their own. On a normal day, which is closer?\nA) Riders claim it first in the group chat\nB) You assign the rider, and they don't pick\nC) A mix, depending on the booking",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 5,
+        "options": [
+          "Riders claim it first in the group chat",
+          "You assign the rider, and they don't pick",
+          "A mix, depending on the booking"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider takes it (first to reply, or dispatcher picks)",
+            "actor": "Rider",
+            "if_wrong": "Riders claim it first, or dispatcher assigns, not confirmed yet"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "update",
+            "section": "process",
+            "text": "Who gets the booking: unclear. Riders may claim first, or dispatcher assigns (conflicting)",
+            "tag": "open",
+            "source": "Q5"
+          },
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "process",
+            "text": "If no one claims it in 10 minutes, dispatcher calls riders one by one",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2582,
+          "output_tokens": 940,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 512
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page",
+        "tag": "heard",
+        "source": "Known"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher copies each booking into a spreadsheet",
+        "tag": "assumed",
+        "source": "Sketch"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "tag": "assumed",
+        "source": "Sketch"
+      },
+      {
+        "id": "p4",
+        "section": "process",
+        "text": "Who gets the booking: unclear. Riders may claim first, or dispatcher assigns (conflicting)",
+        "tag": "open",
+        "source": "Q5"
+      },
+      {
+        "id": "p5",
+        "section": "process",
+        "text": "Example from this morning: 7am booking, copied to sheet, posted, Jun took it",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p6",
+        "section": "process",
+        "text": "Customers write landmarks, so I check the address on Google Maps before posting",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p7",
+        "section": "process",
+        "text": "If no one claims it in 10 minutes, dispatcher calls riders one by one",
+        "tag": "heard",
+        "source": "Q5"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider takes it (first to reply, or dispatcher picks)",
+        "actor": "Rider",
+        "if_wrong": "Riders claim it first, or dispatcher assigns, not confirmed yet"
+      },
+      {
+        "id": "s5",
+        "text": "Dispatcher checks the landmark on Google Maps to get the real address",
+        "actor": "Dispatcher",
+        "if_wrong": "Maybe you check the address somewhere else, or only sometimes?"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 5,
+  "cost": {
+    "input": 11331,
+    "output": 4365,
+    "usd": 0.0033156000000000006
+  },
+  "findings": [
+    "check: turn 1 question is 44 words (limit 40)",
+    "check: turn 4 has more than one \"?\"",
+    "check: turn 5 question is 61 words (limit 40)"
+  ]
+}

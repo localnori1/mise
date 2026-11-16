@@ -1,0 +1,813 @@
+{
+  "id": "E-09",
+  "name": "Prospect",
+  "pass_if": "It stays within budget, offers tappable options, keeps questions short.",
+  "turns": [
+    {
+      "output": {
+        "say": "Thanks for sharing a bit about Lola's Bakeshop already. To start, how do customers usually reach you today, and what does that look like on a normal day?",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2016,
+          "output_tokens": 121,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Bakery."
+    },
+    {
+      "output": {
+        "say": "Thanks. So I can picture a normal day, which of these is closest to Lola's?",
+        "kind": "offer",
+        "topic": "Leads and sales",
+        "count": 2,
+        "options": [
+          "Most orders come in through Messenger, and I confirm them by hand",
+          "Mostly walk-ins and regulars, with a few orders from referrals",
+          "A mix of Messenger, social media posts, and referrals",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2075,
+          "output_tokens": 623,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 419
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Busy."
+    },
+    {
+      "output": {
+        "say": "Got it, busy. When it gets busy, which of these eats most of your time?",
+        "kind": "offer",
+        "topic": "Your time",
+        "count": 3,
+        "options": [
+          "Replying to customer messages",
+          "Taking and tracking orders",
+          "Checking payments",
+          "Baking and production itself",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "hurts",
+            "text": "Busy days, with a lot of time going to one part of the work (still to be identified)",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2110,
+          "output_tokens": 577,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 333
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Walk-ins mostly."
+    },
+    {
+      "output": {
+        "say": "Walk-ins take most of your time on busy days. When was the last time that happened? What did it cost you, in time or money?",
+        "kind": "question",
+        "topic": "Your time",
+        "count": 4,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "hurts",
+            "text": "Busy days, with walk-ins taking most of the time",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2199,
+          "output_tokens": 553,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 361
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Me."
+    },
+    {
+      "output": {
+        "say": "Sounds like walk-ins pull you away from everything else. Is it more like: A) they keep you from the counter or kitchen, B) customers wait and some leave, C) orders get mixed up or missed, or D) something else?",
+        "kind": "offer",
+        "topic": "Your time",
+        "count": 4,
+        "options": [
+          "Walk-ins keep you from the counter or kitchen",
+          "Customers wait, and some leave",
+          "Orders get mixed up or missed",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2235,
+          "output_tokens": 728,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 434
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5,
+      "reply": "Orders on Messenger get lost."
+    },
+    {
+      "output": {
+        "say": "So Messenger orders sometimes get lost. When did that last happen, and what did it cost you, in time or money?",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Orders sent over Messenger sometimes get lost",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2322,
+          "output_tokens": 577,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 410
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "Fine."
+    },
+    {
+      "output": {
+        "say": "No problem. Which of these is closer to how it goes with Messenger orders?\nA) It's rare, just a small annoyance.\nB) It happens on busy days and costs you a sale or a mix-up.\nC) You usually catch it before it matters.\nD) Something else.",
+        "kind": "offer",
+        "topic": "Operations and support",
+        "count": 7,
+        "options": [
+          "A) It's rare, just a small annoyance",
+          "B) It happens on busy days and costs you a sale or a mix-up",
+          "C) You usually catch it before it matters",
+          "D) Something else"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2387,
+          "output_tokens": 661,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 419
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Ok."
+    },
+    {
+      "output": {
+        "say": "Here's what I'm hearing so far: on busy days, walk-ins take most of your time. Messenger orders sometimes get lost, but I'm not clear on how often. I'll note that for Miguel. Shall we keep going, wrap up here, or fix something?",
+        "kind": "checkpoint",
+        "topic": "Operations and support",
+        "count": 7,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "hurts",
+            "text": "Orders sent over Messenger sometimes get lost",
+            "tag": "open",
+            "source": "Q6"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "On busy days, walk-ins take most of your time",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2480,
+          "output_tokens": 832,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 507
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Sure, JSON it is. Your quick answers already covered how customers find you, so let's move on. What part of how Lola's runs today would you hate to lose?",
+        "kind": "question",
+        "topic": "Operations and support",
+        "count": 8,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2593,
+          "output_tokens": 347,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 295
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2656,
+          "output_tokens": 591,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 450
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Not really."
+    },
+    {
+      "output": {
+        "say": "That's fine. Let's try it another way. Which of these would you hate to lose most?",
+        "kind": "offer",
+        "topic": "Operations and support",
+        "count": 9,
+        "options": [
+          "A) Talking with regular walk-in customers",
+          "B) Your baking routine and recipes",
+          "C) Keeping track of orders the way you do now",
+          "D) Nothing, I'd be fine with changes"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2651,
+          "output_tokens": 638,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 444
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 9,
+      "reply": "Sometimes."
+    },
+    {
+      "output": {
+        "say": "Thanks, that helps. One last question: is there anything about how Lola's works that you don't want changed, or shared with AI?",
+        "kind": "question",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "matters",
+            "text": "What they'd hate to lose: not clear yet, answered 'sometimes'",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2687,
+          "output_tokens": 661,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 483
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes."
+    },
+    {
+      "output": {
+        "say": "Here's what I'm hearing: on busy days, walk-ins take most of your time. Messenger orders sometimes get lost, and we're not sure how often. There's something you don't want changed or shared with AI, but we didn't get the details, so I'll flag that for Miguel. Keep going, wrap up here, or fix something?",
+        "kind": "checkpoint",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "remove",
+            "section": "hurts",
+            "text": "On busy days, walk-ins take most of your time",
+            "tag": "heard",
+            "source": "Q3"
+          },
+          {
+            "id": "p4",
+            "op": "update",
+            "section": "matters",
+            "text": "What they'd hate to lose: not clear yet, answered 'sometimes'",
+            "tag": "open",
+            "source": "Q9"
+          },
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "not_for_ai",
+            "text": "Something they don't want changed or shared with AI (details not given)",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Busy days pull the owner away from the counter and kitchen, and Messenger orders sometimes get lost.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2801,
+          "output_tokens": 721,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 264
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Here's what I heard, in your words. Please mark each one: Biggest, Annoying, or Can live with it.",
+        "kind": "priorities",
+        "topic": "Operations and support",
+        "count": 10,
+        "options": [
+          "Biggest",
+          "Annoying",
+          "Can live with it"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "hurts",
+            "text": "Busy days, with walk-ins taking most of your time",
+            "tag": "heard",
+            "source": "Q3"
+          },
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "hurts",
+            "text": "Messenger orders sometimes get lost",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p4",
+            "op": "update",
+            "section": "matters",
+            "text": "What you'd hate to lose is not clear yet",
+            "tag": "open",
+            "source": "Q7"
+          },
+          {
+            "id": "p5",
+            "op": "update",
+            "section": "not_for_ai",
+            "text": "Something you don't want changed or shared with AI, details not given",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Walk-ins on busy days should not take most of your time",
+            "priority": null,
+            "source": "Q3"
+          },
+          {
+            "id": "r2",
+            "text": "Messenger orders should not get lost",
+            "priority": null,
+            "source": "Q5"
+          },
+          {
+            "id": "r3",
+            "text": "Keep the part of Lola's you don't want changed or shared with AI",
+            "priority": null,
+            "source": "Q10"
+          }
+        ],
+        "core_need": "Keep busy days running smoothly, without walk-ins or Messenger orders slipping through.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2898,
+          "output_tokens": 1036,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 465
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "My priorities: \"Walk-ins on busy days should not take most of your time\": Biggest; \"Messenger orders should not get lost\": Annoying; \"Keep the part of Lola's you don't want changed or shared with AI\": Can live with it."
+    },
+    {
+      "output": {
+        "say": "Thanks, Lola's is in good hands. Here's the summary for Miguel.",
+        "kind": "landing",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Walk-ins on busy days should not take most of your time",
+            "priority": "Biggest",
+            "source": "Q2"
+          },
+          {
+            "id": "r2",
+            "text": "Messenger orders should not get lost",
+            "priority": "Annoying",
+            "source": "Q4"
+          },
+          {
+            "id": "r3",
+            "text": "Keep the part of Lola's you don't want changed or shared with AI",
+            "priority": "Can live with it",
+            "source": "Q10"
+          }
+        ],
+        "core_need": "Keep busy days manageable so walk-ins and Messenger orders don't pull you away from the work or cost you orders.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3068,
+          "output_tokens": 287,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes, that's right. Confirm."
+    },
+    {
+      "output": {
+        "say": "Thanks, that's all for now. Miguel will follow up with you.",
+        "kind": "done",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3125,
+          "output_tokens": 94,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "hurts",
+        "text": "Busy days, with walk-ins taking most of your time",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Messenger orders sometimes get lost",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p4",
+        "section": "matters",
+        "text": "What you'd hate to lose is not clear yet",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p5",
+        "section": "not_for_ai",
+        "text": "Something you don't want changed or shared with AI, details not given",
+        "tag": "open",
+        "source": "Q10"
+      }
+    ],
+    "steps": [],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Walk-ins on busy days should not take most of your time",
+        "priority": "Biggest",
+        "source": "Q2"
+      },
+      {
+        "id": "r2",
+        "text": "Messenger orders should not get lost",
+        "priority": "Annoying",
+        "source": "Q4"
+      },
+      {
+        "id": "r3",
+        "text": "Keep the part of Lola's you don't want changed or shared with AI",
+        "priority": "Can live with it",
+        "source": "Q10"
+      }
+    ]
+  },
+  "count": 10,
+  "cost": {
+    "input": 40303,
+    "output": 9047,
+    "usd": 0.008553799999999999
+  },
+  "findings": [
+    "note: needed JSON retry 1x",
+    "check: turn 4 has more than one \"?\""
+  ]
+}

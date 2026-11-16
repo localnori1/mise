@@ -1,0 +1,282 @@
+{
+  "id": "E-06",
+  "name": "Their question",
+  "pass_if": "It answers briefly, logs their_question, and returns to the map.",
+  "turns": [
+    {
+      "output": {
+        "say": "Hi! Ana asked me to hear how bookings really get to riders. Here's the rough picture so far. Thinking of the last booking you handled, which step is wrong or missing?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "Looks about right",
+          "A step is different",
+          "A step is missing"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher works with bookings daily, using the group chat and a spreadsheet",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own (to confirm, since step 4 says a rider claims it)",
+            "tag": "assumed",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1067,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 520
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We post everything in the group chat."
+    },
+    {
+      "output": {
+        "say": "Got it, everything goes in the group chat. Once it's posted, who decides which rider takes it: do you pick one, or does whoever replies first get it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "I pick the rider",
+          "First rider to reply gets it",
+          "Depends on the booking"
+        ],
+        "steps": [
+          {
+            "id": "s3",
+            "op": "update",
+            "text": "Dispatcher posts every booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Every booking is posted in the group chat",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2119,
+          "output_tokens": 651,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 380
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Will this replace our group chat? The riders really like it."
+    },
+    {
+      "output": {
+        "say": "Good question. I don't know. I'm only collecting how things work today, and I've noted it for Ana. Back to where we were: once it's posted, do you pick the rider, or does whoever replies first get it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "I pick the rider",
+          "Whoever replies first gets it",
+          "It depends"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "section": "matters",
+            "op": "add",
+            "text": "Riders really like the group chat",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p5",
+            "section": "stays_same",
+            "op": "add",
+            "text": "Group chat: dispatcher is worried it might be replaced (to confirm what should stay)",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": "Will this replace our group chat? The riders really like it."
+      },
+      "usage": [
+        {
+          "input_tokens": 2207,
+          "output_tokens": 921,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 590
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher works with bookings daily, using the group chat and a spreadsheet",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own (to confirm, since step 4 says a rider claims it)",
+        "tag": "assumed",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Every booking is posted in the group chat",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p4",
+        "section": "matters",
+        "text": "Riders really like the group chat",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p5",
+        "section": "stays_same",
+        "text": "Group chat: dispatcher is worried it might be replaced (to confirm what should stay)",
+        "tag": "open",
+        "source": "Q2"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts every booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims it",
+        "actor": "Rider",
+        "if_wrong": null
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6199,
+    "output": 2639,
+    "usd": 0.038788
+  },
+  "findings": [
+    "FAIL flattery at turn 3: \"Good question\""
+  ]
+}

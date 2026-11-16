@@ -1,0 +1,300 @@
+{
+  "id": "E-01",
+  "name": "Stuck",
+  "pass_if": "After two 'not sure' answers it offers 2-4 descriptions of their situation, not another open question, and never a solution.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking moves. Step 4 says a rider claims it, but earlier you said riders don't pick their own. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 0,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns it to a rider"
+          }
+        ],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1193,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 843
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Not sure."
+    },
+    {
+      "output": {
+        "say": "No problem. Is it more like A: the rider replies first in the group chat and gets the booking, or B: you pick a rider and then post it so they can confirm?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "A: First rider to reply in the group chat gets it",
+          "B: I pick a rider, then post it for them to confirm",
+          "Something else"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims it (or dispatcher assigns — unclear)",
+            "actor": "Rider or dispatcher",
+            "if_wrong": "Dispatcher picks the rider and posts for confirmation"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Booking reaches the dispatcher via the Facebook page, then gets copied into a spreadsheet and posted in the riders' group chat.",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Who gets the booking after it's posted: unclear, needs confirming.",
+            "tag": "open",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2029,
+          "output_tokens": 401,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Hmm, not sure really."
+    },
+    {
+      "output": {
+        "say": "Got it, I'll keep that as a question. Let's try a different angle. Think of the last booking you posted. What happened in the first few minutes after you posted it in the group chat?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "Rider gets the booking (method unclear: first reply, or dispatcher picks)",
+            "actor": "Rider or dispatcher",
+            "if_wrong": "Tell me which way it works, or say it depends"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "process",
+            "text": "Who gets the booking after it's posted: unclear, needs confirming. Earlier you said riders don't pick their own, but the exact way they're matched is still open.",
+            "tag": "open",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2189,
+          "output_tokens": 349,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 267
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2282,
+          "output_tokens": 304,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3,
+      "reply": "I guess the second one."
+    },
+    {
+      "output": {
+        "say": "Just to check, do you mean the second option: you pick a rider first, then post the booking so they can confirm it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [
+          "Yes, I pick the rider",
+          "No, the rider replies first",
+          "Depends on the booking"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2289,
+          "output_tokens": 478,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 341
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Booking reaches the dispatcher via the Facebook page, then gets copied into a spreadsheet and posted in the riders' group chat.",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Who gets the booking after it's posted: unclear, needs confirming. Earlier you said riders don't pick their own, but the exact way they're matched is still open.",
+        "tag": "open",
+        "source": "Q3"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "Rider gets the booking (method unclear: first reply, or dispatcher picks)",
+        "actor": "Rider or dispatcher",
+        "if_wrong": "Tell me which way it works, or say it depends"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 10662,
+    "output": 2725,
+    "usd": 0.0024286999999999998
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

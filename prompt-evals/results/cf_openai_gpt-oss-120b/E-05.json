@@ -1,0 +1,117 @@
+{
+  "id": "E-05",
+  "name": "Correction",
+  "pass_if": "It accepts the correction and adjusts without defending.",
+  "turns": [
+    {
+      "output": {
+        "say": "Just to confirm, you assign each booking to a rider and they don’t pick their own, right?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 201,
+          "total_tokens": 1528,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 55.927024841308594
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Most delays happen because customers give wrong addresses."
+    },
+    {
+      "output": {
+        "say": "Walk me through the last time you assigned a booking, from when the customer’s Facebook message arrived to when a rider claimed it. What steps did you take, and who was involved?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1367,
+          "completion_tokens": 211,
+          "total_tokens": 1578,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 57.88156509399414
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "That's not what I said. The addresses are fine. The delay is riders not seeing the post in the group chat."
+    },
+    {
+      "output": {
+        "say": "When was the most recent booking where a rider didn’t see the post in the group chat? Walk me through what happened before, during, and after that moment—what you did, what the rider did, and any follow‑up steps.",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1438,
+          "completion_tokens": 110,
+          "total_tokens": 1548,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 53.25428009033203
+        },
+        {
+          "prompt_tokens": 1502,
+          "completion_tokens": 332,
+          "total_tokens": 1834,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 70.42698669433594
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 5634,
+    "output": 854,
+    "neurons": 237
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

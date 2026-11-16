@@ -1,0 +1,746 @@
+{
+  "id": "E-09",
+  "name": "Prospect",
+  "pass_if": "It stays within budget, offers tappable options, keeps questions short.",
+  "turns": [
+    {
+      "output": {
+        "say": "Thanks for sharing. To start: when a new customer first reaches out to Lola's Bakeshop, how does that usually happen, and what do you do next?",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2016,
+          "output_tokens": 120,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Bakery."
+    },
+    {
+      "output": {
+        "say": "Got it, a bakery. When a new customer first reaches out, what usually happens? Is it more like a Messenger message, a referral from someone, or walk-ins?",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 2,
+        "options": [
+          "Messenger message",
+          "Referral from someone",
+          "Walk-in",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "matters",
+            "text": "Runs a bakery, team of 2-5, mostly sells on referrals and social media",
+            "tag": "heard",
+            "source": "quick answers"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2074,
+          "output_tokens": 221,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Busy."
+    },
+    {
+      "output": {
+        "say": "Busy sounds like a big part of it. Which is closer: messages pile up while you're baking, orders come in faster than you can confirm them, or you simply don't have time to follow up with new people?",
+        "kind": "offer",
+        "topic": "Leads and sales",
+        "count": 3,
+        "options": [
+          "Messages pile up while I'm baking",
+          "Orders come in faster than I can confirm them",
+          "I don't have time to follow up with new people",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2187,
+          "output_tokens": 553,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 339
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Walk-ins mostly."
+    },
+    {
+      "output": {
+        "say": "Walk-ins mostly, got it. So when someone walks in wanting something, what usually happens next? Walk me through the last one you remember.",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 4,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Most new customers are walk-ins",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2261,
+          "output_tokens": 168,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Me."
+    },
+    {
+      "output": {
+        "say": "So it's you at the counter for walk-ins. On a busy day, where does most of your time go?",
+        "kind": "question",
+        "topic": "Your time",
+        "count": 5,
+        "options": [
+          "Baking",
+          "Customers at the counter",
+          "Chasing orders and payments",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "You handle walk-in orders yourself",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2328,
+          "output_tokens": 766,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 585
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5,
+      "reply": "Orders on Messenger get lost."
+    },
+    {
+      "output": {
+        "say": "Orders getting lost is worth catching. When was the last time that happened, and what did it cost you, in money or time?",
+        "kind": "question",
+        "topic": "Operations and support",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "Orders sent over Messenger sometimes get lost",
+            "tag": "heard",
+            "source": "Q6"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2390,
+          "output_tokens": 494,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 261
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "Fine."
+    },
+    {
+      "output": {
+        "say": "No problem. When a Messenger order gets lost, which is closest to what happens?",
+        "kind": "offer",
+        "topic": "Operations and support",
+        "count": 7,
+        "options": [
+          "The customer has to chase me to find out",
+          "I only notice on pickup day",
+          "The order is gone and they buy elsewhere",
+          "It's rare, not a real problem"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2455,
+          "output_tokens": 619,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 471
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Ok."
+    },
+    {
+      "output": {
+        "say": "Quick check before we go on. What I'm hearing: most new customers walk in, you handle them yourself at the counter, and Messenger orders sometimes get lost. Keep going, wrap up here, or fix something?",
+        "kind": "checkpoint",
+        "topic": "Operations and support",
+        "count": 7,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "Messenger orders sometimes get lost",
+            "tag": "heard",
+            "source": "Q11"
+          },
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "process",
+            "text": "What happens after a Messenger order gets lost is not yet clear",
+            "tag": "open",
+            "source": "Q12"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2488,
+          "output_tokens": 802,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 494
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "No problem, we'll leave the lost-order details for Miguel to follow up. One more: is there anything you don't want changed, or shared with AI?",
+        "kind": "question",
+        "topic": "AI and boundaries",
+        "count": 8,
+        "options": [
+          "Customer details",
+          "Recipes and pricing",
+          "How I take walk-in orders",
+          "Nothing, I'm open"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p6",
+            "op": "update",
+            "section": "process",
+            "text": "What happens after a Messenger order gets lost is not yet clear",
+            "tag": "open",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2608,
+          "output_tokens": 829,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 609
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Not really."
+    },
+    {
+      "output": {
+        "say": "Here's what I heard, in your words. Please mark each one: Biggest, Annoying, or Can live with it.\n\n1. Most new customers walk in.\n2. You handle walk-in orders yourself at the counter.\n3. Messenger orders sometimes get lost.\n4. What happens after a lost order is still unclear.",
+        "kind": "priorities",
+        "topic": "Operations and support",
+        "count": 10,
+        "options": [
+          "Biggest",
+          "Annoying",
+          "Can live with it"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Most new customers walk in",
+            "priority": null,
+            "source": "Q2"
+          },
+          {
+            "id": "r2",
+            "text": "You handle walk-in orders yourself at the counter",
+            "priority": null,
+            "source": "Q4"
+          },
+          {
+            "id": "r3",
+            "text": "Messenger orders sometimes get lost",
+            "priority": null,
+            "source": "Q6"
+          },
+          {
+            "id": "r4",
+            "text": "What happens after a lost order is still unclear",
+            "priority": null,
+            "source": "Q8"
+          }
+        ],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2662,
+          "output_tokens": 842,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 464
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "My priorities: \"Most new customers walk in\": Biggest; \"You handle walk-in orders yourself at the counter\": Annoying; \"Messenger orders sometimes get lost\": Annoying; \"What happens after a lost order is still unclear\": Can live with it."
+    },
+    {
+      "output": {
+        "say": "Thanks, that's clear. Here's the core of it, in short: most of your new customers walk in, you handle them yourself at the counter, and Messenger orders sometimes get lost. I'll pass the open points to Miguel for follow-up. Does that match, or should I fix something?",
+        "kind": "landing",
+        "topic": "AI and boundaries",
+        "count": 8,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "matters",
+            "text": "Most new customers walk in, and that's your biggest concern",
+            "tag": "heard",
+            "source": "Priorities"
+          },
+          {
+            "id": "p8",
+            "op": "add",
+            "section": "hurts",
+            "text": "Messenger orders sometimes get lost",
+            "tag": "heard",
+            "source": "Priorities"
+          },
+          {
+            "id": "p9",
+            "op": "add",
+            "section": "not_for_ai",
+            "text": "Nothing specific to protect or keep off-limits for AI",
+            "tag": "heard",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Most new customers walk in",
+            "priority": "Biggest",
+            "source": "Q2"
+          },
+          {
+            "id": "r2",
+            "text": "You handle walk-in orders yourself at the counter",
+            "priority": "Annoying",
+            "source": "Q4"
+          },
+          {
+            "id": "r3",
+            "text": "Messenger orders sometimes get lost",
+            "priority": "Annoying",
+            "source": "Q6"
+          },
+          {
+            "id": "r4",
+            "text": "What happens after a lost order is still unclear",
+            "priority": "Can live with it",
+            "source": "Q6"
+          }
+        ],
+        "core_need": "Keep walk-in customers and Messenger orders from slipping through when you're the only one at the counter.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2957,
+          "output_tokens": 564,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Yes, that's right. Confirm."
+    },
+    {
+      "output": {
+        "say": "Thanks, Owner. Everything is recorded as you said it, and Miguel will follow up on the open points. We appreciate you sharing how Lola's Bakeshop runs.",
+        "kind": "done",
+        "topic": "AI and boundaries",
+        "count": 8,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p9",
+            "op": "update",
+            "section": "not_for_ai",
+            "text": "Nothing specific to protect or keep off-limits for AI",
+            "tag": "agreed",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Most new customers walk in",
+            "priority": "Biggest",
+            "source": "Q2"
+          },
+          {
+            "id": "r2",
+            "text": "You handle walk-in orders yourself at the counter",
+            "priority": "Annoying",
+            "source": "Q4"
+          },
+          {
+            "id": "r3",
+            "text": "Messenger orders sometimes get lost",
+            "priority": "Annoying",
+            "source": "Q5"
+          },
+          {
+            "id": "r4",
+            "text": "What happens after a lost order is still unclear",
+            "priority": "Can live with it",
+            "source": "Q6"
+          }
+        ],
+        "core_need": "Most new customers walk in and are handled by the owner at the counter, and Messenger orders sometimes get lost.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3128,
+          "output_tokens": 415,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "matters",
+        "text": "Runs a bakery, team of 2-5, mostly sells on referrals and social media",
+        "tag": "heard",
+        "source": "quick answers"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Most new customers are walk-ins",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "You handle walk-in orders yourself",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "Orders sent over Messenger sometimes get lost",
+        "tag": "heard",
+        "source": "Q6"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "Messenger orders sometimes get lost",
+        "tag": "heard",
+        "source": "Q11"
+      },
+      {
+        "id": "p6",
+        "section": "process",
+        "text": "What happens after a Messenger order gets lost is not yet clear",
+        "tag": "open",
+        "source": "Q8"
+      },
+      {
+        "id": "p7",
+        "section": "matters",
+        "text": "Most new customers walk in, and that's your biggest concern",
+        "tag": "heard",
+        "source": "Priorities"
+      },
+      {
+        "id": "p8",
+        "section": "hurts",
+        "text": "Messenger orders sometimes get lost",
+        "tag": "heard",
+        "source": "Priorities"
+      },
+      {
+        "id": "p9",
+        "section": "not_for_ai",
+        "text": "Nothing specific to protect or keep off-limits for AI",
+        "tag": "agreed",
+        "source": "Q8"
+      }
+    ],
+    "steps": [],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Most new customers walk in",
+        "priority": "Biggest",
+        "source": "Q2"
+      },
+      {
+        "id": "r2",
+        "text": "You handle walk-in orders yourself at the counter",
+        "priority": "Annoying",
+        "source": "Q4"
+      },
+      {
+        "id": "r3",
+        "text": "Messenger orders sometimes get lost",
+        "priority": "Annoying",
+        "source": "Q5"
+      },
+      {
+        "id": "r4",
+        "text": "What happens after a lost order is still unclear",
+        "priority": "Can live with it",
+        "source": "Q6"
+      }
+    ]
+  },
+  "count": 8,
+  "cost": {
+    "input": 29554,
+    "output": 6393,
+    "usd": 0.006151899999999999
+  },
+  "findings": [
+    "check: turn 2 has more than one \"?\""
+  ]
+}

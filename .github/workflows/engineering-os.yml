@@ -1,0 +1,24 @@
+name: Engineering OS validation
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.9"
+      - name: Validate Engineering OS
+        run: python3 scripts/eos.py check --strict
+      - name: Test Engineering OS CLI
+        run: python3 -m unittest discover -s tests -v
+      - name: Validate behavioral evaluation contract
+        run: python3 scripts/eval_os.py --results evals/fixtures/reference-results.json

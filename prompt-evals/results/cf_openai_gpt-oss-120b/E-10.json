@@ -1,0 +1,170 @@
+{
+  "id": "E-10",
+  "name": "Multi-pick",
+  "pass_if": "When they pick two options, it checks if they're one thread before merging.",
+  "turns": [
+    {
+      "output": {
+        "say": "Can you walk me through a typical day when you receive a booking, from the moment the customer messages the Facebook page until you post it in the riders' group chat?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 244,
+          "total_tokens": 1571,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 58.85884094238281
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Not sure."
+    },
+    {
+      "output": {
+        "say": "Which option matches your usual flow, or is it something else?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          {
+            "id": "A",
+            "text": "Customer messages Facebook → you get notification → copy details into spreadsheet immediately → post in riders’ group chat right away."
+          },
+          {
+            "id": "B",
+            "text": "Receive several messages → wait, then copy all into spreadsheet in one go → post batch in riders’ group chat together."
+          }
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1374,
+          "completion_tokens": 188,
+          "total_tokens": 1562,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 56.536109924316406
+        },
+        {
+          "prompt_tokens": 1517,
+          "completion_tokens": 453,
+          "total_tokens": 1970,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 79.15425872802734
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Not sure, maybe."
+    },
+    {
+      "output": {
+        "say": "Which of these describes how you handle a new booking? A) Copy to spreadsheet then post immediately. B) Check spreadsheet for issues before posting. C) Batch‑enter several bookings then post together later. D) Something different – please describe.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [
+          "A",
+          "B",
+          "C",
+          "D"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1402,
+          "completion_tokens": 171,
+          "total_tokens": 1573,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 56.267921447753906
+        },
+        {
+          "prompt_tokens": 1538,
+          "completion_tokens": 322,
+          "total_tokens": 1860,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 70.89061737060547
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Both the first and the second."
+    },
+    {
+      "output": {
+        "say": "Walk me through the last time you handled a new booking: what you did before copying it to the spreadsheet, how you check it for issues, what you need to post it in the riders' group chat, and what happens after you post it.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1468,
+          "completion_tokens": 258,
+          "total_tokens": 1726,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 64.29972839355469
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 8626,
+    "output": 1636,
+    "neurons": 386
+  },
+  "findings": [
+    "note: needed JSON retry 2x",
+    "check: turn 4 question is 44 words (limit 40)"
+  ]
+}

@@ -1,0 +1,38 @@
+# Secrets and local environment
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+secrets/
+credentials/
+
+# Local agent state and generated adapters
+.claude/settings.local.json
+.codex/
+.engineering-os/
+
+# Language/tool output
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+coverage/
+node_modules/
+dist/
+build/
+.next/
+.turbo/
+
+# Editors and operating systems
+.DS_Store
+Thumbs.db
+.idea/
+*.swp
+
+# Cloudflare
+.wrangler/
+.dev.vars
+.dev.vars.*

@@ -1,0 +1,262 @@
+{
+  "id": "E-14",
+  "name": "Solution check",
+  "pass_if": "It declines kindly to recommend a solution and returns to their reality.",
+  "turns": [
+    {
+      "output": {
+        "say": "Salamat. Here's the flow Ana sketched. Think of the last booking you handled: what's different from this? Especially step 4, does a rider claim it, or do you pick the rider?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "Looks right",
+          "Some steps are different",
+          "Quite different"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own (to confirm, step 4 may conflict)",
+            "tag": "assumed",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Tools used: group chat and spreadsheet, daily",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1051,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 515
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We post everything in the group chat."
+    },
+    {
+      "output": {
+        "say": "Got it, everything goes in the group chat. After you post, what usually happens next? Is it more like:",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "Riders reply and the first one gets it",
+          "I post it, then I tell a specific rider to take it",
+          "Depends on the booking",
+          "Something else"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher may pick the rider instead of a rider claiming it"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own (unclear: who actually chooses the rider after posting?)",
+            "tag": "open",
+            "source": "Q2"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Every booking is posted in the group chat",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2108,
+          "output_tokens": 846,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 422
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "What should we build? An app? A bot? What would you recommend?"
+    },
+    {
+      "output": {
+        "say": "Good question, but that's not mine to answer, and it's too early. I've noted it for Ana. Right now I just want to understand how it goes today. After you post a booking, what usually happens next?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "A rider replies first and I confirm them",
+          "A few riders reply and I choose one",
+          "Nobody replies and I have to message riders directly",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": "What should we build? An app? A bot? What would you recommend?"
+      },
+      "usage": [
+        {
+          "input_tokens": 2183,
+          "output_tokens": 770,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 550
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own (unclear: who actually chooses the rider after posting?)",
+        "tag": "open",
+        "source": "Q2"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Tools used: group chat and spreadsheet, daily",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Every booking is posted in the group chat",
+        "tag": "heard",
+        "source": "Q2"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims it",
+        "actor": "Rider",
+        "if_wrong": "Dispatcher may pick the rider instead of a rider claiming it"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6164,
+    "output": 2667,
+    "usd": 0.038998
+  },
+  "findings": [
+    "check: turn 1 has more than one \"?\"",
+    "FAIL flattery at turn 3: \"Good question\""
+  ]
+}

@@ -1,0 +1,998 @@
+{
+  "id": "E-11",
+  "name": "Budget",
+  "pass_if": "It never exceeds the budget and still reaches priorities and landing.",
+  "turns": [
+    {
+      "output": {
+        "say": "Hi, thanks for taking the time. Let's start with how a booking gets from the Facebook page to a rider. Walk me through the last booking you handled, from the moment it came in.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 129,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Okay so where do I start, every morning I open the page and there are like twenty messages, some are bookings, some are people asking prices, some are complaints from yesterday, and I have to sort them all while my coffee gets cold, and then my boss also messages me asking for yesterday's count, which I have to count manually from the sheet because the sheet has no totals, and then the riders start arriving and asking what's first."
+    },
+    {
+      "output": {
+        "say": "That's a lot landing before the first coffee. Let's take one booking through. When a message is a real booking, what's the first thing you do with it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Each morning, around twenty Facebook messages to sort: bookings, price questions, and complaints from the day before.",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Daily yesterday's count is done by hand because the sheet has no totals, and the boss asks for it.",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Riders arrive and ask what's first while the morning sorting is still going on.",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2249,
+          "output_tokens": 550,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Well it depends, on Mondays it's worse because weekend bookings pile up, and also when it rains everyone books at once, and last December was crazy because of Christmas, we had to borrow riders from my cousin's shop, which was a whole other story because they didn't know the routes, and one of them got lost in Marikina for two hours."
+    },
+    {
+      "output": {
+        "say": "What I'm hearing: busy days like Mondays, rain, and Christmas make bookings pile up, and borrowed riders who don't know the routes cause trouble. Close? On a normal day, when you spot a real booking, what do you copy from the message into the sheet?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "Busy days (Mondays, rainy days, Christmas) make bookings pile up all at once.",
+            "tag": "heard",
+            "source": "Q3"
+          },
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "Borrowed riders didn't know the routes; one got lost in Marikina for two hours.",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2606,
+          "output_tokens": 905,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 599
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "The group chat is a mess honestly, there are like forty riders in it, people post memes, someone always asks 'is this still available' after it's been claimed, and the important posts get buried, and I end up re-posting the same booking three times, sometimes four, and then two riders show up."
+    },
+    {
+      "output": {
+        "say": "What I'm hearing: the group chat with about forty riders buries bookings, so you repost the same one three or four times, and then two riders show up for it. Close? Think of the last time that happened. What did you do when the two riders arrived?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "hurts",
+            "text": "Important bookings get buried in the riders' group chat (about forty riders, plus memes), so the dispatcher reposts the same booking three or four times.",
+            "tag": "heard",
+            "source": "Q6"
+          },
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "hurts",
+            "text": "Reposting can lead to two riders showing up for the same booking, and some riders ask if a booking is still available after it's already claimed.",
+            "tag": "heard",
+            "source": "Q6"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2850,
+          "output_tokens": 819,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 514
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "I think what I'd really want is to stop doing everything twice, but also I don't want to lose how quick the group chat is, because riders read it on their phones while waiting at stoplights, and they won't install anything new, we tried that once with some app my boss found and nobody used it."
+    },
+    {
+      "output": {
+        "say": "What I'm hearing: you want to stop doing everything twice, but keep the group chat because riders read it quickly on their phones. They won't install a new app, and one you tried went unused. Close? When two riders show up for the same booking, what usually happens next?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 5,
+        "options": [
+          "I call one of them off myself",
+          "Both wait while we sort it out in the chat",
+          "The customer gets called to confirm",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p8",
+            "op": "add",
+            "section": "matters",
+            "text": "Riders read the group chat on their phones at stoplights, so it has to stay quick for them.",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p9",
+            "op": "add",
+            "section": "stays_same",
+            "text": "Riders won't install a new app. A previous app nobody used is a warning.",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p10",
+            "op": "add",
+            "section": "should_do",
+            "text": "Stop doing the same booking twice.",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop handling each booking twice, without losing the quick group chat riders already use.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3108,
+          "output_tokens": 914,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 497
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5,
+      "reply": "Mostly the same as I said."
+    },
+    {
+      "output": {
+        "say": "Got it. When two riders show up for the same booking, which is closer to what happens?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [
+          "You call one rider off and tell them the booking is gone",
+          "You post a correction in the group chat and hope the second rider sees it",
+          "The two riders sort it out between themselves, and one leaves",
+          "Both go, and the customer or the booking gets messed up"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3280,
+          "output_tokens": 641,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 433
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "It happens a few times a week."
+    },
+    {
+      "output": {
+        "say": "Got it, a few times a week. Think of the most recent time two riders showed up for one booking. What did it cost you, in time, money, or with the customer?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 7,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p11",
+            "op": "add",
+            "section": "hurts",
+            "text": "Two riders showing up for the same booking happens a few times a week.",
+            "tag": "heard",
+            "source": "Q7"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3318,
+          "output_tokens": 740,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 558
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Usually just me and the riders."
+    },
+    {
+      "output": {
+        "say": "Here's what I've heard so far: bookings pile up on Mondays, rainy days, and Christmas. Reposting in the busy group chat leads to two riders on one booking, a few times a week, mostly sorted out between you and the riders. You want to keep the group chat because riders read it quickly on their phones. Should we keep going, wrap up here, or fix something?",
+        "kind": "checkpoint",
+        "topic": "Where it hurts",
+        "count": 8,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p12",
+            "op": "add",
+            "section": "hurts",
+            "text": "When two riders show up for one booking, it's mostly time spent sorting it out between the dispatcher and riders. The wider cost is unclear.",
+            "tag": "open",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop handling each booking twice, without losing the quick group chat that riders use on their phones.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3404,
+          "output_tokens": 535,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 443
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 3507,
+          "output_tokens": 975,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 621
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Sorry, that's a fair point. Quick check: roughly how many minutes does sorting out one double booking take you, from the first call to the rider leaving?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 9,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3579,
+          "output_tokens": 413,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 387
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 3616,
+          "output_tokens": 120,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 8,
+      "reply": "It costs maybe 30 minutes a day."
+    },
+    {
+      "output": {
+        "say": "Noted, about 30 minutes a day goes into sorting out double bookings. One last thing: what would you hate to lose about how things work now, and is there anything you don't want changed or shared with AI?",
+        "kind": "question",
+        "topic": "What matters to you",
+        "count": 9,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p13",
+            "op": "add",
+            "section": "hurts",
+            "text": "Sorting out double bookings takes about 30 minutes a day, mostly between the dispatcher and riders.",
+            "tag": "heard",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Stop handling the same booking twice, without losing the quick group chat riders already use.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3647,
+          "output_tokens": 962,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 698
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 9,
+      "reply": "I'd hate to lose the group chat, everyone is used to it."
+    },
+    {
+      "output": {
+        "say": "Got it, the group chat stays because everyone is used to it. Last one: is there anything you don't want changed, or shared with AI?",
+        "kind": "question",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p14",
+            "op": "add",
+            "section": "matters",
+            "text": "Keep the group chat. Everyone is used to it, and riders read it quickly on their phones.",
+            "tag": "heard",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3774,
+          "output_tokens": 642,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 432
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Nothing else really."
+    },
+    {
+      "output": {
+        "say": "Here's what I heard. Please mark each one: Must have, Nice to have, or Not needed.\n1. Bookings get buried in the group chat, so I repost the same one three or four times.\n2. Two riders end up on the same booking, a few times a week.\n3. Sorting out double bookings takes about 30 minutes a day.\n4. Busy days like Mondays, rain, and Christmas pile bookings up all at once.\n5. Borrowed riders don't know the routes.\n6. The morning sort of about twenty Facebook messages, plus the daily count done by hand.",
+        "kind": "priorities",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [
+          "Must have",
+          "Nice to have",
+          "Not needed"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p15",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The group chat stays. Everyone is used to it, and riders read it quickly on their phones.",
+            "tag": "heard",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Bookings are not buried in the group chat, so they don't need reposting three or four times.",
+            "priority": null,
+            "source": "Q3"
+          },
+          {
+            "id": "r2",
+            "text": "A booking goes to only one rider, so two riders don't show up for the same job.",
+            "priority": null,
+            "source": "Q5"
+          },
+          {
+            "id": "r3",
+            "text": "Sorting out double bookings stops taking about 30 minutes a day.",
+            "priority": null,
+            "source": "Q8"
+          },
+          {
+            "id": "r4",
+            "text": "Busy days like Mondays, rain, and Christmas don't pile bookings up all at once.",
+            "priority": null,
+            "source": "Q1"
+          },
+          {
+            "id": "r5",
+            "text": "Borrowed riders can get the routes they need.",
+            "priority": null,
+            "source": "Q1"
+          },
+          {
+            "id": "r6",
+            "text": "The morning sort of about twenty Facebook messages and the daily count get easier.",
+            "priority": null,
+            "source": "Q1"
+          }
+        ],
+        "core_need": "Stop bookings being posted and claimed twice, without losing the quick group chat riders already use.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3898,
+          "output_tokens": 1364,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 627
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "My priorities: \"Bookings are not buried in the group chat, so they don't need reposting three or four times.\": Must have; \"A booking goes to only one rider, so two riders don't show up for the same job.\": Nice to have; \"Sorting out double bookings stops taking about 30 minutes a day.\": Nice to have; \"Busy days like Mondays, rain, and Christmas don't pile bookings up all at once.\": Nice to have; \"Borrowed riders can get the routes they need.\": Nice to have; \"The morning sort of about twenty Facebook messages and the daily count get easier.\": Not needed."
+    },
+    {
+      "output": {
+        "say": "The core need seems to be: bookings reach one rider cleanly, in the group chat everyone already uses, without reposting.\n\nWhat we heard:\n- Bookings get buried in the group chat, so you repost them three or four times.\n- Two riders sometimes end up on the same booking, a few times a week.\n- Sorting out double bookings takes about 30 minutes a day.\n- Busy days like Mondays, rain, and Christmas pile bookings up all at once.\n- Borrowed riders don't know the routes.\n- The morning sort of about twenty Facebook messages and the daily count are slow by hand.\n\nYour top priorities:\n- Must have: Bookings are not buried in the group chat, so they don't need reposting.\n- Nice to have: One booking goes to one rider. Less time sorting double bookings. Busy days don't pile up. Borrowed riders get the routes they need.\n- Not needed: Making the morning sort and daily count easier.\n\nStill open, for Ana to follow up: the wider cost of double bookings beyond the dispatcher's time, and how borrowed riders get route information.\n\nWhat stays as it is: the group chat stays, since everyone is used to it and riders read it quickly on their phones. Nothing is off-limits for AI.\n\nDoes this match what you meant? Confirm or tell me what to fix. Thanks for your time.",
+        "kind": "landing",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p12",
+            "op": "update",
+            "section": "hurts",
+            "text": "When two riders show up for one booking, it's mostly time spent sorting it out between the dispatcher and riders. The wider cost is unclear.",
+            "tag": "open",
+            "source": "Q7"
+          },
+          {
+            "id": "p14",
+            "op": "update",
+            "section": "stays_same",
+            "text": "The group chat stays. Everyone is used to it, and riders read it quickly on their phones.",
+            "tag": "agreed",
+            "source": "Q9"
+          },
+          {
+            "id": "p15",
+            "op": "remove",
+            "section": "stays_same",
+            "text": "",
+            "tag": "heard",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Bookings are not buried in the group chat, so they don't need reposting three or four times.",
+            "priority": "Must have",
+            "source": "Q4"
+          },
+          {
+            "id": "r2",
+            "text": "A booking goes to only one rider, so two riders don't show up for the same job.",
+            "priority": "Nice to have",
+            "source": "Q7"
+          },
+          {
+            "id": "r3",
+            "text": "Sorting out double bookings stops taking about 30 minutes a day.",
+            "priority": "Nice to have",
+            "source": "Q8"
+          },
+          {
+            "id": "r4",
+            "text": "Busy days like Mondays, rain, and Christmas don't pile bookings up all at once.",
+            "priority": "Nice to have",
+            "source": "Q2"
+          },
+          {
+            "id": "r5",
+            "text": "Borrowed riders can get the routes they need.",
+            "priority": "Nice to have",
+            "source": "Q2"
+          },
+          {
+            "id": "r6",
+            "text": "The morning sort of about twenty Facebook messages and the daily count get easier.",
+            "priority": "Not needed",
+            "source": "Q1"
+          }
+        ],
+        "core_need": "Bookings reach one rider cleanly, in the group chat everyone already uses, without reposting.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4470,
+          "output_tokens": 1439,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 284
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes, that's right. Confirm."
+    },
+    {
+      "output": {
+        "say": "Thanks, that's everything. Ana will follow up on the open points.",
+        "kind": "done",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": "Bookings reach one rider cleanly, in the group chat everyone already uses, without reposting.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4896,
+          "output_tokens": 124,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Each morning, around twenty Facebook messages to sort: bookings, price questions, and complaints from the day before.",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Daily yesterday's count is done by hand because the sheet has no totals, and the boss asks for it.",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Riders arrive and ask what's first while the morning sorting is still going on.",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "Busy days (Mondays, rainy days, Christmas) make bookings pile up all at once.",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "Borrowed riders didn't know the routes; one got lost in Marikina for two hours.",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p6",
+        "section": "hurts",
+        "text": "Important bookings get buried in the riders' group chat (about forty riders, plus memes), so the dispatcher reposts the same booking three or four times.",
+        "tag": "heard",
+        "source": "Q6"
+      },
+      {
+        "id": "p7",
+        "section": "hurts",
+        "text": "Reposting can lead to two riders showing up for the same booking, and some riders ask if a booking is still available after it's already claimed.",
+        "tag": "heard",
+        "source": "Q6"
+      },
+      {
+        "id": "p8",
+        "section": "matters",
+        "text": "Riders read the group chat on their phones at stoplights, so it has to stay quick for them.",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p9",
+        "section": "stays_same",
+        "text": "Riders won't install a new app. A previous app nobody used is a warning.",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p10",
+        "section": "should_do",
+        "text": "Stop doing the same booking twice.",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p11",
+        "section": "hurts",
+        "text": "Two riders showing up for the same booking happens a few times a week.",
+        "tag": "heard",
+        "source": "Q7"
+      },
+      {
+        "id": "p12",
+        "section": "hurts",
+        "text": "When two riders show up for one booking, it's mostly time spent sorting it out between the dispatcher and riders. The wider cost is unclear.",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p13",
+        "section": "hurts",
+        "text": "Sorting out double bookings takes about 30 minutes a day, mostly between the dispatcher and riders.",
+        "tag": "heard",
+        "source": "Q8"
+      },
+      {
+        "id": "p14",
+        "section": "stays_same",
+        "text": "The group chat stays. Everyone is used to it, and riders read it quickly on their phones.",
+        "tag": "agreed",
+        "source": "Q9"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims it",
+        "actor": "Rider",
+        "if_wrong": null
+      }
+    ],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Bookings are not buried in the group chat, so they don't need reposting three or four times.",
+        "priority": "Must have",
+        "source": "Q4"
+      },
+      {
+        "id": "r2",
+        "text": "A booking goes to only one rider, so two riders don't show up for the same job.",
+        "priority": "Nice to have",
+        "source": "Q7"
+      },
+      {
+        "id": "r3",
+        "text": "Sorting out double bookings stops taking about 30 minutes a day.",
+        "priority": "Nice to have",
+        "source": "Q8"
+      },
+      {
+        "id": "r4",
+        "text": "Busy days like Mondays, rain, and Christmas don't pile bookings up all at once.",
+        "priority": "Nice to have",
+        "source": "Q2"
+      },
+      {
+        "id": "r5",
+        "text": "Borrowed riders can get the routes they need.",
+        "priority": "Nice to have",
+        "source": "Q2"
+      },
+      {
+        "id": "r6",
+        "text": "The morning sort of about twenty Facebook messages and the daily count get easier.",
+        "priority": "Not needed",
+        "source": "Q1"
+      }
+    ]
+  },
+  "count": 10,
+  "cost": {
+    "input": 54264,
+    "output": 11272,
+    "usd": 0.011062400000000002
+  },
+  "findings": [
+    "note: needed JSON retry 2x",
+    "check: turn 3 has more than one \"?\"",
+    "check: turn 3 question is 45 words (limit 40)",
+    "check: turn 4 has more than one \"?\"",
+    "check: turn 4 question is 47 words (limit 40)",
+    "check: turn 5 has more than one \"?\""
+  ]
+}

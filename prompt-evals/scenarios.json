@@ -1,0 +1,167 @@
+{
+  "fixtures": {
+    "courier": {
+      "template": "requirements",
+      "setup": {
+        "topic": "How delivery bookings get assigned to riders",
+        "role": "Dispatcher",
+        "sender": "Ana (business analyst)",
+        "audience": "colleague",
+        "focus": ["Your day-to-day", "Where it hurts"],
+        "budget": 10,
+        "known": ["Bookings come in through the company Facebook page"],
+        "assumed": ["The dispatcher assigns bookings, riders don't pick their own"],
+        "off_limits": ["Rider salaries and pay"],
+        "sketch": [
+          "Customer messages the Facebook page",
+          "Dispatcher copies the booking into a spreadsheet",
+          "Dispatcher posts it in the riders' group chat",
+          "A rider claims it"
+        ]
+      },
+      "basics": { "frequency": "Daily", "tools": ["Group chat", "Spreadsheet"], "role": "Dispatcher" }
+    },
+    "bakery": {
+      "template": "pre_audit",
+      "setup": {
+        "topic": "Running Lola's Bakeshop",
+        "role": "Owner",
+        "sender": "Miguel (consultant)",
+        "audience": "prospect",
+        "focus": [],
+        "budget": 10,
+        "known": [],
+        "assumed": [],
+        "off_limits": [],
+        "sketch": []
+      },
+      "basics": {
+        "industry": "Bakery",
+        "team_size": "2-5",
+        "lead_sources": ["Referrals / word of mouth", "Social media (organic)"],
+        "sales_team": "Just me",
+        "ai_experience": "Not yet",
+        "tools": "Messenger, GCash, a notebook"
+      }
+    }
+  },
+  "filler": [
+    "Mostly the same as I said.",
+    "It happens a few times a week.",
+    "Usually just me and the riders.",
+    "It costs maybe 30 minutes a day.",
+    "I'd hate to lose the group chat, everyone is used to it.",
+    "Nothing else really."
+  ],
+  "scenarios": [
+    {
+      "id": "E-01", "name": "Stuck", "fixture": "courier",
+      "pass_if": "After two 'not sure' answers it offers 2-4 descriptions of their situation, not another open question, and never a solution.",
+      "replies": ["Not sure.", "Hmm, not sure really.", "I guess the second one."]
+    },
+    {
+      "id": "E-02", "name": "Oversimplifier", "fixture": "courier",
+      "pass_if": "It asks for the last real time and gets before/during/after steps, at least one hidden step.",
+      "replies": [
+        "It's simple. They message, I post it, someone takes it. That's it.",
+        "Last time was this morning. A customer messaged at 7, I copied it to the sheet, posted it, and Jun took it.",
+        "Oh, before posting I check the address on Google Maps because customers only write landmarks.",
+        "If no one claims it in 10 minutes I call riders one by one."
+      ]
+    },
+    {
+      "id": "E-03", "name": "Nothing", "fixture": "courier",
+      "pass_if": "It moves closer ('this week') and doesn't repeat the question.",
+      "replies": [
+        "Honestly it works fine.",
+        "Nothing happened, it's all fine.",
+        "This week? Okay, on Tuesday two riders went to the same pickup because both thought they claimed it."
+      ]
+    },
+    {
+      "id": "E-04", "name": "Contradiction", "fixture": "courier",
+      "pass_if": "It names both statements the moment the second appears.",
+      "replies": [
+        "I assign every booking myself. Riders never pick their own.",
+        "Mornings are the busiest.",
+        "Riders just grab whatever booking they want from the group chat, first come first served."
+      ]
+    },
+    {
+      "id": "E-05", "name": "Correction", "fixture": "courier",
+      "pass_if": "It accepts the correction and adjusts without defending.",
+      "replies": [
+        "Most delays happen because riders are slow to respond.",
+        "No, that came out wrong. The riders aren't slow. They just don't see the post because it gets buried under other messages."
+      ]
+    },
+    {
+      "id": "E-06", "name": "Their question", "fixture": "courier",
+      "pass_if": "It answers briefly, logs their_question, and returns to the map.",
+      "replies": ["We post everything in the group chat.", "Will this replace our group chat? The riders really like it."]
+    },
+    {
+      "id": "E-07", "name": "Off-limits", "fixture": "courier",
+      "pass_if": "It doesn't probe the off-limits topic (rider pay) and moves on.",
+      "replies": [
+        "A big problem is riders say their pay is too low and late, so they skip far bookings.",
+        "Yes, the pay thing is honestly the root of it."
+      ]
+    },
+    {
+      "id": "E-08", "name": "Taglish", "fixture": "courier",
+      "pass_if": "It replies in Taglish.",
+      "replies": [
+        "Grabe, every morning sobrang dami ng bookings, tapos sa GC lang namin pinopost.",
+        "Minsan walang kumukuha ng booking kasi malayo, so tatawagan ko pa isa-isa yung riders."
+      ]
+    },
+    {
+      "id": "E-09", "name": "Prospect", "fixture": "bakery", "run_to_end": true,
+      "pass_if": "It stays within budget, offers tappable options, keeps questions short.",
+      "replies": ["Bakery.", "Busy.", "Walk-ins mostly.", "Me.", "Orders on Messenger get lost.", "Fine."],
+      "filler": ["Ok.", "Not really.", "Sometimes.", "Yes.", "Don't know."]
+    },
+    {
+      "id": "E-10", "name": "Multi-pick", "fixture": "courier",
+      "pass_if": "When they pick two options, it checks if they're one thread before merging.",
+      "replies": ["Not sure.", "Not sure, maybe.", "Both the first and the second."]
+    },
+    {
+      "id": "E-11", "name": "Budget", "fixture": "courier", "run_to_end": true,
+      "pass_if": "It never exceeds the budget and still reaches priorities and landing.",
+      "replies": [
+        "Okay so where do I start, every morning I open the page and there are like twenty messages, some are bookings, some are people asking prices, some are complaints from yesterday, and I have to sort them all while my coffee gets cold, and then my boss also messages me asking for yesterday's count, which I have to count manually from the sheet because the sheet has no totals, and then the riders start arriving and asking what's first.",
+        "Well it depends, on Mondays it's worse because weekend bookings pile up, and also when it rains everyone books at once, and last December was crazy because of Christmas, we had to borrow riders from my cousin's shop, which was a whole other story because they didn't know the routes, and one of them got lost in Marikina for two hours.",
+        "The group chat is a mess honestly, there are like forty riders in it, people post memes, someone always asks 'is this still available' after it's been claimed, and the important posts get buried, and I end up re-posting the same booking three times, sometimes four, and then two riders show up.",
+        "I think what I'd really want is to stop doing everything twice, but also I don't want to lose how quick the group chat is, because riders read it on their phones while waiting at stoplights, and they won't install anything new, we tried that once with some app my boss found and nobody used it."
+      ]
+    },
+    {
+      "id": "E-12", "name": "Landing pushback", "fixture": "courier", "run_to_end": true,
+      "pass_if": "When they reject the core need, it re-lands with the correction.",
+      "replies": [
+        "I copy bookings from the page to the sheet, then post in the group chat.",
+        "Posts get buried and nobody claims them, so I call riders.",
+        "It should make sure a rider sees and claims each booking quickly."
+      ],
+      "landing_replies": [
+        "No, that's not the core need. The core need is riders seeing and claiming bookings fast. The spreadsheet is fine.",
+        "Yes, that's right."
+      ]
+    },
+    {
+      "id": "E-13", "name": "Flattery check", "fixture": "courier",
+      "pass_if": "No 'great', 'love that', or similar anywhere (also checked automatically on every scenario).",
+      "replies": [
+        "I love this process, I designed it myself and I'm proud of it!",
+        "We built the spreadsheet with color codes, it's really clever."
+      ]
+    },
+    {
+      "id": "E-14", "name": "Solution check", "fixture": "courier",
+      "pass_if": "It declines kindly to recommend a solution and returns to their reality.",
+      "replies": ["We post everything in the group chat.", "What should we build? An app? A bot? What would you recommend?"]
+    }
+  ]
+}

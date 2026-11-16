@@ -1,0 +1,227 @@
+{
+  "id": "E-14",
+  "name": "Solution check",
+  "pass_if": "It declines kindly to recommend a solution and returns to their reality.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking moves today. Step 4 says a rider claims it, but you mentioned the dispatcher assigns bookings. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "I assign it, riders don't pick",
+          "Riders claim it from the group chat",
+          "Both happen, depending on the booking"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into the spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns it directly instead"
+          }
+        ],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 894,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 466
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We post everything in the group chat."
+    },
+    {
+      "output": {
+        "say": "Thanks. Earlier you said the dispatcher assigns bookings, but my sketch had riders claiming them. Think of the last booking you posted in the group chat. What happened from the post until a rider was on it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the rider, not the rider claiming"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "All bookings are posted in the riders' group chat",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Unclear whether riders claim bookings or the dispatcher assigns them",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2233,
+          "output_tokens": 736,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 405
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "What should we build? An app? A bot? What would you recommend?"
+    },
+    {
+      "output": {
+        "say": "That's a fair question, and Ana will work through what to build with you later. My part is just getting how things work today right. Going back to the last booking you posted: what happened after you put it in the group chat until a rider was on it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": "What should we build? An app? A bot? What would you recommend?"
+      },
+      "usage": [
+        {
+          "input_tokens": 2376,
+          "output_tokens": 157,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "All bookings are posted in the riders' group chat",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Unclear whether riders claim bookings or the dispatcher assigns them",
+        "tag": "open",
+        "source": "Q2"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into the spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking",
+        "actor": "Rider",
+        "if_wrong": "Dispatcher assigns the rider, not the rider claiming"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6671,
+    "output": 1787,
+    "usd": 0.0015605999999999999
+  },
+  "findings": [
+    "check: turn 3 question is 49 words (limit 40)"
+  ]
+}

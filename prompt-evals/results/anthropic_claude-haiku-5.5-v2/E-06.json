@@ -1,0 +1,276 @@
+{
+  "id": "E-06",
+  "name": "Their question",
+  "pass_if": "It answers briefly, logs their_question, and returns to the map.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking gets to a rider. Step 4 is the one I want you to check: does a rider claim the booking, or do you assign it to them?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the booking to a rider"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page",
+            "tag": "heard",
+            "source": "Known"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own",
+            "tag": "heard",
+            "source": "To confirm"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 1354,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 846
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We post everything in the group chat."
+    },
+    {
+      "output": {
+        "say": "Thanks. Earlier I noted that you assign bookings and riders don't pick their own, but my sketch shows a rider claiming. Which is closer: riders reply first to claim a booking, or you tag the rider you want?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "Riders reply first to claim it",
+          "I tag the rider I want",
+          "Something else"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider takes the booking (to be confirmed)",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher tags the rider they choose"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Every booking is posted to the riders' group chat",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2273,
+          "output_tokens": 757,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 431
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Will this replace our group chat? The riders really like it."
+    },
+    {
+      "output": {
+        "say": "I can't say what will replace what. Ana will work that out with you later. For now I'm noting that riders like the group chat. Can you think of the last time a booking got missed or went to the wrong rider? What did it cost you?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider takes the booking, or the dispatcher tags a rider (open)",
+            "actor": "Rider or dispatcher",
+            "if_wrong": "Riders reply first to claim, or the dispatcher picks the rider"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own (conflicts with the claim step, still open)",
+            "tag": "open",
+            "source": "Q2"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "matters",
+            "text": "Riders like the group chat and want it kept",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": "Will this replace our group chat? The riders really like it."
+      },
+      "usage": [
+        {
+          "input_tokens": 2393,
+          "output_tokens": 1028,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 649
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page",
+        "tag": "heard",
+        "source": "Known"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own (conflicts with the claim step, still open)",
+        "tag": "open",
+        "source": "Q2"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Every booking is posted to the riders' group chat",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p4",
+        "section": "matters",
+        "text": "Riders like the group chat and want it kept",
+        "tag": "heard",
+        "source": "Q3"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider takes the booking, or the dispatcher tags a rider (open)",
+        "actor": "Rider or dispatcher",
+        "if_wrong": "Riders reply first to claim, or the dispatcher picks the rider"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6728,
+    "output": 3139,
+    "usd": 0.0022423
+  },
+  "findings": [
+    "check: turn 3 has more than one \"?\"",
+    "check: turn 3 question is 47 words (limit 40)"
+  ]
+}

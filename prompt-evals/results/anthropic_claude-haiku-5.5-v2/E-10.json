@@ -1,0 +1,309 @@
+{
+  "id": "E-10",
+  "name": "Multi-pick",
+  "pass_if": "When they pick two options, it checks if they're one thread before merging.",
+  "turns": [
+    {
+      "output": {
+        "say": "Thanks for joining. Let's start with your day-to-day. Here's how I understand a booking gets to a rider today. Tell me what's wrong or missing.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 0,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": "Tell me how it usually starts"
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page",
+            "tag": "heard",
+            "source": "Known"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "The dispatcher assigns bookings; riders don't pick their own",
+            "tag": "heard",
+            "source": "To confirm"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 967,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 463
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Not sure."
+    },
+    {
+      "output": {
+        "say": "No problem. Which is closer to your day? A) These steps match what you do. B) Some steps happen in a different order. C) There's more back-and-forth than these steps show. D) Something else.",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "A) These steps match what you do",
+          "B) Some steps happen in a different order",
+          "C) There's more back-and-forth than these steps show",
+          "D) Something else"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2270,
+          "output_tokens": 531,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 311
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Not sure, maybe."
+    },
+    {
+      "output": {
+        "say": "Let's try another angle. Think of the last booking that got stuck, late, or went to the wrong rider. What happened, and what did it cost you in time?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Whether the booking steps match the dispatcher's real day (order, back-and-forth) is unconfirmed",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2342,
+          "output_tokens": 533,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 313
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Both the first and the second."
+    },
+    {
+      "output": {
+        "say": "Sorry, I may have been unclear. Let's keep it simple. Which of these is closest to your last stuck or late booking? A) It got stuck before reaching the group chat. B) A rider claimed it late or the wrong rider got it. C) Both happened on the same booking. D) Something else.",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [
+          "It got stuck before reaching the group chat",
+          "A rider claimed it late or the wrong rider got it",
+          "Both happened on the same booking",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "Stuck or late bookings, and wrong-rider claims, happen. Which one is still unclear.",
+            "tag": "open",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2441,
+          "output_tokens": 460,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 376
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2536,
+          "output_tokens": 292,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page",
+        "tag": "heard",
+        "source": "Known"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "The dispatcher assigns bookings; riders don't pick their own",
+        "tag": "heard",
+        "source": "To confirm"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Whether the booking steps match the dispatcher's real day (order, back-and-forth) is unconfirmed",
+        "tag": "open",
+        "source": "Q2"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "Stuck or late bookings, and wrong-rider claims, happen. Which one is still unclear.",
+        "tag": "open",
+        "source": "Q4"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": "Tell me how it usually starts"
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking",
+        "actor": "Rider",
+        "if_wrong": null
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 11651,
+    "output": 2783,
+    "usd": 0.0025566000000000005
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

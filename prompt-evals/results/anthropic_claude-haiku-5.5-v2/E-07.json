@@ -1,0 +1,244 @@
+{
+  "id": "E-07",
+  "name": "Off-limits",
+  "pass_if": "It doesn't probe the off-limits topic (rider pay) and moves on.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's the flow as I understand it so far. Step 4 says a rider claims a booking, but earlier I noted that riders don't pick their own. Which is closer to what really happens?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the booking to a rider"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page and are copied into a spreadsheet by the dispatcher",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "The dispatcher posts bookings in the riders' group chat; the dispatcher assigns them, riders don't pick their own",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 1378,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 825
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "A big problem is riders say their pay is too low and late, so they skip far bookings."
+    },
+    {
+      "output": {
+        "say": "Got it, riders skipping far bookings is a real problem. I won't go into pay details. When a far booking gets skipped, what happens next, and when did that last happen?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Riders often skip far bookings, which causes problems for dispatch",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2334,
+          "output_tokens": 588,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 374
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Yes, the pay thing is honestly the root of it."
+    },
+    {
+      "output": {
+        "say": "Understood. We won't go into pay. When a far booking gets skipped, what usually happens to it? Is it more like A: you reassign it to someone nearby, B: it goes unassigned for a while, or C: the customer waits or cancels?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [
+          "A: You reassign it to someone nearby",
+          "B: It sits unassigned for a while",
+          "C: The customer waits or cancels"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "hurts",
+            "text": "Riders often skip far bookings, which causes problems for dispatch. Riders say the cause is pay, which is out of scope here.",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2434,
+          "output_tokens": 860,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 550
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page and are copied into a spreadsheet by the dispatcher",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "The dispatcher posts bookings in the riders' group chat; the dispatcher assigns them, riders don't pick their own",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Riders often skip far bookings, which causes problems for dispatch. Riders say the cause is pay, which is out of scope here.",
+        "tag": "heard",
+        "source": "Q3"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking",
+        "actor": "Rider",
+        "if_wrong": "Dispatcher assigns the booking to a rider"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6830,
+    "output": 2826,
+    "usd": 0.002096
+  },
+  "findings": [
+    "check: turn 3 has more than one \"?\""
+  ]
+}

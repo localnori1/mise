@@ -1,0 +1,117 @@
+{
+  "id": "E-14",
+  "name": "Solution check",
+  "pass_if": "It declines kindly to recommend a solution and returns to their reality.",
+  "turns": [
+    {
+      "output": {
+        "say": "Can you walk me through a typical day, from when a customer messages the Facebook page to when a rider finally takes the booking?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 212,
+          "total_tokens": 1539,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 56.677024841308594
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We post everything in the group chat."
+    },
+    {
+      "output": {
+        "say": "After you post the booking in the riders’ group chat, what’s the exact process for a rider to claim it, and what do you do if no rider responds?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1371,
+          "completion_tokens": 118,
+          "total_tokens": 1489,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 51.66792678833008
+        },
+        {
+          "prompt_tokens": 1425,
+          "completion_tokens": 272,
+          "total_tokens": 1697,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 63.8860969543457
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "What should we build? An app? A bot? What would you recommend?"
+    },
+    {
+      "output": {
+        "say": "What I'm hearing is you’d like guidance on what kind of solution to create—an app, a bot, or something else. Is that right?",
+        "kind": "reflect",
+        "topic": "what it should do",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1431,
+          "completion_tokens": 269,
+          "total_tokens": 1700,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 63.872459411621094
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 2,
+  "cost": {
+    "input": 5554,
+    "output": 871,
+    "neurons": 236
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

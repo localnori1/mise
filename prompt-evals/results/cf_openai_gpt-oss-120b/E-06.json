@@ -1,0 +1,117 @@
+{
+  "id": "E-06",
+  "name": "Their question",
+  "pass_if": "It answers briefly, logs their_question, and returns to the map.",
+  "turns": [
+    {
+      "output": {
+        "say": "Can you walk me through a typical day, from when a new booking arrives on the Facebook page to when a rider finally confirms they’ll take it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 0,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 186,
+          "total_tokens": 1513,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 54.904296875
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "We post everything in the group chat."
+    },
+    {
+      "output": {
+        "say": "When a customer messages the Facebook page, what steps do you take before posting the booking in the riders’ group chat? (e.g., copying details, checking info, using the spreadsheet)",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1375,
+          "completion_tokens": 98,
+          "total_tokens": 1473,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 50.43156433105469
+        },
+        {
+          "prompt_tokens": 1428,
+          "completion_tokens": 339,
+          "total_tokens": 1767,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 68.54973602294922
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Will this replace our group chat? The riders really like it."
+    },
+    {
+      "output": {
+        "say": "What problems or delays have you noticed when posting bookings in the group chat that make the process painful?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1436,
+          "completion_tokens": 271,
+          "total_tokens": 1707,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 64.16791534423828
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 5566,
+    "output": 894,
+    "neurons": 238
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

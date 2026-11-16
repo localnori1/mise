@@ -1,0 +1,324 @@
+{
+  "id": "E-04",
+  "name": "Contradiction",
+  "pass_if": "It names both statements the moment the second appears.",
+  "turns": [
+    {
+      "output": {
+        "say": "Thanks for making time. Here's how I understand a booking moves today. Step 4 says a rider claims it, but you mentioned you assign bookings. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "Dispatcher assigns it to a rider",
+          "Rider claims it from the group chat",
+          "Something else"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the rider directly instead"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page and are copied into a spreadsheet by the dispatcher.",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 1259,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 752
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "I assign every booking myself. Riders never pick their own."
+    },
+    {
+      "output": {
+        "say": "Got it, you assign every booking yourself and riders don't pick their own. Walk me through the last booking you assigned, from the Facebook message to the rider getting it.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "Dispatcher assigns the booking to a rider",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns every booking directly. Riders don't pick their own.",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2285,
+          "output_tokens": 567,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 320
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Mornings are the busiest."
+    },
+    {
+      "output": {
+        "say": "Mornings are the busiest, noted. On a busy morning, what happens between a booking landing on Facebook and you assigning it to a rider?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Mornings are the busiest time for bookings.",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2389,
+          "output_tokens": 503,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 329
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Riders just grab whatever booking they want from the group chat, first come first served."
+    },
+    {
+      "output": {
+        "say": "Quick check before we go on: on a busy morning, do riders grab bookings from the group chat, or do you assign each one to a rider yourself?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 4,
+        "options": [
+          "I assign every booking myself",
+          "Riders grab bookings from the chat first come, first served",
+          "It's a mix of both"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "Dispatcher assigns the booking to a rider",
+            "actor": "Dispatcher",
+            "if_wrong": "Rider claims the booking from the group chat"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "process",
+            "text": "On busy mornings, riders may grab bookings from the group chat first come, first served.",
+            "tag": "open",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2482,
+          "output_tokens": 122,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 65
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2550,
+          "output_tokens": 292,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page and are copied into a spreadsheet by the dispatcher.",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher assigns every booking directly. Riders don't pick their own.",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Mornings are the busiest time for bookings.",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p4",
+        "section": "process",
+        "text": "On busy mornings, riders may grab bookings from the group chat first come, first served.",
+        "tag": "open",
+        "source": "Q4"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "Dispatcher assigns the booking to a rider",
+        "actor": "Dispatcher",
+        "if_wrong": "Rider claims the booking from the group chat"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 11768,
+    "output": 2743,
+    "usd": 0.0025483000000000003
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

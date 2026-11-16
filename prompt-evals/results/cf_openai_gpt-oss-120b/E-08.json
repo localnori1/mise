@@ -1,0 +1,117 @@
+{
+  "id": "E-08",
+  "name": "Taglish",
+  "pass_if": "It replies in Taglish.",
+  "turns": [
+    {
+      "output": {
+        "say": "Walk me through the last time you received a booking from the Facebook page and assigned it to a rider. What steps did you take before, during, and after?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 309,
+          "total_tokens": 1636,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 63.2906608581543
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Grabe, every morning sobrang dami ng bookings, tapos sa GC lang namin pinopost."
+    },
+    {
+      "output": {
+        "say": "When you copy the booking into the spreadsheet, what specific details do you record, and who else (if anyone) is involved at that point before you post it to the group chat?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1392,
+          "completion_tokens": 305,
+          "total_tokens": 1697,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 65.08610534667969
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Minsan walang kumukuha ng booking kasi malayo, so tatawagan ko pa isa-isa yung riders."
+    },
+    {
+      "output": {
+        "say": "When you have to call riders individually, how much extra time does it add, and what’s the impact on getting the order out on time?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1464,
+          "completion_tokens": 201,
+          "total_tokens": 1665,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 60.28609085083008
+        },
+        {
+          "prompt_tokens": 1567,
+          "completion_tokens": 227,
+          "total_tokens": 1794,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 65.33607482910156
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [],
+    "steps": [],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 5750,
+    "output": 1042,
+    "neurons": 254
+  },
+  "findings": [
+    "note: needed JSON retry 1x"
+  ]
+}

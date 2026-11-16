@@ -1,0 +1,276 @@
+{
+  "id": "E-08",
+  "name": "Taglish",
+  "pass_if": "It replies in Taglish.",
+  "turns": [
+    {
+      "output": {
+        "say": "Thanks, Ana asked me to hear how this really goes. Here's my rough picture of a booking, from the sketch. Think of the last booking you handled. Which steps are wrong, missing, or in a different order?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "Looks about right",
+          "Some steps are off",
+          "Steps are missing"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts it in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims it",
+            "actor": "Rider",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher copies bookings into a spreadsheet and posts them in the riders' group chat (from sketch, not yet confirmed)",
+            "tag": "assumed",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1873,
+          "output_tokens": 1048,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 553
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Grabe, every morning sobrang dami ng bookings, tapos sa GC lang namin pinopost."
+    },
+    {
+      "output": {
+        "say": "Noted, ang dami pala tuwing umaga. Sa GC, ikaw ba ang nagtatalaga ng rider sa bawat booking, o may rider na nag-cclaim ng kusa? Medyo magkaiba kasi ang dating sa sketch ko.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "Ako ang nag-aassign",
+          "Rider ang nag-cclaim",
+          "Depende sa sitwasyon"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Every morning there are a lot of bookings at once, and they are posted only in the group chat",
+            "tag": "heard",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2129,
+          "output_tokens": 868,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 566
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Minsan walang kumukuha ng booking kasi malayo, so tatawagan ko pa isa-isa yung riders."
+    },
+    {
+      "output": {
+        "say": "Naiintindihan ko, kapag malayo, ikaw na ang tumatawag isa-isa. Kailan huling nangyari 'yan? Ilang rider ang natawagan mo bago may pumayag, at gaano katagal bago naitalaga?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims it in the group chat",
+            "actor": "Rider",
+            "if_wrong": "Nobody claims it (e.g. far away), so the dispatcher calls riders one by one"
+          },
+          {
+            "id": "s5",
+            "op": "add",
+            "text": "Dispatcher calls riders one by one until someone accepts",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Far-away bookings often go unclaimed in the group chat, so the dispatcher has to call riders one by one",
+            "tag": "heard",
+            "source": "Q3"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "process",
+            "text": "Unclear whether riders usually claim bookings themselves or the dispatcher assigns them. Seems riders claim first, dispatcher steps in when unclaimed",
+            "tag": "open",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2300,
+          "output_tokens": 1282,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 779
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher copies bookings into a spreadsheet and posts them in the riders' group chat (from sketch, not yet confirmed)",
+        "tag": "assumed",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Every morning there are a lot of bookings at once, and they are posted only in the group chat",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Far-away bookings often go unclaimed in the group chat, so the dispatcher has to call riders one by one",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p4",
+        "section": "process",
+        "text": "Unclear whether riders usually claim bookings themselves or the dispatcher assigns them. Seems riders claim first, dispatcher steps in when unclaimed",
+        "tag": "open",
+        "source": "Q3"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts it in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims it in the group chat",
+        "actor": "Rider",
+        "if_wrong": "Nobody claims it (e.g. far away), so the dispatcher calls riders one by one"
+      },
+      {
+        "id": "s5",
+        "text": "Dispatcher calls riders one by one until someone accepts",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      }
+    ],
+    "requirements": []
+  },
+  "count": 3,
+  "cost": {
+    "input": 6302,
+    "output": 3198,
+    "usd": 0.044584
+  },
+  "findings": [
+    "check: turn 3 has more than one \"?\""
+  ]
+}

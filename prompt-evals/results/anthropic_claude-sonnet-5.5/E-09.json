@@ -1,0 +1,882 @@
+{
+  "id": "E-09",
+  "name": "Prospect",
+  "pass_if": "It stays within budget, offers tappable options, keeps questions short.",
+  "turns": [
+    {
+      "output": {
+        "say": "Salamat sa pagsagot sa mga quick questions! Let's start with Lola's Bakeshop itself. Para sa taong hindi pa nakakakilala sa inyo, paano mo ikukwento kung ano ang Lola's at ano ang pinakaimportante sa'yo dito?",
+        "kind": "question",
+        "topic": "Your business",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bakery, team of 2-5. Leads come from referrals/word of mouth and organic social media. Owner handles sales alone.",
+            "tag": "heard",
+            "source": "Quick-tap"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Tools today: Messenger, GCash, a notebook. No AI experience yet.",
+            "tag": "heard",
+            "source": "Quick-tap"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 1827,
+          "output_tokens": 355,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Bakery."
+    },
+    {
+      "output": {
+        "say": "Salamat! Short and clear. Kapag busy ang araw sa Lola's, alin ang pinakaayaw mong pumalpak? Tap lang ang pinakamalapit, o sabihin sa sarili mong salita.",
+        "kind": "offer",
+        "topic": "Your business",
+        "count": 2,
+        "options": [
+          "Yung quality ng tinapay/cakes",
+          "Yung mga order ng regular customers",
+          "Yung kita para tuloy-tuloy ang bakeshop",
+          "Iba pa"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2036,
+          "output_tokens": 561,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 361
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Busy."
+    },
+    {
+      "output": {
+        "say": "Gets, busy talaga! Alin ang pinakamalapit kapag busy na? Tap lang, o sabihin sa sarili mong salita.",
+        "kind": "offer",
+        "topic": "Your business",
+        "count": 2,
+        "options": [
+          "Nagkakagulo ang orders sa Messenger",
+          "Nakakalimutan o nagkakamali sa notebook",
+          "Hindi ko ma-check agad ang GCash payments",
+          "Kulang ang oras o kamay sa pag-bake",
+          "Iba pa"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Busy days are a defining part of running Lola's; what goes wrong when busy is not yet known.",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2121,
+          "output_tokens": 730,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 460
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Walk-ins mostly."
+    },
+    {
+      "output": {
+        "say": "Walk-ins, noted. Ngayon sa oras mo: sa isang busy na araw, alin ang pinakamalapit sa nangyayari sa'yo?",
+        "kind": "question",
+        "topic": "Your time",
+        "count": 4,
+        "options": [
+          "Nasa counter ako buong araw, walang pahinga",
+          "Sabay-sabay: nagbe-bake, nagbebenta, sumasagot sa Messenger",
+          "Naiipit ako sa paghahabol ng orders at bayad",
+          "Iba pa (sabihin mo)"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "hurts",
+            "text": "Busy days are a defining part of running Lola's; the busy rush is mostly walk-ins. What goes wrong when busy is not yet known.",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2221,
+          "output_tokens": 920,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 543
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Me."
+    },
+    {
+      "output": {
+        "say": "Ikaw mismo, noted. Sa isang busy na araw, alin ang pinakamalapit sa nangyayari sa'yo? Tap lang, o sabihin sa sarili mong salita.",
+        "kind": "offer",
+        "topic": "Your time",
+        "count": 5,
+        "options": [
+          "Ako ang nagbe-bake at nagbebenta",
+          "Ako sa counter habang sumasagot sa Messenger",
+          "Ako rin ang nagbabantay ng bayad at listahan sa notebook",
+          "Iba pa (sasabihin ko)"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "process",
+            "text": "Busy days are a defining part of running Lola's. The rush is mostly walk-ins, and the owner herself is the one stretched. What exactly she is juggling is not yet known.",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2299,
+          "output_tokens": 1220,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 501
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 3020,
+          "output_tokens": 807,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 496
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 5,
+      "reply": "Orders on Messenger get lost."
+    },
+    {
+      "output": {
+        "say": "Salamat, malinaw yan. Nung huling nawala ang order sa Messenger, ano ang nangyari? Tap ang pinakamalapit, o ikwento sa sarili mong salita.",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 6,
+        "options": [
+          "Nalibing sa dami ng chats",
+          "Nakalimutan kong i-note sa notebook",
+          "Mali o kulang ang detalye",
+          "Iba pa"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "process",
+            "text": "Busy days are a defining part of running Lola's. The rush is mostly walk-ins, and the owner herself is the one stretched.",
+            "tag": "heard",
+            "source": "Q5"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "Orders that come in on Messenger get lost, especially when things are busy.",
+            "tag": "heard",
+            "source": "Q5"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2394,
+          "output_tokens": 1515,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 641
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 3270,
+          "output_tokens": 648,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 237
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 6,
+      "reply": "Fine."
+    },
+    {
+      "output": {
+        "say": "Okay, walang pressure. Baka mas madali kung pipili ka: pag nawawala ang order sa Messenger, mas madalas ba itong (a) nalilimutan ko, (b) natabunan ng ibang chat, (c) nasa notebook pero hindi naisulat, o (d) iba?",
+        "kind": "offer",
+        "topic": "Leads and sales",
+        "count": 7,
+        "options": [
+          "Nalilimutan ko",
+          "Natatabunan ng ibang chat",
+          "Hindi ko naisulat sa notebook",
+          "Iba pa",
+          "Skip muna"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2482,
+          "output_tokens": 652,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 386
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Ok."
+    },
+    {
+      "output": {
+        "say": "Salamat sa pasensya! Eto ang narinig ko:\n• Bakery ang Lola's, at busy ang araw, mostly walk-ins.\n• Ikaw mismo ang naiipit.\n• Nawawala ang orders sa Messenger kapag busy.\n• Messenger, GCash, at notebook ang gamit mo.\n\nTama ba, o may aayusin?",
+        "kind": "checkpoint",
+        "topic": "Operations and support",
+        "count": 7,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "Hindi pa malinaw kung paano nawawala ang orders sa Messenger (nalilimutan, natatabunan, o hindi naisulat sa notebook).",
+            "tag": "open",
+            "source": "Q7"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2593,
+          "output_tokens": 689,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 612
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2650,
+          "output_tokens": 998,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 644
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 7,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Sige, tuloy tayo. Pag may nag-message sa Messenger para umorder, ano ang madalas na nangyayari? Tap ang pinakamalapit.",
+        "kind": "question",
+        "topic": "Leads and sales",
+        "count": 8,
+        "options": [
+          "Sinasagot ko agad, kahit busy",
+          "Sinasagot ko pag may bakante akong oras",
+          "Sinusulat ko agad sa notebook",
+          "Iba pa"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2792,
+          "output_tokens": 697,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 418
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "Not really."
+    },
+    {
+      "output": {
+        "say": "Okay, salamat, lilipat na tayo. May bahagi ba ng Lola's na ayaw mong galawin, o ayaw mong ibahagi sa AI? Tap lang ang pinakamalapit.",
+        "kind": "question",
+        "topic": "AI and boundaries",
+        "count": 9,
+        "options": [
+          "Recipes",
+          "GCash / bayad ng customers",
+          "Chats ng customers",
+          "Wala naman",
+          "Hindi pa sigurado"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "process",
+            "text": "Hindi pa malinaw kung paano dumadaan ang order sa Messenger mula message hanggang notebook o bayad. Sagot sa huling tanong: 'Not really.'",
+            "tag": "open",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2858,
+          "output_tokens": 847,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 795
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2900,
+          "output_tokens": 870,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 522
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 9,
+      "reply": "Sometimes."
+    },
+    {
+      "output": {
+        "say": "Okay, may mga bagay pala na ayaw mong galawin o ibahagi. Alin sa mga ito ang pinakamalapit? Pwede ang isa o higit pa.",
+        "kind": "question",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [
+          "Recipes",
+          "Customer chats",
+          "GCash / bayad",
+          "Presyo",
+          "Wala naman talaga",
+          "Iba pa"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "not_for_ai",
+            "text": "Sagot na 'Sometimes': may bahagi ng Lola's na ayaw galawin o ibahagi sa AI, pero hindi pa malinaw kung alin.",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Hindi nawawala ang orders sa Messenger kapag busy ang araw at ako lang ang naiipit.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3008,
+          "output_tokens": 862,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 436
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes."
+    },
+    {
+      "output": {
+        "say": "Salamat, okay lang kung hindi pa malinaw ang iba. Naubos na natin ang mga tanong, kaya eto ang mga narinig ko. Markahan mo bawat isa: Biggest, Annoying, o Can live with it.",
+        "kind": "priorities",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [
+          "Biggest",
+          "Annoying",
+          "Can live with it"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p7",
+            "op": "update",
+            "section": "not_for_ai",
+            "text": "May bahagi ng Lola's na ayaw galawin o ibahagi sa AI ('Sometimes', 'Yes'), pero hindi pa sinabi kung alin.",
+            "tag": "open",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Nawawala ang orders sa Messenger kapag busy.",
+            "priority": null,
+            "source": "Q6"
+          },
+          {
+            "id": "r2",
+            "text": "Sa busy na araw na puro walk-ins, ako mismo ang naiipit.",
+            "priority": null,
+            "source": "Q4"
+          },
+          {
+            "id": "r3",
+            "text": "Ako lang ang humahawak ng benta.",
+            "priority": null,
+            "source": "Q1"
+          }
+        ],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3142,
+          "output_tokens": 1324,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 822
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "My priorities: \"Nawawala ang orders sa Messenger kapag busy.\": Biggest; \"Sa busy na araw na puro walk-ins, ako mismo ang naiipit.\": Annoying; \"Ako lang ang humahawak ng benta.\": Can live with it."
+    },
+    {
+      "output": {
+        "say": "Salamat sa pagmarka. Eto ang buod.\n\n**Core need:** Hindi dapat nawawala ang orders sa Messenger kapag busy, lalo na kapag ako mismo ang naiipit.\n\n**Narinig namin:**\n• Bakery ang Lola's, 2-5 ang team, at ikaw lang ang humahawak ng benta.\n• Referrals at social media ang source ng customers.\n• Busy days, mostly walk-ins, at ikaw ang naiipit.\n• Messenger, GCash, at notebook ang gamit.\n• Nawawala ang orders sa Messenger kapag busy.\n\n**Priorities mo:**\n• Biggest: Nawawala ang orders sa Messenger kapag busy.\n• Annoying: Sa busy na araw, ikaw mismo ang naiipit.\n• Can live with it: Ikaw lang ang humahawak ng benta.\n\n**Bukas pa, para kay Miguel:**\n• Paano eksaktong nawawala ang order: nalilimutan, natatabunan, o hindi naisulat?\n• Paano dumadaan ang order mula Messenger hanggang notebook at GCash?\n• Kailan huling nangyari, at magkano o gaano katagal ang nawala?\n• Aling bahagi ng Lola's ang ayaw mong galawin o ibahagi sa AI? Sinabi mong meron, pero hindi pa natin nalinaw kung alin.\n\n**Mananatili:** Wala pang nasabing partikular na bahagi na ayaw mong galawin. Wala ring natukoy na hindi pwedeng ibahagi sa AI. Linawin ito ni Miguel.\n\nTama ba ito, o may aayusin?",
+        "kind": "landing",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [
+          "Tama",
+          "May aayusin"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p7",
+            "op": "update",
+            "section": "not_for_ai",
+            "text": "May bahagi ng Lola's na ayaw galawin o ibahagi sa AI ('Sometimes', 'Yes'), pero hindi pa sinabi kung alin. Sundan ni Miguel.",
+            "tag": "open",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Nawawala ang orders sa Messenger kapag busy.",
+            "priority": "Biggest",
+            "source": "Q5"
+          },
+          {
+            "id": "r2",
+            "text": "Sa busy na araw na puro walk-ins, ako mismo ang naiipit.",
+            "priority": "Annoying",
+            "source": "Q3"
+          },
+          {
+            "id": "r3",
+            "text": "Ako lang ang humahawak ng benta.",
+            "priority": "Can live with it",
+            "source": "Quick-tap"
+          }
+        ],
+        "core_need": "Hindi dapat nawawala ang orders sa Messenger kapag busy, lalo na kapag ako mismo ang naiipit.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3410,
+          "output_tokens": 1541,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 473
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes, that's right. Confirm."
+    },
+    {
+      "output": {
+        "say": "Salamat, na-confirm na. Salamat sa oras mo, at ipapasa ko ito kay Miguel para sa follow-up.",
+        "kind": "done",
+        "topic": "AI and boundaries",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Nawawala ang orders sa Messenger kapag busy.",
+            "priority": "Biggest",
+            "source": "Q5"
+          },
+          {
+            "id": "r2",
+            "text": "Sa busy na araw na puro walk-ins, ako mismo ang naiipit.",
+            "priority": "Annoying",
+            "source": "Q3"
+          },
+          {
+            "id": "r3",
+            "text": "Ako lang ang humahawak ng benta.",
+            "priority": "Can live with it",
+            "source": "Quick-tap"
+          }
+        ],
+        "core_need": "Hindi dapat nawawala ang orders sa Messenger kapag busy, lalo na kapag ako mismo ang naiipit.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4023,
+          "output_tokens": 436,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 75
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bakery, team of 2-5. Leads come from referrals/word of mouth and organic social media. Owner handles sales alone.",
+        "tag": "heard",
+        "source": "Quick-tap"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Tools today: Messenger, GCash, a notebook. No AI experience yet.",
+        "tag": "heard",
+        "source": "Quick-tap"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Busy days are a defining part of running Lola's. The rush is mostly walk-ins, and the owner herself is the one stretched.",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "Orders that come in on Messenger get lost, especially when things are busy.",
+        "tag": "heard",
+        "source": "Q5"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "Hindi pa malinaw kung paano nawawala ang orders sa Messenger (nalilimutan, natatabunan, o hindi naisulat sa notebook).",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p6",
+        "section": "process",
+        "text": "Hindi pa malinaw kung paano dumadaan ang order sa Messenger mula message hanggang notebook o bayad. Sagot sa huling tanong: 'Not really.'",
+        "tag": "open",
+        "source": "Q8"
+      },
+      {
+        "id": "p7",
+        "section": "not_for_ai",
+        "text": "May bahagi ng Lola's na ayaw galawin o ibahagi sa AI ('Sometimes', 'Yes'), pero hindi pa sinabi kung alin. Sundan ni Miguel.",
+        "tag": "open",
+        "source": "Q9"
+      }
+    ],
+    "steps": [],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Nawawala ang orders sa Messenger kapag busy.",
+        "priority": "Biggest",
+        "source": "Q5"
+      },
+      {
+        "id": "r2",
+        "text": "Sa busy na araw na puro walk-ins, ako mismo ang naiipit.",
+        "priority": "Annoying",
+        "source": "Q3"
+      },
+      {
+        "id": "r3",
+        "text": "Ako lang ang humahawak ng benta.",
+        "priority": "Can live with it",
+        "source": "Quick-tap"
+      }
+    ]
+  },
+  "count": 10,
+  "cost": {
+    "input": 49046,
+    "output": 15672,
+    "usd": 0.254812
+  },
+  "findings": [
+    "note: needed JSON retry 4x"
+  ]
+}

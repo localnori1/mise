@@ -1,0 +1,938 @@
+{
+  "id": "E-12",
+  "name": "Landing pushback",
+  "pass_if": "When they reject the core need, it re-lands with the correction.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how it works as I understand it: a customer messages the Facebook page, you copy the booking into the spreadsheet, then post it in the riders' group chat, and a rider claims it. Earlier it sounded like you assign riders yourself. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "I assign the rider myself",
+          "Riders claim it from the chat"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into the spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the rider directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own",
+            "tag": "heard",
+            "source": "To confirm"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 1279,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 768
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "I copy bookings from the page to the sheet, then post in the group chat."
+    },
+    {
+      "output": {
+        "say": "Thanks, that matches. One thing to check: earlier you said you assign riders yourself, but the sketch shows a rider claiming the booking. When you post in the group chat, do you choose the rider, or does the first rider who replies get it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "I choose the rider",
+          "First rider who replies gets it",
+          "Depends on the booking"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2307,
+          "output_tokens": 446,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 278
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Posts get buried and nobody claims them, so I call riders."
+    },
+    {
+      "output": {
+        "say": "Got it. So posts in the group chat often get buried, and nobody claims them. Then you call riders one by one. Think of the last booking that got buried. What happened to it, and how long did it take you to sort out?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "Dispatcher calls riders one by one to assign the booking (riders don't claim from the chat)",
+            "actor": "Dispatcher",
+            "if_wrong": "Sometimes a rider does claim from the group chat"
+          },
+          {
+            "id": "s5",
+            "op": "add",
+            "text": "Booking often gets buried in the group chat with no claim",
+            "actor": "Riders' group chat",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Posts in the riders' group chat get buried and nobody claims them",
+            "tag": "heard",
+            "source": "Q3"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "When nobody claims, dispatcher calls riders one by one",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2406,
+          "output_tokens": 763,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 377
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "It should make sure a rider sees and claims each booking quickly."
+    },
+    {
+      "output": {
+        "say": "That's a clear goal: every booking gets a rider quickly. To see where it breaks today, which is closer to the last buried booking? A) You found it late, after the customer had already called. B) You saw nobody claimed it, so you started calling riders. C) A rider said they missed it. D) Something else.",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 4,
+        "options": [
+          "A: Found it late, after the customer called",
+          "B: Nobody claimed it, so I started calling",
+          "C: A rider said they missed it",
+          "D: Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "should_do",
+            "text": "A rider sees and claims each booking quickly",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Each booking is seen and claimed by a rider quickly",
+            "priority": null,
+            "source": "Q4"
+          }
+        ],
+        "core_need": "Each booking gets a rider quickly.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2590,
+          "output_tokens": 878,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 544
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Mostly the same as I said."
+    },
+    {
+      "output": {
+        "say": "Let me play back what I've heard so far. Bookings come from the Facebook page, and you copy them into the spreadsheet. You post each one in the riders' group chat. Posts often get buried and nobody claims them, so you call riders one by one. The goal is that every booking is seen and claimed by a rider quickly. Keep going, wrap up here, or fix something?",
+        "kind": "checkpoint",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [
+          "Keep going",
+          "Wrap up here",
+          "Fix something"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "The last buried booking: how it was found and what it cost is unclear, for Ana to follow up",
+            "tag": "open",
+            "source": "Q6"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Every booking gets seen and claimed by a rider quickly, without the dispatcher calling riders one by one.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2745,
+          "output_tokens": 895,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 551
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Keep going."
+    },
+    {
+      "output": {
+        "say": "Happy to keep it in JSON format for the app. Back to my question: think of a booking this week that took longer to get a rider than it should have. What happened, and how long did the customer wait?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": "Every booking is seen and claimed by a rider quickly",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2904,
+          "output_tokens": 384,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 328
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        },
+        {
+          "input_tokens": 2971,
+          "output_tokens": 146,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 5,
+      "reply": "It happens a few times a week."
+    },
+    {
+      "output": {
+        "say": "A few times a week is a lot. Pick the most recent one. Roughly how long did it take from the customer's message until a rider had the booking, and did the customer have to follow up with you?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "hurts",
+            "text": "Buried bookings happen a few times a week",
+            "tag": "heard",
+            "source": "Q6"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Every booking gets a rider quickly, without buried posts or one-by-one calling",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2974,
+          "output_tokens": 210,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "Usually just me and the riders."
+    },
+    {
+      "output": {
+        "say": "Got it, let's leave the timing for now. When you call riders one by one, roughly how many calls does a booking usually take before someone says yes?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 7,
+        "options": [],
+        "steps": [
+          {
+            "id": "s5",
+            "op": "update",
+            "text": "Booking often gets buried in the group chat with no claim",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p5",
+            "op": "update",
+            "section": "hurts",
+            "text": "The last buried booking: how long it took to get a rider and what it cost is unclear, for Ana to follow up",
+            "tag": "open",
+            "source": "Q7"
+          },
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "hurts",
+            "text": "Customer waiting time and any follow-up from the customer is unclear, for Ana to follow up",
+            "tag": "open",
+            "source": "Q7"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Every booking gets seen and claimed by a rider quickly",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3062,
+          "output_tokens": 802,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 428
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 7,
+      "reply": "It costs maybe 30 minutes a day."
+    },
+    {
+      "output": {
+        "say": "Thanks, that's useful. So calling riders costs you about 30 minutes a day. Which is closer to the last buried booking? A) You found it late, after the customer had already called. B) You saw nobody claimed it, so you started calling riders. C) A rider said they missed it. D) Something else.",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 8,
+        "options": [
+          "A) You found it late, after the customer had already called",
+          "B) You saw nobody claimed it, so you started calling riders",
+          "C) A rider said they missed it",
+          "D) Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p8",
+            "op": "add",
+            "section": "hurts",
+            "text": "Calling riders one by one costs about 30 minutes a day",
+            "tag": "heard",
+            "source": "Q8"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Every booking is seen and claimed by a rider quickly, without the dispatcher chasing riders by phone.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3165,
+          "output_tokens": 321,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 8,
+      "reply": "I'd hate to lose the group chat, everyone is used to it."
+    },
+    {
+      "output": {
+        "say": "Got it, the group chat is familiar to everyone and you'd hate to lose that. What do riders like most about how it works now?",
+        "kind": "question",
+        "topic": "What matters to you",
+        "count": 9,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p9",
+            "op": "add",
+            "section": "matters",
+            "text": "Riders are used to the group chat; you'd hate to lose it",
+            "tag": "heard",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3308,
+          "output_tokens": 649,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 451
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 9,
+      "reply": "Nothing else really."
+    },
+    {
+      "output": {
+        "say": "Thanks. If this worked well, what would be different for you on a normal day?",
+        "kind": "question",
+        "topic": "What should it do",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3383,
+          "output_tokens": 557,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 444
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Mostly the same as I said."
+    },
+    {
+      "output": {
+        "say": "Here's what I heard, in your words. Please mark each one: Must have, Nice to have, or Not needed.",
+        "kind": "priorities",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [
+          "Must have",
+          "Nice to have",
+          "Not needed"
+        ],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Each booking is seen and claimed by a rider quickly",
+            "priority": null,
+            "source": "Q4"
+          },
+          {
+            "id": "r2",
+            "text": "Bookings don't get buried in the riders' group chat",
+            "priority": null,
+            "source": "Q3"
+          },
+          {
+            "id": "r3",
+            "text": "You stop spending about 30 minutes a day calling riders one by one",
+            "priority": null,
+            "source": "Q7"
+          },
+          {
+            "id": "r4",
+            "text": "Keep the riders' group chat, since everyone is used to it",
+            "priority": null,
+            "source": "Q9"
+          }
+        ],
+        "core_need": "Every booking gets seen and claimed by a rider quickly, without you calling riders one by one.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3457,
+          "output_tokens": 944,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 598
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "My priorities: \"Each booking is seen and claimed by a rider quickly\": Must have; \"Bookings don't get buried in the riders' group chat\": Nice to have; \"You stop spending about 30 minutes a day calling riders one by one\": Nice to have; \"Keep the riders' group chat, since everyone is used to it\": Not needed."
+    },
+    {
+      "output": {
+        "say": "Thanks, I've got your priorities. Here's the landing. The core need seems to be: every booking gets seen and claimed by a rider quickly. What I heard: bookings come from the Facebook page and get copied into the spreadsheet, then posted in the riders' group chat. Posts often get buried, so you call riders one by one, about 30 minutes a day. Still open for Ana to follow up: how long a buried booking takes to get a rider, the customer's wait, and any follow-up from customers. What stays the same: the riders' group chat isn't a must-keep for you, and nothing is off-limits for AI. Please confirm or fix anything.",
+        "kind": "landing",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Each booking is seen and claimed by a rider quickly",
+            "priority": "Must have",
+            "source": "Q10"
+          },
+          {
+            "id": "r2",
+            "text": "Bookings don't get buried in the riders' group chat",
+            "priority": "Nice to have",
+            "source": "Q10"
+          },
+          {
+            "id": "r3",
+            "text": "You stop spending about 30 minutes a day calling riders one by one",
+            "priority": "Nice to have",
+            "source": "Q10"
+          },
+          {
+            "id": "r4",
+            "text": "Keep the riders' group chat, since everyone is used to it",
+            "priority": "Not needed",
+            "source": "Q10"
+          }
+        ],
+        "core_need": "Every booking gets seen and claimed by a rider quickly",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3655,
+          "output_tokens": 505,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "No, that's not the core need. The core need is riders seeing and claiming bookings fast. The spreadsheet is fine."
+    },
+    {
+      "output": {
+        "say": "Got it, thanks for the correction. Riders seeing and claiming bookings fast is the core need, and the spreadsheet stays as it is. Let me re-land it. The core need seems to be: riders see and claim each booking fast. What I heard: bookings come from the Facebook page and get copied into the spreadsheet, then posted in the riders' group chat. Posts often get buried, so you call riders one by one, about 30 minutes a day. Your top priority is that each booking is seen and claimed quickly. For Ana to follow up: how long a buried booking takes to get a rider, the customer's wait, and any customer follow-up. Staying the same: the spreadsheet. The group chat isn't a must-keep for you, and nothing is off-limits for AI. Does this match now, or should I fix anything?",
+        "kind": "landing",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p10",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The spreadsheet is fine",
+            "tag": "heard",
+            "source": "Q10"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Riders see and claim each booking fast",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3918,
+          "output_tokens": 398,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10,
+      "reply": "Yes, that's right."
+    },
+    {
+      "output": {
+        "say": "Thanks, that's everything I need. Ana will follow up on the open points with you. Appreciate your time.",
+        "kind": "done",
+        "topic": "Your day-to-day",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": "Riders see and claim each booking fast",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 4204,
+          "output_tokens": 118,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 10
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own",
+        "tag": "heard",
+        "source": "To confirm"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Posts in the riders' group chat get buried and nobody claims them",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "When nobody claims, dispatcher calls riders one by one",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p4",
+        "section": "should_do",
+        "text": "A rider sees and claims each booking quickly",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "The last buried booking: how long it took to get a rider and what it cost is unclear, for Ana to follow up",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p6",
+        "section": "hurts",
+        "text": "Buried bookings happen a few times a week",
+        "tag": "heard",
+        "source": "Q6"
+      },
+      {
+        "id": "p7",
+        "section": "hurts",
+        "text": "Customer waiting time and any follow-up from the customer is unclear, for Ana to follow up",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p8",
+        "section": "hurts",
+        "text": "Calling riders one by one costs about 30 minutes a day",
+        "tag": "heard",
+        "source": "Q8"
+      },
+      {
+        "id": "p9",
+        "section": "matters",
+        "text": "Riders are used to the group chat; you'd hate to lose it",
+        "tag": "heard",
+        "source": "Q9"
+      },
+      {
+        "id": "p10",
+        "section": "stays_same",
+        "text": "The spreadsheet is fine",
+        "tag": "heard",
+        "source": "Q10"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into the spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "Dispatcher calls riders one by one to assign the booking (riders don't claim from the chat)",
+        "actor": "Dispatcher",
+        "if_wrong": "Sometimes a rider does claim from the group chat"
+      },
+      {
+        "id": "s5",
+        "text": "Booking often gets buried in the group chat with no claim",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      }
+    ],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Each booking is seen and claimed by a rider quickly",
+        "priority": "Must have",
+        "source": "Q10"
+      },
+      {
+        "id": "r2",
+        "text": "Bookings don't get buried in the riders' group chat",
+        "priority": "Nice to have",
+        "source": "Q10"
+      },
+      {
+        "id": "r3",
+        "text": "You stop spending about 30 minutes a day calling riders one by one",
+        "priority": "Nice to have",
+        "source": "Q10"
+      },
+      {
+        "id": "r4",
+        "text": "Keep the riders' group chat, since everyone is used to it",
+        "priority": "Not needed",
+        "source": "Q10"
+      }
+    ]
+  },
+  "count": 10,
+  "cost": {
+    "input": 49111,
+    "output": 9295,
+    "usd": 0.0095586
+  },
+  "findings": [
+    "note: needed JSON retry 1x",
+    "check: turn 1 question is 50 words (limit 40)",
+    "check: turn 2 question is 44 words (limit 40)",
+    "check: turn 3 question is 44 words (limit 40)"
+  ]
+}

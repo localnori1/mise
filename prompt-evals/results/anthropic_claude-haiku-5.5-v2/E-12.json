@@ -1,0 +1,646 @@
+{
+  "id": "E-12",
+  "name": "Landing pushback",
+  "pass_if": "When they reject the core need, it re-lands with the correction.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking gets assigned today. Which step is wrong, or is anything missing?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": null
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Dispatcher copies the booking into a spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Dispatcher posts the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Or does the dispatcher assign it to a specific rider?"
+          }
+        ],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 1059,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 691
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "I copy bookings from the page to the sheet, then post in the group chat."
+    },
+    {
+      "output": {
+        "say": "Got it, so you copy each booking from the page into the sheet, then post it in the riders' group chat. After you post it, what happens next? Does a rider claim it, or do you choose who gets it?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher copies each booking from the Facebook page into the spreadsheet, then posts it in the riders' group chat.",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2220,
+          "output_tokens": 757,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 515
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Posts get buried and nobody claims them, so I call riders."
+    },
+    {
+      "output": {
+        "say": "So bookings get buried in the chat, nobody claims them, and you end up calling riders one by one. When did that last happen? What did it cost you, in time or missed bookings?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims the booking, or the dispatcher calls riders when no one claims it",
+            "actor": "Rider / Dispatcher",
+            "if_wrong": null
+          }
+        ],
+        "panel": [
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "hurts",
+            "text": "Posts in the riders' group chat get buried and nobody claims them, so the dispatcher calls riders individually.",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Bookings get assigned to a rider quickly, without the dispatcher chasing riders one by one.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2354,
+          "output_tokens": 307,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "It should make sure a rider sees and claims each booking quickly."
+    },
+    {
+      "output": {
+        "say": "Got it: a rider should see and claim each booking quickly. Which is closer to how it goes today? (A) Bookings sit unseen in the chat for a long time. (B) Riders see them but don't claim. (C) Some bookings get missed entirely.",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 4,
+        "options": [
+          "Bookings sit unseen in the chat for a long time",
+          "Riders see them but don't claim",
+          "Some bookings get missed entirely"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "should_do",
+            "text": "A rider should see and claim each booking quickly.",
+            "tag": "heard",
+            "source": "Q4"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Each booking reaches a rider and gets claimed quickly.",
+            "priority": null,
+            "source": "Q4"
+          }
+        ],
+        "core_need": "Each booking reaches a rider and gets claimed quickly.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2491,
+          "output_tokens": 904,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 579
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Mostly the same as I said."
+    },
+    {
+      "output": {
+        "say": "Thanks. Last time a booking sat unclaimed and you had to call riders, what happened to that customer? Was it a late pickup, a lost booking, or something else?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 5,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2636,
+          "output_tokens": 583,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 438
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 5,
+      "reply": "It happens a few times a week."
+    },
+    {
+      "output": {
+        "say": "Got it, it happens a few times a week. On one of those days, roughly how long does it take from posting the booking to a rider claiming it?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "Unclaimed bookings happen a few times a week.",
+            "tag": "heard",
+            "source": "Q6"
+          }
+        ],
+        "requirements": [],
+        "core_need": "Bookings that sit unclaimed in the group chat get delayed and force manual calls to riders.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2702,
+          "output_tokens": 567,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 336
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "Usually just me and the riders."
+    },
+    {
+      "output": {
+        "say": "Thanks, we're near the end. Here are the main points I heard. Please mark each one: Must have, Nice to have, or Not needed. (1) Each booking reaches a rider quickly. (2) Riders can see bookings without them getting buried. (3) Bookings don't go unclaimed. (4) You don't have to call riders one by one.",
+        "kind": "priorities",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [
+          "Must have",
+          "Nice to have",
+          "Not needed"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p5",
+            "op": "add",
+            "section": "hurts",
+            "text": "How long a booking takes to get claimed is not yet known.",
+            "tag": "open",
+            "source": "Q7"
+          },
+          {
+            "id": "p6",
+            "op": "add",
+            "section": "should_do",
+            "text": "Riders can see bookings without them getting buried in the chat.",
+            "tag": "heard",
+            "source": "Q3"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Each booking reaches a rider and gets claimed quickly.",
+            "priority": null,
+            "source": "Q3"
+          }
+        ],
+        "core_need": "Bookings reach a rider and get claimed quickly, without you chasing riders by phone.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2780,
+          "output_tokens": 978,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 542
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "My priorities: \"Each booking reaches a rider and gets claimed quickly.\": Must have."
+    },
+    {
+      "output": {
+        "say": "The core need seems to be: each booking reaches a rider and gets claimed quickly.\n\nWhat I heard:\n- Bookings come in on the Facebook page, and you copy them into the sheet.\n- You post them in the riders' group chat.\n- Posts get buried, so nobody claims them and you call riders one by one.\n- This happens a few times a week.\n\nYour top priority:\n- Each booking reaches a rider and gets claimed quickly. (Must have)\n\nStill open, for Ana to follow up:\n- How long a booking usually takes to get claimed.\n- Who else, if anyone, helps when a booking goes unclaimed.\n\nWhat stays as it is: you assign bookings, and riders don't pick their own. Rider pay is off-limits.\n\nDoes this match how it goes? Tell me what to fix.",
+        "kind": "landing",
+        "topic": "Where it hurts",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p7",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The dispatcher assigns bookings. Riders don't pick their own.",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p8",
+            "op": "add",
+            "section": "not_for_ai",
+            "text": "Rider salaries and pay.",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p9",
+            "op": "add",
+            "section": "success",
+            "text": "Each booking reaches a rider and gets claimed quickly.",
+            "tag": "heard",
+            "source": "Q9"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Each booking reaches a rider and gets claimed quickly.",
+            "priority": "Must have",
+            "source": "Q9"
+          }
+        ],
+        "core_need": "Each booking reaches a rider and gets claimed quickly.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3002,
+          "output_tokens": 1041,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 394
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "No, that's not the core need. The core need is riders seeing and claiming bookings fast. The spreadsheet is fine."
+    },
+    {
+      "output": {
+        "say": "Thanks for correcting that. Here's the updated version.\n\nThe core need seems to be: riders seeing and claiming bookings fast.\n\nWhat I heard:\n- Bookings come in on the Facebook page, and you copy them into the sheet.\n- You post them in the riders' group chat.\n- Posts get buried, so nobody claims them and you call riders one by one.\n- This happens a few times a week.\n\nYour top priority:\n- Riders see and claim bookings fast. (Must have)\n\nStill open, for Ana to follow up:\n- How long a booking usually takes to get claimed.\n- Who else, if anyone, helps when a booking goes unclaimed.\n\nWhat stays as it is: the spreadsheet is fine, you assign bookings, and riders don't pick their own. Rider pay is off-limits.\n\nDoes this match now? Tell me what to fix.",
+        "kind": "landing",
+        "topic": "Where it hurts",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p10",
+            "op": "add",
+            "section": "stays_same",
+            "text": "The spreadsheet is fine.",
+            "tag": "heard",
+            "source": "Correction"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Riders see and claim bookings fast.",
+            "priority": "Must have",
+            "source": "Correction"
+          }
+        ],
+        "core_need": "riders seeing and claiming bookings fast",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3368,
+          "output_tokens": 820,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 301
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6,
+      "reply": "Yes, that's right."
+    },
+    {
+      "output": {
+        "say": "Thanks for your time, this helps Ana a lot.",
+        "kind": "done",
+        "topic": "What matters to you",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": "riders seeing and claiming bookings fast",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 3660,
+          "output_tokens": 102,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 0
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 6
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Dispatcher copies each booking from the Facebook page into the spreadsheet, then posts it in the riders' group chat.",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p2",
+        "section": "hurts",
+        "text": "Posts in the riders' group chat get buried and nobody claims them, so the dispatcher calls riders individually.",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p3",
+        "section": "should_do",
+        "text": "A rider should see and claim each booking quickly.",
+        "tag": "heard",
+        "source": "Q4"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "Unclaimed bookings happen a few times a week.",
+        "tag": "heard",
+        "source": "Q6"
+      },
+      {
+        "id": "p5",
+        "section": "hurts",
+        "text": "How long a booking takes to get claimed is not yet known.",
+        "tag": "open",
+        "source": "Q7"
+      },
+      {
+        "id": "p6",
+        "section": "should_do",
+        "text": "Riders can see bookings without them getting buried in the chat.",
+        "tag": "heard",
+        "source": "Q3"
+      },
+      {
+        "id": "p7",
+        "section": "stays_same",
+        "text": "The dispatcher assigns bookings. Riders don't pick their own.",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p8",
+        "section": "not_for_ai",
+        "text": "Rider salaries and pay.",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p9",
+        "section": "success",
+        "text": "Each booking reaches a rider and gets claimed quickly.",
+        "tag": "heard",
+        "source": "Q9"
+      },
+      {
+        "id": "p10",
+        "section": "stays_same",
+        "text": "The spreadsheet is fine.",
+        "tag": "heard",
+        "source": "Correction"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": null
+      },
+      {
+        "id": "s2",
+        "text": "Dispatcher copies the booking into a spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Dispatcher posts the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking, or the dispatcher calls riders when no one claims it",
+        "actor": "Rider / Dispatcher",
+        "if_wrong": null
+      }
+    ],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Riders see and claim bookings fast.",
+        "priority": "Must have",
+        "source": "Correction"
+      }
+    ]
+  },
+  "count": 6,
+  "cost": {
+    "input": 27275,
+    "output": 7118,
+    "usd": 0.0062865
+  },
+  "findings": [
+    "check: turn 2 has more than one \"?\"",
+    "check: turn 3 has more than one \"?\"",
+    "check: turn 5 has more than one \"?\""
+  ]
+}

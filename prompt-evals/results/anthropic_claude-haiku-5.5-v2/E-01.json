@@ -1,0 +1,313 @@
+{
+  "id": "E-01",
+  "name": "Stuck",
+  "pass_if": "After two 'not sure' answers it offers 2-4 descriptions of their situation, not another open question, and never a solution.",
+  "turns": [
+    {
+      "output": {
+        "say": "Here's how I understand a booking goes today. Tell me where I'm wrong. Step 4 seems to clash with what I understood, that you assign bookings and riders don't pick their own. Which is closer to how it really goes?",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [
+          "You assign it, and riders don't pick",
+          "A rider claims it from the chat",
+          "Something else, sometimes both"
+        ],
+        "steps": [
+          {
+            "id": "s1",
+            "op": "add",
+            "text": "Customer messages the company Facebook page",
+            "actor": "Customer",
+            "if_wrong": "Booking comes in another way"
+          },
+          {
+            "id": "s2",
+            "op": "add",
+            "text": "Copy the booking into the spreadsheet",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s3",
+            "op": "add",
+            "text": "Post the booking in the riders' group chat",
+            "actor": "Dispatcher",
+            "if_wrong": null
+          },
+          {
+            "id": "s4",
+            "op": "add",
+            "text": "A rider claims the booking",
+            "actor": "Rider",
+            "if_wrong": "Dispatcher assigns the rider directly"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Bookings come in through the company Facebook page",
+            "tag": "heard",
+            "source": "Known"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Dispatcher assigns bookings; riders don't pick their own",
+            "tag": "heard",
+            "source": "To confirm"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "process",
+            "text": "Process sketch step 4 says a rider claims the booking; conflicts with the line above",
+            "tag": "open",
+            "source": "Q1"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2062,
+          "output_tokens": 1401,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 768
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Not sure."
+    },
+    {
+      "output": {
+        "say": "No problem. Which of these is closer to what happens after you post the booking in the group chat?",
+        "kind": "offer",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [
+          "You pick a rider yourself and tell them in the group chat",
+          "You post it, and whoever is free replies first gets it",
+          "You assign regular riders yourself, and open bookings go to whoever claims them",
+          "Something else"
+        ],
+        "steps": [
+          {
+            "id": "s4",
+            "op": "update",
+            "text": "A rider claims the booking, or the dispatcher assigns one",
+            "actor": "Rider or dispatcher",
+            "if_wrong": "Which rider picks it up, and how it's decided"
+          }
+        ],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "process",
+            "text": "Step 4: who gets the booking after it's posted is still unclear",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2311,
+          "output_tokens": 594,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 241
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 2,
+      "reply": "Hmm, not sure really."
+    },
+    {
+      "output": {
+        "say": "That's okay, we can come back to it with Ana. Let's move on. Think of the last booking that got stuck or went wrong. What happened, and how much time did it cost you?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 3,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "process",
+            "text": "Who gets the booking after it's posted in the group chat is unclear, dispatcher or rider",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2358,
+          "output_tokens": 536,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 337
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "I guess the second one."
+    },
+    {
+      "output": {
+        "say": "Thanks. The second one, then. Is it more like: no rider took it in time, a rider took it and then dropped out, or the booking got lost or posted twice?",
+        "kind": "offer",
+        "topic": "Where it hurts",
+        "count": 4,
+        "options": [
+          "No rider took it in time",
+          "A rider took it and then dropped out",
+          "The booking got lost or posted twice",
+          "Something else"
+        ],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "process",
+            "text": "Who gets the booking after it's posted in the group chat is unclear, dispatcher or rider",
+            "tag": "open",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "input_tokens": 2432,
+          "output_tokens": 799,
+          "cache_creation_input_tokens": 0,
+          "cache_read_input_tokens": 0,
+          "speed": "standard",
+          "cache_creation": {
+            "ephemeral_5m_input_tokens": 0,
+            "ephemeral_1h_input_tokens": 0
+          },
+          "output_tokens_details": {
+            "thinking_tokens": 539
+          },
+          "service_tier": "standard",
+          "inference_geo": "global"
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "script finished",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Bookings come in through the company Facebook page",
+        "tag": "heard",
+        "source": "Known"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Dispatcher assigns bookings; riders don't pick their own",
+        "tag": "heard",
+        "source": "To confirm"
+      },
+      {
+        "id": "p3",
+        "section": "process",
+        "text": "Who gets the booking after it's posted in the group chat is unclear, dispatcher or rider",
+        "tag": "open",
+        "source": "Q2"
+      }
+    ],
+    "steps": [
+      {
+        "id": "s1",
+        "text": "Customer messages the company Facebook page",
+        "actor": "Customer",
+        "if_wrong": "Booking comes in another way"
+      },
+      {
+        "id": "s2",
+        "text": "Copy the booking into the spreadsheet",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s3",
+        "text": "Post the booking in the riders' group chat",
+        "actor": "Dispatcher",
+        "if_wrong": null
+      },
+      {
+        "id": "s4",
+        "text": "A rider claims the booking, or the dispatcher assigns one",
+        "actor": "Rider or dispatcher",
+        "if_wrong": "Which rider picks it up, and how it's decided"
+      }
+    ],
+    "requirements": []
+  },
+  "count": 4,
+  "cost": {
+    "input": 9163,
+    "output": 3330,
+    "usd": 0.0025813000000000003
+  },
+  "findings": []
+}

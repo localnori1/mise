@@ -1,0 +1,37 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "mise",
+  "main": "src/server/index.ts",
+  "compatibility_date": "2026-11-01",
+  "compatibility_flags": ["nodejs_compat"],
+  // The React app is served as static assets; unknown paths fall back to it.
+  // Only the API (and the local eval endpoint) run the Worker first.
+  "assets": {
+    // Vite writes the built app here; `wrangler dev` (prompt evals) needs it set.
+    "directory": "./dist/client",
+    "not_found_handling": "single-page-application",
+    "run_worker_first": ["/api/*", "/eval/*"]
+  },
+  "ai": { "binding": "AI" },
+  "d1_databases": [
+    {
+      "binding": "DB",
+      "database_name": "mise",
+      // Local development only. Replace with the real id when the owner
+      // approves creating the production database.
+      "database_id": "00000000-0000-0000-0000-000000000000",
+      "migrations_dir": "migrations"
+    }
+  ],
+  // NFR-05: delete respondent data after 90 days, checked daily.
+  "triggers": { "crons": ["0 3 * * *"] },
+  "vars": {
+    "MODEL_INTERVIEWER": "anthropic/claude-haiku-5.5",
+    "MODEL_SETUP": "anthropic/claude-haiku-5.5",
+    "MODEL_SYNTHESIS": "anthropic/claude-opus-5.5",
+    // AI Gateway created by the owner; holds the $5/month spend limit.
+    "AI_GATEWAY": "mise",
+    // Set to "1" only for local prompt evals (npm run dev:eval). Never in production.
+    "EVAL_MODE": "0"
+  }
+}

@@ -1,0 +1,3 @@
+interface:
+  display_name: "Project Initialization"
+  short_description: "Ingest artifacts and assess project readiness"

@@ -1,0 +1,38 @@
+{
+  "requirements": {
+    "name": "Requirements session",
+    "description": "Go deep on one area. Ends in an Elicitation Session Summary.",
+    "audience_default": "colleague",
+    "map": ["Your day-to-day", "Where it hurts", "What it should do", "What matters to you"],
+    "budget": 10,
+    "estimated_minutes": 8,
+    "quick_taps": [
+      {"id": "frequency", "question": "How often do you deal with {{topic_noun}}?", "type": "single", "options": ["Daily", "A few times a week", "Rarely"]},
+      {"id": "tools", "question": "What do you use for it today?", "type": "multi", "options": ["Group chat", "Spreadsheet", "Paper", "Email", "Other"]},
+      {"id": "role", "question": "Your role", "type": "text", "prefill_from": "setup.role"}
+    ],
+    "priority_labels": ["Must have", "Nice to have", "Not needed"],
+    "priority_kind": "requirements",
+    "output": "synthesis-session-summary"
+  },
+  "pre_audit": {
+    "name": "Pre-audit intake",
+    "description": "Sweep the business, go deep where it hurts. Ends in a Pre-Audit Brief.",
+    "audience_default": "prospect",
+    "map": ["Your business", "Your time", "Leads and sales", "Operations and support", "AI and boundaries"],
+    "budget": 10,
+    "estimated_minutes": 7,
+    "focus_rule": "Ask one question per map topic. Go deep on whichever topic the owner reacts to most.",
+    "quick_taps": [
+      {"id": "industry", "question": "Industry", "type": "text"},
+      {"id": "team_size", "question": "Roughly how many people work in your business?", "type": "single", "options": ["Just me", "2-5", "6-15", "16-50", "50+"]},
+      {"id": "lead_sources", "question": "How do most of your customers find you?", "type": "multi", "options": ["Referrals / word of mouth", "Google search", "Social media (organic)", "Paid ads", "Cold outreach", "Events / networking", "Other"]},
+      {"id": "sales_team", "question": "Who handles sales?", "type": "single", "options": ["Just me", "Me + 1-2 others", "Dedicated sales team (3+)", "We don't really do sales"]},
+      {"id": "ai_experience", "question": "Have you tried AI tools yet?", "type": "single", "options": ["Not yet", "Yes, but it didn't stick", "Yes, a few regularly", "We're pretty AI-savvy"]},
+      {"id": "tools", "question": "Which tools do you use day to day?", "type": "text"}
+    ],
+    "priority_labels": ["Biggest", "Annoying", "Can live with it"],
+    "priority_kind": "pains",
+    "output": "synthesis-audit-prep"
+  }
+}

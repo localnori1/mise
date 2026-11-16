@@ -1,0 +1,553 @@
+{
+  "id": "E-11",
+  "name": "Budget",
+  "pass_if": "It never exceeds the budget and still reaches priorities and landing.",
+  "turns": [
+    {
+      "output": {
+        "say": "Can you walk me through the last time you assigned a delivery booking? Start from when the customer messaged, what you did before posting it, the posting step, and what happened after a rider claimed it.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 1,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1327,
+          "completion_tokens": 244,
+          "total_tokens": 1571,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 58.85884094238281
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Okay so where do I start, every morning I open the page and there are like twenty messages, some are bookings, some are people asking prices, some are complaints from yesterday, and I have to sort them all while my coffee gets cold, and then my boss also messages me asking for yesterday's count, which I have to count manually from the sheet because the sheet has no totals, and then the riders start arriving and asking what's first."
+    },
+    {
+      "output": {
+        "say": "What I'm hearing is: each morning you open the Facebook page, see around twenty messages of different types, sort them while your coffee gets cold, then your boss asks for yesterday’s count which you pull manually from a spreadsheet that lacks totals, and riders start asking which delivery is first. Is that right?",
+        "kind": "reflect",
+        "topic": "Your day-to-day",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "add",
+            "section": "process",
+            "text": "Open Facebook page, see ~20 messages (bookings, price inquiries, complaints).",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p2",
+            "op": "add",
+            "section": "process",
+            "text": "Sort messages while coffee gets cold.",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p3",
+            "op": "add",
+            "section": "hurts",
+            "text": "Boss asks for yesterday’s count; spreadsheet has no totals, so you count manually.",
+            "tag": "heard",
+            "source": "Q2"
+          },
+          {
+            "id": "p4",
+            "op": "add",
+            "section": "hurts",
+            "text": "Riders arrive asking which delivery is first.",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1468,
+          "completion_tokens": 1024,
+          "total_tokens": 2492,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 116.5269775390625
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 1,
+      "reply": "Well it depends, on Mondays it's worse because weekend bookings pile up, and also when it rains everyone books at once, and last December was crazy because of Christmas, we had to borrow riders from my cousin's shop, which was a whole other story because they didn't know the routes, and one of them got lost in Marikina for two hours."
+    },
+    {
+      "output": {
+        "say": "Can you tell me about the most recent time the booking‑assignment process slowed down or caused trouble for you? What happened, and how did it affect your time or the delivery? Also, if the process worked exactly as you need, how would it feel during those busy moments?",
+        "kind": "question",
+        "topic": "Where it hurts",
+        "count": 2,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1689,
+          "completion_tokens": 235,
+          "total_tokens": 1924,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 69.76332092285156
+        },
+        {
+          "prompt_tokens": 1813,
+          "completion_tokens": 404,
+          "total_tokens": 2217,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 85.23147583007812
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 2,
+      "reply": "The group chat is a mess honestly, there are like forty riders in it, people post memes, someone always asks 'is this still available' after it's been claimed, and the important posts get buried, and I end up re-posting the same booking three times, sometimes four, and then two riders show up."
+    },
+    {
+      "output": {
+        "say": "When a rider claims a booking in the group chat, what do you do next to confirm it and let the rider know the details? Please include any steps you take before the rider leaves for the delivery.",
+        "kind": "question",
+        "topic": "Your day-to-day",
+        "count": 5,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1819,
+          "completion_tokens": 339,
+          "total_tokens": 2158,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 80.99057006835938
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 3,
+      "reply": "I think what I'd really want is to stop doing everything twice, but also I don't want to lose how quick the group chat is, because riders read it on their phones while waiting at stoplights, and they won't install anything new, we tried that once with some app my boss found and nobody used it."
+    },
+    {
+      "output": {
+        "say": "What I'm hearing is: you want to stop posting bookings multiple times, keep the chat fast, and avoid a new app that riders won’t use. If the assignment process worked exactly as you need, how would it feel on a busy morning when the chat is full of memes and many riders are waiting? Also, what’s the single thing you’d hate to lose in any change (e.g., speed of the chat, instant visibility of updates)?",
+        "kind": "reflect",
+        "topic": "what it should do",
+        "count": 0,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 1932,
+          "completion_tokens": 579,
+          "total_tokens": 2511,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 100.94963073730469
+        },
+        {
+          "prompt_tokens": 2106,
+          "completion_tokens": 453,
+          "total_tokens": 2559,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 97.89505767822266
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 3,
+      "reply": "Mostly the same as I said."
+    },
+    {
+      "output": {
+        "say": "If this worked exactly as you need, what would be different for you on a busy day? (e.g., time saved, fewer duplicate posts, smoother boss reporting, etc.)",
+        "kind": "question",
+        "topic": "What it should do",
+        "count": 6,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2039,
+          "completion_tokens": 1008,
+          "total_tokens": 3047,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 133.60415649414062
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "It happens a few times a week."
+    },
+    {
+      "output": {
+        "say": "What I'm hearing is: you’ll label each item with Must have, Nice to have, or Not needed. Please share your choices so we can capture your priorities.",
+        "kind": "reflect",
+        "topic": "Where it hurts",
+        "count": 9,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2093,
+          "completion_tokens": 1196,
+          "total_tokens": 3289,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 148.1405029296875
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4,
+      "reply": "Usually just me and the riders."
+    },
+    {
+      "output": {
+        "say": "Please label each of these items as Must have, Nice to have, or Not needed:\n1. Stop posting the same booking multiple times.\n2. Keep the group chat fast and visible (riders read it on their phones).\n3. Avoid introducing a new app that riders won’t adopt.\n4. Get a quick daily count for the boss without manual tallying.\n5. Reduce “noise” (memes, off‑topic posts) so bookings stay on top.\n6. Ensure riders have the correct route info without getting lost.",
+        "kind": "priorities",
+        "topic": "Where it hurts",
+        "count": 0,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Stop posting the same booking multiple times.",
+            "priority": null,
+            "source": "Q9"
+          },
+          {
+            "id": "r2",
+            "text": "Keep the group chat fast and visible (riders read it on their phones).",
+            "priority": null,
+            "source": "Q9"
+          },
+          {
+            "id": "r3",
+            "text": "Avoid introducing a new app that riders won’t adopt.",
+            "priority": null,
+            "source": "Q9"
+          },
+          {
+            "id": "r4",
+            "text": "Get a quick daily count for the boss without manual tallying.",
+            "priority": null,
+            "source": "Q9"
+          },
+          {
+            "id": "r5",
+            "text": "Reduce “noise” (memes, off‑topic posts) so bookings stay on top.",
+            "priority": null,
+            "source": "Q9"
+          },
+          {
+            "id": "r6",
+            "text": "Ensure riders have the correct route info without getting lost.",
+            "priority": null,
+            "source": "Q9"
+          }
+        ],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2143,
+          "completion_tokens": 698,
+          "total_tokens": 2841,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 115.77687072753906
+        },
+        {
+          "prompt_tokens": 2288,
+          "completion_tokens": 794,
+          "total_tokens": 3082,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 126.93592834472656
+        }
+      ],
+      "retried": true,
+      "anomalies": [],
+      "count": 4,
+      "reply": "My priorities: \"Stop posting the same booking multiple times.\": Must have; \"Keep the group chat fast and visible (riders read it on their phones).\": Nice to have; \"Avoid introducing a new app that riders won’t adopt.\": Nice to have; \"Get a quick daily count for the boss without manual tallying.\": Nice to have; \"Reduce “noise” (memes, off‑topic posts) so bookings stay on top.\": Nice to have; \"Ensure riders have the correct route info without getting lost.\": Not needed."
+    },
+    {
+      "output": {
+        "say": "What I'm hearing is:\n- You handle ~20 messages each morning, sorting bookings, price inquiries, and complaints while your coffee gets cold.\n- Your boss asks for yesterday’s count, which you calculate manually because the spreadsheet lacks totals.\n- The riders’ group chat gets noisy with memes and duplicate posting; you often repost the same booking 3‑4 times, causing confusion.\n- You want to stop duplicate posts (Must have), keep the chat fast (Nice to have), avoid a new app (Nice to have), get a quick daily count for the boss (Nice to have), and reduce noise (Nice to have). Route info isn’t a priority (Not needed).\nIs that correct?",
+        "kind": "reflect",
+        "topic": "Your day-to-day",
+        "count": 10,
+        "options": [],
+        "steps": [],
+        "panel": [
+          {
+            "id": "p1",
+            "op": "update",
+            "section": "process",
+            "text": "Open Facebook page, see ~20 messages (bookings, price inquiries, complaints).",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p2",
+            "op": "update",
+            "section": "process",
+            "text": "Sort messages while coffee gets cold; boss asks for yesterday’s count; manually tally from spreadsheet.",
+            "tag": "heard",
+            "source": "Q1"
+          },
+          {
+            "id": "p3",
+            "op": "update",
+            "section": "hurts",
+            "text": "Group chat noisy with memes; duplicate posting of bookings (3‑4 times); riders ask about already‑claimed jobs; riders sometimes get lost.",
+            "tag": "heard",
+            "source": "Q2"
+          }
+        ],
+        "requirements": [
+          {
+            "id": "r1",
+            "text": "Stop posting the same booking multiple times.",
+            "priority": "Must have",
+            "source": "Q5"
+          },
+          {
+            "id": "r2",
+            "text": "Keep the group chat fast and visible (riders read it on their phones).",
+            "priority": "Nice to have",
+            "source": "Q5"
+          },
+          {
+            "id": "r3",
+            "text": "Avoid introducing a new app that riders won’t adopt.",
+            "priority": "Nice to have",
+            "source": "Q5"
+          },
+          {
+            "id": "r4",
+            "text": "Get a quick daily count for the boss without manual tallying.",
+            "priority": "Nice to have",
+            "source": "Q5"
+          },
+          {
+            "id": "r5",
+            "text": "Reduce “noise” (memes, off‑topic posts) so bookings stay on top.",
+            "priority": "Nice to have",
+            "source": "Q5"
+          },
+          {
+            "id": "r6",
+            "text": "Ensure riders have the correct route info without getting lost.",
+            "priority": "Not needed",
+            "source": "Q5"
+          }
+        ],
+        "core_need": null,
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2480,
+          "completion_tokens": 831,
+          "total_tokens": 3311,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 135.56771850585938
+        }
+      ],
+      "retried": false,
+      "anomalies": [
+        "add of existing id r1",
+        "add of existing id r2",
+        "add of existing id r3",
+        "add of existing id r4",
+        "add of existing id r5",
+        "add of existing id r6"
+      ],
+      "count": 4,
+      "reply": "It costs maybe 30 minutes a day."
+    },
+    {
+      "output": {
+        "say": "Yes, that’s correct. No more to add.",
+        "kind": "done",
+        "topic": "landing",
+        "count": 0,
+        "options": [],
+        "steps": [],
+        "panel": [],
+        "requirements": [],
+        "core_need": "Stop duplicate posting of bookings to save time and reduce confusion while keeping the existing fast group chat that riders already use.",
+        "their_question": null
+      },
+      "usage": [
+        {
+          "prompt_tokens": 2663,
+          "completion_tokens": 393,
+          "total_tokens": 3056,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          },
+          "neurons": 111.52677917480469
+        }
+      ],
+      "retried": false,
+      "anomalies": [],
+      "count": 4
+    }
+  ],
+  "stopReason": "done",
+  "state": {
+    "panel": [
+      {
+        "id": "p1",
+        "section": "process",
+        "text": "Open Facebook page, see ~20 messages (bookings, price inquiries, complaints).",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p2",
+        "section": "process",
+        "text": "Sort messages while coffee gets cold; boss asks for yesterday’s count; manually tally from spreadsheet.",
+        "tag": "heard",
+        "source": "Q1"
+      },
+      {
+        "id": "p3",
+        "section": "hurts",
+        "text": "Group chat noisy with memes; duplicate posting of bookings (3‑4 times); riders ask about already‑claimed jobs; riders sometimes get lost.",
+        "tag": "heard",
+        "source": "Q2"
+      },
+      {
+        "id": "p4",
+        "section": "hurts",
+        "text": "Riders arrive asking which delivery is first.",
+        "tag": "heard",
+        "source": "Q2"
+      }
+    ],
+    "steps": [],
+    "requirements": [
+      {
+        "id": "r1",
+        "text": "Stop posting the same booking multiple times.",
+        "priority": "Must have",
+        "source": "Q5"
+      },
+      {
+        "id": "r2",
+        "text": "Keep the group chat fast and visible (riders read it on their phones).",
+        "priority": "Nice to have",
+        "source": "Q5"
+      },
+      {
+        "id": "r3",
+        "text": "Avoid introducing a new app that riders won’t adopt.",
+        "priority": "Nice to have",
+        "source": "Q5"
+      },
+      {
+        "id": "r4",
+        "text": "Get a quick daily count for the boss without manual tallying.",
+        "priority": "Nice to have",
+        "source": "Q5"
+      },
+      {
+        "id": "r5",
+        "text": "Reduce “noise” (memes, off‑topic posts) so bookings stay on top.",
+        "priority": "Nice to have",
+        "source": "Q5"
+      },
+      {
+        "id": "r6",
+        "text": "Ensure riders have the correct route info without getting lost.",
+        "priority": "Not needed",
+        "source": "Q5"
+      }
+    ]
+  },
+  "count": 4,
+  "cost": {
+    "input": 25860,
+    "output": 8198,
+    "neurons": 1382
+  },
+  "findings": [
+    "note: needed JSON retry 3x",
+    "check: turn 3 has more than one \"?\"",
+    "check: turn 3 question is 48 words (limit 40)",
+    "check: turn 9 reflection is 110 words (limit 80)",
+    "check: turn 9 add of existing id r1",
+    "check: turn 9 add of existing id r2",
+    "check: turn 9 add of existing id r3",
+    "check: turn 9 add of existing id r4",
+    "check: turn 9 add of existing id r5",
+    "check: turn 9 add of existing id r6",
+    "FAIL never reached landing"
+  ]
+}
