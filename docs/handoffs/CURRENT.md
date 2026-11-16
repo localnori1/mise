@@ -27,7 +27,9 @@ review, a first commit, then deployment to Cloudflare.
 - Independent review (Fable): High/Medium findings fixed (model can't end a
   session; calls reserved before spending; near-cap wrap-up).
 - AI spend so far ~$2 of the $10 gateway credit (estimate).
-- First commit 5d9bbb4 (local `main`, no remote).
+- Pushed to https://github.com/localnori1/mise (`main`).
+- Deployed 2026-11-16 to https://mise.emmnlsttn1.workers.dev: production D1
+  with migrations 0001-0002, `IP_HASH_SALT` secret, security headers.
 - ADR-003: owners sign in with Google (`/links`), "Who gets the brief"
   removed, respondents get the document (PDF via browser print, Markdown,
   copy; pre-audit call prep and handoff left out). Reviewed; fixes applied.
@@ -39,19 +41,19 @@ review, a first commit, then deployment to Cloudflare.
 
 ## Important decisions and risks
 
-- `src/server/prompts/interviewer.txt` and `setup-drafter.txt` diverge from
-  `source/handoff/05-prompts/` on purpose (eval fixes; short off-limits names).
-- Out of## Blockers and decisions needed
+- `src/serv## Blockers and decisions needed
 
-1. Owner creates a Google OAuth client (free) and sets `GOOGLE_CLIENT_ID`
-   and the `GOOGLE_CLIENT_SECRET` Worker secret; redirect URIs
-   `http://localhost:5173/auth/google/callback` and the production
-   `https://<host>/auth/google/callback`.
-2. Deployment (owner approval): production D1 (`database_id`), migrations
-   0001-0002 remote, `IP_HASH_SALT` secret, security headers, `wrangler deploy`.
+1. Custom domain: the owner's partner is adding it (Worker > Domains & Routes).
+   `emmnlsttn1` in the workers.dev address comes from the owner's email;
+   consider disabling workers.dev once the domain works.
+2. Google sign-in app (free): create an OAuth client with redirect URIs
+   `http://localhost:5173/auth/google/callback` and
+   `https://<final host>/auth/google/callback`; put the client ID in
+   `wrangler.jsonc` `GOOGLE_CLIENT_ID`; owner sets `GOOGLE_CLIENT_SECRET` in
+   the Cloudflare dashboard; redeploy; test sign-in live. Until then live
+   sign-in shows "Sign-in isn't set up yet".
 3. Later: account deletion for signed-in owners (name/email kept until then).
 
 ## Exact next step
 
-Owner approves committing the sign-in work, then the Google OAuth setup and
-deployment.
+Wait for the custom domain, then set up the Google sign-in app against it.

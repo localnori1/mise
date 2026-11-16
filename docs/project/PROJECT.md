@@ -92,10 +92,13 @@ last_reviewed: "2026-11-16"
   `npm run build`; local sign-in without Google: `DEV_LOGIN=1` in `.dev.vars`;
   evals: `npm run dev:eval` + `npm run eval -- --model <id>`
   (needs a build first so `dist/client` exists)
-- Environments: local only (local D1, AI through the owner's gateway). No
-  production database or deployment yet.
-- Deployment/rollback: pending owner approval (create D1, set `database_id`
-  and the `IP_HASH_SALT` secret, `wrangler deploy`; rollback via Workers versions)
+- Environments: local (`npm run dev`, local D1) and production Worker `mise`
+  at https://mise.emmnlsttn1.workers.dev (D1 `mise`, deployed 2026-11-16);
+  custom domain pending. Code: https://github.com/localnori1/mise
+- Deployment/rollback: `npm run build` then `npx wrangler deploy`; schema with
+  `npx wrangler d1 migrations apply mise --remote`; rollback via Workers
+  versions (`wrangler rollback`). Security headers: `public/_headers` (pages)
+  and `src/server/index.ts` (Worker responses)
 
 ## Durable records
 

@@ -19,7 +19,7 @@
       "database_name": "mise",
       // Local development only. Replace with the real id when the owner
       // approves creating the production database.
-      "database_id": "00000000-0000-0000-0000-000000000000",
+      "database_id": "91a25a1a-2f7e-4bf1-846e-91f4691b75a2",
       "migrations_dir": "migrations"
     }
   ],

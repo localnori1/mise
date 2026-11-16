@@ -101,6 +101,15 @@ function validSetup(template: TemplateId, raw: any): SetupInput {
 
 const app = new Hono<{ Bindings: Env }>();
 
+// Security headers for Worker responses; pages and files get theirs from
+// public/_headers.
+app.use("*", async (c, next) => {
+  await next();
+  c.header("Referrer-Policy", "no-referrer");
+  c.header("X-Content-Type-Options", "nosniff");
+  c.header("X-Frame-Options", "DENY");
+});
+
 // Rejects cross-site writes (CSRF), on top of the SameSite=Lax login cookie.
 app.use("/api/*", async (c, next) => {
   const origin = c.req.header("Origin");
