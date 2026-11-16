@@ -6,7 +6,7 @@ import { PanelList } from "../../components/Pill";
 import { ErrorNote } from "../../components/Status";
 import type { ScreenProps } from "../Respondent";
 
-const bubble = "max-w-[86%] px-3.5 py-3 text-[15px] leading-snug whitespace-pre-line";
+const bubble = "max-w-[86%] px-3.5 py-3 text-[15px] leading-snug whitespace-pre-line lg:max-w-[72%]";
 const interviewer = `${bubble} self-start rounded-[16px_16px_16px_4px] border border-border bg-surface`;
 const respondent = `${bubble} self-end rounded-[16px_16px_4px_16px] bg-ink text-white`;
 
@@ -32,8 +32,8 @@ export function Conversation({ view, busy, error, run, token }: ScreenProps) {
   };
 
   return (
-    <>
-      <main className="flex flex-1 flex-col gap-2.5 p-4" aria-live="polite">
+    <div className="flex flex-1 flex-col lg:min-h-0 lg:overflow-hidden lg:rounded-card lg:border lg:border-border lg:bg-surface">
+      <main className="flex flex-1 flex-col gap-2.5 p-4 lg:min-h-0 lg:overflow-y-auto lg:p-6" aria-live="polite">
         {view.messages.map((m, i) => (
           <div key={i} className={m.role === "interviewer" ? interviewer : respondent}>
             {m.text}
@@ -54,14 +54,14 @@ export function Conversation({ view, busy, error, run, token }: ScreenProps) {
           </div>
         ) : (
           options.length > 0 && (
-            <div className="flex flex-col gap-1.5">
+            <div className="flex flex-col gap-1.5 lg:items-start">
               {options.map((option) => (
                 <button
                   key={option}
                   type="button"
                   onClick={() => send(option)}
                   disabled={waiting}
-                  className="min-h-11 cursor-pointer rounded-btn border border-input bg-surface px-3.5 py-2 text-left text-sm font-medium text-ink disabled:opacity-50"
+                  className="min-h-11 cursor-pointer rounded-btn border border-input bg-surface px-3.5 py-2 text-left text-sm font-medium text-ink disabled:opacity-50 lg:max-w-[72%]"
                 >
                   {option}
                 </button>
@@ -71,7 +71,7 @@ export function Conversation({ view, busy, error, run, token }: ScreenProps) {
         )}
 
         {view.panel.length > 0 && (
-          <details className="group mt-1 rounded-xl border border-border bg-surface">
+          <details className="group mt-1 rounded-xl border border-border bg-surface lg:hidden">
             <summary className="flex min-h-11 cursor-pointer list-none items-center justify-between px-3.5 text-[13px] font-semibold text-accent-text [&::-webkit-details-marker]:hidden">
               What we have so far ({view.panel.length})
               <ChevronDown size={16} aria-hidden="true" className="transition-transform group-open:rotate-180" />
@@ -85,7 +85,7 @@ export function Conversation({ view, busy, error, run, token }: ScreenProps) {
       </main>
 
       <form
-        className="sticky bottom-0 flex flex-col gap-2 border-t border-border bg-surface px-4 py-3"
+        className="sticky bottom-0 flex flex-col gap-2 border-t border-border bg-surface px-4 py-3 lg:static lg:px-6"
         onSubmit={(e) => {
           e.preventDefault();
           send(draft);
@@ -114,6 +114,6 @@ export function Conversation({ view, busy, error, run, token }: ScreenProps) {
           </button>
         </div>
       </form>
-    </>
+    </div>
   );
 }

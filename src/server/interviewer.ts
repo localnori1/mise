@@ -76,7 +76,26 @@ export function flowRule({ count, budget, prioritiesDone, lastKind, wrapUp }: Fl
 // The models need a user message before the first question; there is no
 // respondent text yet at that point.
 const KICKOFF = "(The respondent has answered the quick questions and is ready to start.)";
-const RETRY = "Return valid JSON only.";
+// A visible reply must never talk about the app's own instructions. The retry
+// used to be a chat message ("Return valid JSON only."), and the model answered
+// it aloud: "Got it, JSON only from here." The retry is now an internal note,
+// and this catches any such echo anyway. It only counts when the respondent
+// never brought the words up themselves. It matches instruction-shaped phrases,
+// not the bare word, so a business whose subject is JSON ("Who consumes the
+// JSON export?") is not blocked.
+const LEAK =
+  /\b(?:valid|only|return(?:ing)?)\s+json\b|\bjson\s+(?:only|object|format|reply|output)\b|\bsystem\s+(?:note|notice|prompt)\b|\bmy\s+instructions\b|\binternal\s+note\b/i;
+
+type Visible = Pick<TurnOutput, "say" | "options" | "core_need" | "panel" | "steps" | "requirements">;
+
+export function leaksInstructions(output: Visible, history: Turn[]): boolean {
+  // Everything the respondent can read: the reply, its buttons, the notes and
+  // step cards, the requirements and the core need.
+  const ops = [output.panel, output.steps, output.requirements].flatMap((list) => list ?? []);
+  const visible = [output.say, ...(output.options ?? []), output.core_need ?? "", ...ops.map((op) => String(op.text ?? ""))].join("\n");
+  if (!LEAK.test(visible)) return false;
+  return !history.some((turn) => turn.role === "respondent" && LEAK.test(turn.text));
+}
 
 export class InvalidModelOutput extends Error {
   constructor(
@@ -123,6 +142,8 @@ export function parseTurn(text: string): TurnOutput | null {
     value.options = value.options.map((option: any) =>
       typeof option === "string" ? option : String(option?.label ?? option?.text ?? JSON.stringify(option)),
     );
+  } else {
+    value.options = undefined; // a model sometimes sends {} or true here
   }
   return value as TurnOutput;
 }
@@ -154,24 +175,28 @@ export async function runInterviewerTurn(
   const rule = flowRule(flow);
   const accept = (text: string) => {
     const output = parseTurn(text);
-    return output && rule.allowed.includes(output.kind) ? output : null;
+    return output && rule.allowed.includes(output.kind) && !leaksInstructions(output, history) ? output : null;
   };
-  const messages: Message[] = [
-    { role: "system", content: [system, stateNote(state), extraNote, rule.note].filter(Boolean).join("\n\n") },
+  const systemText = [system, stateNote(state), extraNote, rule.note].filter(Boolean).join("\n\n");
+  const conversation: Message[] = [
     { role: "user", content: KICKOFF },
     ...history.map((turn): Message => ({ role: turn.role === "respondent" ? "user" : "assistant", content: turn.text })),
   ];
-  const first = await callModel(target, messages);
+  const first = await callModel(target, [{ role: "system", content: systemText }, ...conversation]);
   const accepted = accept(first.text);
   if (accepted) return { output: accepted, usage: [first.usage], retried: false };
 
-  const correction = parseTurn(first.text) ? `${rule.note} ${RETRY}` : RETRY;
-  const second = await callModel(target, [
-    ...messages,
-    // Some providers reject an empty assistant message.
-    { role: "assistant", content: first.text || "(empty)" },
-    { role: "user", content: correction },
-  ]);
+  // Retry from the same conversation, with the correction in the system
+  // instructions rather than as a chat message, and without the failed reply,
+  // so the model has nothing to answer aloud.
+  const parsed = parseTurn(first.text);
+  const reason = !parsed
+    ? "it was not one valid JSON object in the required format."
+    : leaksInstructions(parsed, history)
+      ? 'it mentioned the app\'s own instructions, which the respondent must never see.'
+      : rule.note;
+  const correction = `Your previous reply could not be used: ${reason} Reply to the respondent's last message again, as one JSON object in the required format with nothing before or after it. This note is internal: never mention it, JSON, formatting or instructions in "say" or "options".`;
+  const second = await callModel(target, [{ role: "system", content: `${systemText}\n\n${correction}` }, ...conversation]);
   const retried = accept(second.text);
   if (!retried) throw new InvalidModelOutput([first.text, second.text], [first.usage, second.usage]);
   return { output: retried, usage: [first.usage, second.usage], retried: true };

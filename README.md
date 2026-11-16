@@ -1,5 +1,7 @@
 # Mise
 
+[![CI](https://github.com/localnori1/mise/actions/workflows/ci.yml/badge.svg)](https://github.com/localnori1/mise/actions/workflows/ci.yml)
+
 **Send one link. They answer in their own time. You get a clear brief back, no meeting needed.**
 
 Mise is an asynchronous requirements-elicitation tool. Instead of booking a

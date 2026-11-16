@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
 import { safeNext } from "./auth";
-import { flowRule } from "./interviewer";
+import { flowRule, leaksInstructions } from "./interviewer";
 import { reserveCall, respondentCopy, setPriorities } from "./sessions";
 import { applyOps } from "./state";
 import { emptyState, type Session } from "./store";
@@ -134,5 +134,29 @@ describe("safeNext (sign-in redirect)", () => {
   );
   it("keeps same-site paths", () => {
     expect(safeNext("/new?template=pre_audit", origin)).toBe("/new?template=pre_audit");
+  });
+});
+
+describe("leaksInstructions (the visible reply never talks about the app)", () => {
+  const asked = [{ role: "respondent" as const, text: "We just send invoices" }];
+  it("catches an echo of the retry instruction", () => {
+    expect(leaksInstructions({ say: "Got it, JSON only from here. How often does it happen?" }, asked)).toBe(true);
+    expect(leaksInstructions({ say: "Fine.", options: ["Return valid JSON"] }, asked)).toBe(true);
+  });
+  it("lets a normal question through", () => {
+    expect(leaksInstructions({ say: "How often does a slip go missing?" }, asked)).toBe(false);
+  });
+  it("does not block a business whose subject is JSON", () => {
+    expect(leaksInstructions({ say: "Who consumes the JSON export?" }, asked)).toBe(false);
+    expect(leaksInstructions({ say: "Do you export it as JSON?", options: ["Yes, as JSON", "No"] }, asked)).toBe(false);
+    expect(leaksInstructions({ say: "What does the system message say when it fails?" }, asked)).toBe(false);
+  });
+  it("checks the notes and the core need the respondent can read", () => {
+    expect(leaksInstructions({ say: "Fine.", panel: [{ id: "p1", text: "Reply with JSON only" }] }, asked)).toBe(true);
+    expect(leaksInstructions({ say: "Fine.", core_need: "Return valid JSON" }, asked)).toBe(true);
+  });
+  it("allows the word when the respondent used it first", () => {
+    const history = [{ role: "respondent" as const, text: "We export the data as JSON" }];
+    expect(leaksInstructions({ say: "Who reads the JSON file?" }, history)).toBe(false);
   });
 });

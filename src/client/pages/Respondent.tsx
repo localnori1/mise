@@ -6,6 +6,7 @@ import { MapBar } from "../components/MapBar";
 import { ErrorNote, Loading } from "../components/Status";
 import { Basics } from "./respondent/Basics";
 import { Checkpoint } from "./respondent/Checkpoint";
+import { ChatSidebar } from "./respondent/ChatSidebar";
 import { Conversation } from "./respondent/Conversation";
 import { Deleted, Done } from "./respondent/Done";
 import { Landing } from "./respondent/Landing";
@@ -19,8 +20,18 @@ export type Run = (action: string, call: () => Promise<RespondentView>) => Promi
 
 export type ScreenProps = { view: RespondentView; busy: string | null; error: string | null; run: Run; token: string };
 
-function Shell({ children }: { children: ReactNode }) {
-  return <div className="mx-auto flex min-h-dvh w-full max-w-[480px] flex-col bg-bg">{children}</div>;
+// One narrow column for every screen. The conversation gets a wide layout on
+// desktop: a sidebar and a framed chat that scrolls inside its own card.
+function Shell({ children, chat = false }: { children: ReactNode; chat?: boolean }) {
+  return (
+    <div
+      className={`mx-auto flex min-h-dvh w-full max-w-[480px] flex-col bg-bg ${
+        chat ? "lg:h-dvh lg:max-w-[1080px] lg:flex-row lg:gap-8 lg:p-8" : ""
+      }`}
+    >
+      {children}
+    </div>
+  );
 }
 
 export function Respondent({ token }: { token: string }) {
@@ -108,6 +119,7 @@ export function Respondent({ token }: { token: string }) {
         : `About ${left} min left`;
 
   let screen: ReactNode;
+  let chat = false;
   if (!view.basics) screen = <Basics {...props} />;
   else if (busy === "confirm") screen = <Writing />;
   else if (last?.steps_changed && view.steps.length > 0 && stepsReviewedAt !== view.messages.length)
@@ -115,16 +127,16 @@ export function Respondent({ token }: { token: string }) {
   else if (last?.kind === "checkpoint") screen = <Checkpoint {...props} />;
   else if (last?.kind === "priorities") screen = <Priorities {...props} />;
   else if (last?.kind === "landing") screen = <Landing {...props} />;
-  else screen = <Conversation {...props} />;
+  else {
+    screen = <Conversation {...props} />;
+    chat = true;
+  }
 
+  const current = last?.kind === "landing" ? intro.map.length : Math.max(match, 0);
   return (
-    <Shell>
-      <MapBar
-        title={intro.topic}
-        map={intro.map}
-        current={last?.kind === "landing" ? intro.map.length : Math.max(match, 0)}
-        right={right}
-      />
+    <Shell chat={chat}>
+      <MapBar title={intro.topic} map={intro.map} current={current} right={right} className={chat ? "lg:hidden" : ""} />
+      {chat && <ChatSidebar title={intro.topic} map={intro.map} current={current} right={right} panel={view.panel} />}
       {screen}
     </Shell>
   );

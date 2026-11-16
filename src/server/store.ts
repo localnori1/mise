@@ -98,22 +98,20 @@ export async function sessionForOwner(db: D1Database, ownerKey: string, id: stri
   return row ? fromRow(row) : null;
 }
 
+// The owner deleting a link: the session, with the respondent's answers and
+// the document, is removed for good, and the share link stops working.
+// Returns false when the id isn't one of this owner's.
+export async function deleteSessionForOwner(db: D1Database, ownerKey: string, id: string): Promise<boolean> {
+  const result = await db.prepare("DELETE FROM sessions WHERE id = ? AND owner_key = ?").bind(id, ownerKey).run();
+  return result.meta.changes > 0;
+}
+
 export async function sessionsForOwner(db: D1Database, ownerKey: string): Promise<Session[]> {
   const { results } = await db
     .prepare("SELECT * FROM sessions WHERE owner_key = ? ORDER BY created_at DESC")
     .bind(ownerKey)
     .all();
   return results.map(fromRow);
-}
-
-// Sessions created since `since` by this owner, by this IP hash, and in total.
-export async function recentCreations(db: D1Database, ownerKey: string, ipHash: string, since: string) {
-  const [owner, ip, site] = await db.batch<{ n: number }>([
-    db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE owner_key = ? AND created_at >= ?").bind(ownerKey, since),
-    db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE creator_ip_hash = ? AND created_at >= ?").bind(ipHash, since),
-    db.prepare("SELECT COUNT(*) AS n FROM sessions WHERE created_at >= ?").bind(since),
-  ]);
-  return { byOwner: owner.results[0]?.n ?? 0, byIp: ip.results[0]?.n ?? 0, site: site.results[0]?.n ?? 0 };
 }
 
 export async function insertSession(
@@ -174,9 +172,10 @@ export async function saveSession(db: D1Database, session: Session): Promise<Ses
   return { ...session, version: session.version + 1, updated_at: updatedAt };
 }
 
-// Daily draft counters: adds one to each key and returns the new counts.
-// Keys are an IP hash, "owner:<key>", or "site" (the column predates the
-// owner and site counters, hence its name).
+// Daily counters: adds one to each key and returns the new counts. They count
+// AI setup drafts and new links ("new:owner:<key>", "new:ip:<hash>", "new:site")
+// and live apart from the sessions table, so deleting a link never gives its
+// allowance back. The column is named ip_hash from when only IPs were counted.
 export async function countDraft(db: D1Database, keys: string[], day: string): Promise<number[]> {
   const statement = db.prepare(
     `INSERT INTO draft_usage (ip_hash, day, count) VALUES (?, ?, 1)

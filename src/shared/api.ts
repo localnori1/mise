@@ -19,6 +19,7 @@
 //   POST /api/s/:token/delete                             -> RespondentView  (R8 Delete my answers)
 //   GET  /api/links                                       -> OwnerList       (owner)
 //   GET  /api/links/:id                                   -> OwnerSession    (owner)
+//   POST /api/links/:id/delete                            -> { ok: true }    (owner; removes the link and its answers)
 
 export type TemplateId = "requirements" | "pre_audit";
 export type Audience = "colleague" | "client" | "prospect";

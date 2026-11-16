@@ -5,6 +5,7 @@ import { Button } from "../../components/Button";
 import { Card, CardLabel } from "../../components/Card";
 import { DocumentActions, fileSlug } from "../../components/DocumentActions";
 import { ErrorNote } from "../../components/Status";
+import { Link } from "../../router";
 import type { ScreenProps } from "../Respondent";
 
 export function Done({ view, busy, error, run, token }: ScreenProps) {
@@ -42,6 +43,9 @@ export function Done({ view, busy, error, run, token }: ScreenProps) {
 
       <div className="mt-auto flex flex-col gap-2 pt-4">
         {error && <ErrorNote>{error}</ErrorNote>}
+        <Link href="/" className="inline-flex min-h-11 items-center self-center text-sm font-semibold">
+          Go to Mise
+        </Link>
         {confirming ? (
           <div className="flex flex-col gap-2.5 rounded-card border border-border bg-surface p-4">
             <p className="text-[15px] font-semibold">Delete everything you shared?</p>

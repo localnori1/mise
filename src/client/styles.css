@@ -132,9 +132,33 @@
   }
 }
 
+/* Only the printed document gets these margins (no top or bottom margin, so the
+   browser draws no header or footer); other pages keep the browser's default. */
+@page doc {
+  margin: 0 15mm;
+}
+
 @media print {
-  @page {
-    margin: 16mm 15mm;
+  .print-doc {
+    page: doc;
+  }
+  .print-frame {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .print-frame > thead {
+    display: table-header-group;
+  }
+  .print-frame > tfoot {
+    display: table-footer-group;
+  }
+  .print-frame > thead > tr > td,
+  .print-frame > tbody > tr > td,
+  .print-frame > tfoot > tr > td {
+    padding: 0;
+  }
+  .print-gap {
+    height: 16mm;
   }
   body {
     background: #fff;

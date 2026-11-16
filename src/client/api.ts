@@ -65,4 +65,5 @@ export const api = {
 
   links: () => request<OwnerList>("/api/links"),
   link: (id: string) => request<OwnerSession>(`/api/links/${encodeURIComponent(id)}`),
+  deleteLink: (id: string) => request<{ ok: true }>(`/api/links/${encodeURIComponent(id)}/delete`, {}),
 };

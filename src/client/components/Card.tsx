@@ -1,6 +1,6 @@
-import type { HTMLAttributes, ReactNode } from "react";
+import type { ComponentProps, ReactNode } from "react";
 
-export function Card({ className = "", ...props }: HTMLAttributes<HTMLDivElement>) {
+export function Card({ className = "", ...props }: ComponentProps<"div">) {
   return <div className={`flex flex-col gap-2.5 rounded-card border border-border bg-surface p-4 ${className}`} {...props} />;
 }
 

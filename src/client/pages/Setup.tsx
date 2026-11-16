@@ -156,10 +156,12 @@ export function Setup({ search }: { search: string }) {
     return (
       <Page backHref="/links" backLabel="Your links">
         <div className="flex flex-col gap-1.5">
-          <span className="flex h-12 w-12 items-center justify-center rounded-full bg-accent-soft text-accent-text">
-            <Check size={24} aria-hidden="true" />
-          </span>
-          <h1 className="mt-2 font-display text-[26px] font-semibold leading-tight">Your link is ready</h1>
+          <h1 className="font-display text-[26px] font-semibold leading-tight">
+            Your link is ready
+            <span className="ml-3 inline-flex h-10 w-10 items-center justify-center rounded-full bg-accent-soft align-middle text-accent-text">
+              <Check size={20} strokeWidth={2.5} aria-hidden="true" />
+            </span>
+          </h1>
           <p className="text-[15px] text-muted">
             Send it to {form.respondent_name.trim()}. They can answer whenever it suits them, no account needed.
           </p>

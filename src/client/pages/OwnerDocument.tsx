@@ -1,16 +1,17 @@
 import { ArrowLeft } from "lucide-react";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import templates from "../../shared/templates.json";
 import type { OwnerSession } from "../../shared/api";
 import { api, errorMessage } from "../api";
 import { handleSignedOut, SignInCard, useOwner } from "../auth";
 import { AccountMenu } from "../components/AccountMenu";
+import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { CopyButton } from "../components/CopyButton";
 import { DocumentActions, DocumentView, fileSlug } from "../components/DocumentActions";
 import { StatusChip } from "../components/Pill";
 import { ErrorNote, Loading } from "../components/Status";
-import { Link } from "../router";
+import { Link, navigate } from "../router";
 
 const statusNote: Record<OwnerSession["status"], string> = {
   not_started: "They haven't opened the link yet.",
@@ -18,6 +19,85 @@ const statusNote: Record<OwnerSession["status"], string> = {
   ready: "",
   deleted: "They deleted their answers, so there's nothing to show.",
 };
+
+// Deleting a link removes the respondent's answers and the document too, so it
+// asks first and says what is lost. Focus moves into the question when it opens
+// and back to the button when it is dismissed.
+function lostText(status: OwnerSession["status"], respondent: string) {
+  if (status === "ready") return `${respondent}’s answers and the document made from them will be permanently deleted, and the share link will stop working.`;
+  if (status === "in_progress") return `${respondent}’s answers so far will be permanently deleted, and the share link will stop working.`;
+  if (status === "not_started") return "The share link will stop working. Nothing has been answered yet.";
+  return "The share link will be removed from your links. The answers were already deleted.";
+}
+
+function DeleteLink({
+  id,
+  respondent,
+  status,
+  onSignedOut,
+}: {
+  id: string;
+  respondent: string;
+  status: OwnerSession["status"];
+  onSignedOut: (err: unknown) => boolean;
+}) {
+  const [confirming, setConfirming] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [error, setError] = useState<string | null>(null);
+  const trigger = useRef<HTMLButtonElement>(null);
+  const card = useRef<HTMLDivElement>(null);
+  const wasOpen = useRef(false);
+
+  useEffect(() => {
+    if (confirming) card.current?.focus();
+    else if (wasOpen.current) trigger.current?.focus();
+    wasOpen.current = confirming;
+  }, [confirming]);
+
+  const remove = async () => {
+    setBusy(true);
+    setError(null);
+    try {
+      await api.deleteLink(id);
+      navigate("/links");
+    } catch (err) {
+      if (!onSignedOut(err)) setError(errorMessage(err));
+      setBusy(false);
+    }
+  };
+
+  if (!confirming) {
+    return (
+      <div className="mt-2 border-t border-border pt-4">
+        <button
+          ref={trigger}
+          type="button"
+          onClick={() => setConfirming(true)}
+          className="min-h-11 cursor-pointer text-sm font-semibold text-danger underline"
+        >
+          Delete this link
+        </button>
+      </div>
+    );
+  }
+  return (
+    <Card className="mt-2" role="group" aria-labelledby="delete-link-title" ref={card} tabIndex={-1}>
+      <p id="delete-link-title" className="m-0 text-[15px] font-semibold">
+        Delete this link?
+      </p>
+      <p className="m-0 text-sm leading-normal text-muted">{lostText(status, respondent)} This can’t be undone.</p>
+      {error && <ErrorNote>{error}</ErrorNote>}
+      <div className="flex gap-2">
+        <Button variant="secondary" className="flex-1" disabled={busy} onClick={() => setConfirming(false)}>
+          Keep it
+        </Button>
+        <Button variant="danger" className="flex-1" loading={busy} onClick={remove}>
+          Delete
+        </Button>
+      </div>
+    </Card>
+  );
+}
 
 export function OwnerDocument({ id }: { id: string }) {
   const [owner, setOwner] = useOwner();
@@ -73,7 +153,7 @@ export function OwnerDocument({ id }: { id: string }) {
 
           {session.output_md ? (
             <>
-              <DocumentActions markdown={session.output_md} name={fileSlug(session.topic)} />
+              <DocumentActions markdown={session.output_md} name={fileSlug(session.topic)} hint />
               <DocumentView
                 markdown={session.output_md}
                 className="rounded-card border border-border bg-surface px-5 py-6 sm:px-10 sm:py-10"
@@ -99,6 +179,7 @@ export function OwnerDocument({ id }: { id: string }) {
               )}
             </Card>
           )}
+          <DeleteLink id={id} respondent={session.respondent_name} status={session.status} onSignedOut={(err) => handleSignedOut(err, setOwner)} />
         </>
       )}
     </main>

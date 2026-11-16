@@ -32,10 +32,10 @@ import { applyOps, type Item } from "./state";
 import {
   ConflictError,
   countDraft,
+  deleteSessionForOwner,
   hashIp,
   insertSession,
   purgeExpired,
-  recentCreations,
   saveSession,
   sessionByToken,
   sessionForOwner,
@@ -175,10 +175,13 @@ app.post("/api/sessions", async (c) => {
   const setup = validSetup(template, body?.setup);
 
   const ip = await ipHash(c);
-  const since = new Date(Date.now() - 86_400_000).toISOString();
-  const recent = await recentCreations(c.env.DB, ownerKey, ip, since);
-  if (recent.site >= LIMITS.sessionsSite) return fail(c, 429, "rate_limited", BUSY_TODAY);
-  if (recent.byOwner >= LIMITS.sessionsPerOwner || recent.byIp >= LIMITS.sessionsPerIp) {
+  const [byOwner, byIp, site] = await countDraft(
+    c.env.DB,
+    [`new:owner:${ownerKey}`, `new:ip:${ip}`, "new:site"],
+    new Date().toISOString().slice(0, 10),
+  );
+  if (site > LIMITS.sessionsSite) return fail(c, 429, "rate_limited", BUSY_TODAY);
+  if (byOwner > LIMITS.sessionsPerOwner || byIp > LIMITS.sessionsPerIp) {
     return fail(c, 429, "rate_limited", `You can create ${LIMITS.sessionsPerOwner} links a day. Try again tomorrow.`);
   }
 
@@ -270,6 +273,14 @@ app.get("/api/links/:id", async (c) => {
   const session = await sessionForOwner(c.env.DB, owner.owner_key, c.req.param("id"));
   if (!session) throw new AppError(404, "not_found", "That link isn't in your account.");
   return c.json<OwnerSession>({ ...ownerSummary(session, siteOrigin(c)), output_md: session.output_md });
+});
+
+app.post("/api/links/:id/delete", async (c) => {
+  const owner = await requireOwner(c);
+  if (!(await deleteSessionForOwner(c.env.DB, owner.owner_key, c.req.param("id")))) {
+    throw new AppError(404, "not_found", "That link isn't in your account.");
+  }
+  return c.json({ ok: true });
 });
 
 app.all("/api/*", (c) => fail(c, 404, "not_found", "Not found."));

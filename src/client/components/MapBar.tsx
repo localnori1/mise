@@ -1,8 +1,20 @@
 // `current` is the index of the topic in progress; topics before it are done.
 // Pass map.length to show every topic as done.
-export function MapBar({ title, map, current, right }: { title: string; map: string[]; current: number; right: string }) {
+export function MapBar({
+  title,
+  map,
+  current,
+  right,
+  className = "",
+}: {
+  title: string;
+  map: string[];
+  current: number;
+  right: string;
+  className?: string;
+}) {
   return (
-    <header className="flex flex-none flex-col gap-2.5 border-b border-border bg-surface px-5 pb-3 pt-4">
+    <header className={`flex flex-none flex-col gap-2.5 border-b border-border bg-surface px-5 pb-3 pt-4 ${className}`}>
       <div className="flex justify-between gap-3 text-xs text-muted">
         <span className="font-semibold">{title}</span>
         <span className="flex-none">{right}</span>

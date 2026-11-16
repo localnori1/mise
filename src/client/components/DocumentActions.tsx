@@ -18,7 +18,9 @@ export function DocumentView({ markdown, className = "" }: { markdown: string; c
 
 // PDF: the browser's own "Save as PDF" keeps the formatting and selectable
 // text, with no PDF library or server. Only the document prints (styles.css),
-// and the page title becomes the suggested file name.
+// and the page title becomes the suggested file name. The page margins are 0 so
+// the browser draws no header or footer (they would show the private link's
+// address); the top and bottom spacing comes from the repeating gaps below.
 function savePdf(name: string) {
   const title = document.title;
   document.title = name;
@@ -60,9 +62,38 @@ export function DocumentActions({
         <CopyButton text={markdown} label="Copy" size="sm" />
       </div>
       {hint && (
-        <p className="text-[13px] leading-normal text-muted">For a PDF, choose "Save as PDF" in the print window.</p>
+        <p className="text-[13px] leading-normal text-muted">
+          For a PDF, choose "Save as PDF" in the print window. If a link or date shows at the edges, turn off "Headers and footers".
+        </p>
       )}
-      {createPortal(<DocumentView markdown={markdown} className="print-doc" />, document.body)}
+      {createPortal(
+        <div className="print-doc">
+          <table className="print-frame">
+            <thead>
+              <tr>
+                <td>
+                  <div className="print-gap" />
+                </td>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td>
+                  <DocumentView markdown={markdown} />
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td>
+                  <div className="print-gap" />
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>,
+        document.body,
+      )}
     </div>
   );
 }
