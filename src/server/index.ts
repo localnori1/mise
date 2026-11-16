@@ -11,7 +11,7 @@ import type {
   TemplateId,
 } from "../shared/api";
 import type { ModelTarget } from "./ai";
-import { auth, requireOwner, type Env } from "./auth";
+import { auth, requireOwner, siteOrigin, type Env } from "./auth";
 import { buildSystemPrompt, InvalidModelOutput, runInterviewerTurn } from "./interviewer";
 import {
   AppError,
@@ -123,7 +123,8 @@ app.use("*", async (c, next) => {
 // Rejects cross-site writes (CSRF), on top of the SameSite=Lax login cookie.
 app.use("/api/*", async (c, next) => {
   const origin = c.req.header("Origin");
-  if (c.req.method !== "GET" && origin && origin !== new URL(c.req.url).origin) {
+  const allowed = [new URL(c.req.url).origin, siteOrigin(c as Ctx)];
+  if (c.req.method !== "GET" && origin && !allowed.includes(origin)) {
     return fail(c as Ctx, 403, "unauthorized", "That request came from another site.");
   }
   await next();
@@ -184,7 +185,7 @@ app.post("/api/sessions", async (c) => {
   const session = await insertSession(c.env.DB, { ownerKey, template, setup, ipHash: ip });
   return c.json<CreatedSession>({
     session_id: session.id,
-    share_url: `${new URL(c.req.url).origin}/s/${session.share_token}`,
+    share_url: `${siteOrigin(c)}/s/${session.share_token}`,
   });
 });
 
@@ -259,7 +260,7 @@ app.post("/api/s/:token/delete", async (c) => respond(c, deleteAnswers(await loa
 
 app.get("/api/links", async (c) => {
   const owner = await requireOwner(c);
-  const origin = new URL(c.req.url).origin;
+  const origin = siteOrigin(c);
   const sessions = await sessionsForOwner(c.env.DB, owner.owner_key);
   return c.json<OwnerList>({ sessions: sessions.map((s) => ownerSummary(s, origin)) });
 });
@@ -268,7 +269,7 @@ app.get("/api/links/:id", async (c) => {
   const owner = await requireOwner(c);
   const session = await sessionForOwner(c.env.DB, owner.owner_key, c.req.param("id"));
   if (!session) throw new AppError(404, "not_found", "That link isn't in your account.");
-  return c.json<OwnerSession>({ ...ownerSummary(session, new URL(c.req.url).origin), output_md: session.output_md });
+  return c.json<OwnerSession>({ ...ownerSummary(session, siteOrigin(c)), output_md: session.output_md });
 });
 
 app.all("/api/*", (c) => fail(c, 404, "not_found", "Not found."));

@@ -35,6 +35,9 @@
     "EVAL_MODE": "0",
     // Google sign-in client ID (public). The client secret is a Worker secret,
     // GOOGLE_CLIENT_SECRET, set in the Cloudflare dashboard (ADR-003).
-    "GOOGLE_CLIENT_ID": ""
+    // The public address; links, sign-in redirects and the cross-site check use it.
+    // Empty in .dev.vars so local development uses localhost.
+    "PUBLIC_ORIGIN": "https://mise.sadyadesign.com",
+    "GOOGLE_CLIENT_ID": "372157256144-23ris4um1kpuaq4usr1q6jgd7raqihn7.apps.googleusercontent.com"
   }
 }

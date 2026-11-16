@@ -19,6 +19,11 @@ const FLOW_COOKIE = "mise_oauth";
 const LOGIN_DAYS = 30;
 const DAY_MS = 86_400_000;
 
+// The address visitors use. Behind the custom domain the Worker can see a
+// different host (the workers.dev one), so links, redirects and the cross-site
+// check use PUBLIC_ORIGIN when it is set. Local development leaves it empty.
+export const siteOrigin = (c: Ctx) => c.env.PUBLIC_ORIGIN || new URL(c.req.url).origin;
+
 const isHttps = (c: Ctx) => new URL(c.req.url).protocol === "https:";
 // __Host- (https only) stops a sibling subdomain from planting a login cookie.
 const loginCookie = (c: Ctx) => (isHttps(c) ? "__Host-mise_login" : "mise_login");
@@ -93,7 +98,7 @@ export const auth = new Hono<{ Bindings: Env }>();
 
 // Starts Google sign-in (authorization code flow with PKCE and a state check).
 auth.get("/auth/google", async (c) => {
-  const next = safeNext(c.req.query("next"), new URL(c.req.url).origin);
+  const next = safeNext(c.req.query("next"), siteOrigin(c));
   if (!c.env.GOOGLE_CLIENT_ID || !c.env.GOOGLE_CLIENT_SECRET) {
     if (c.env.DEV_LOGIN === "1" && isLocal(c)) {
       return signIn(c, { sub: "dev-local", name: "Local tester", email: null }, next);
@@ -111,7 +116,7 @@ auth.get("/auth/google", async (c) => {
   });
   const params = new URLSearchParams({
     client_id: c.env.GOOGLE_CLIENT_ID,
-    redirect_uri: `${new URL(c.req.url).origin}/auth/google/callback`,
+    redirect_uri: `${siteOrigin(c)}/auth/google/callback`,
     response_type: "code",
     scope: "openid email profile",
     state,
@@ -141,7 +146,7 @@ auth.get("/auth/google/callback", async (c) => {
       code,
       client_id: c.env.GOOGLE_CLIENT_ID,
       client_secret: c.env.GOOGLE_CLIENT_SECRET ?? "",
-      redirect_uri: `${new URL(c.req.url).origin}/auth/google/callback`,
+      redirect_uri: `${siteOrigin(c)}/auth/google/callback`,
       grant_type: "authorization_code",
       code_verifier: flow.verifier,
     }),
@@ -167,7 +172,7 @@ auth.get("/auth/google/callback", async (c) => {
   return signIn(
     c,
     { sub: claims.sub, name: claims.name?.slice(0, 80) ?? null, email: claims.email_verified ? (claims.email ?? null) : null },
-    safeNext(flow.next, new URL(c.req.url).origin),
+    safeNext(flow.next, siteOrigin(c)),
   );
 });
 
