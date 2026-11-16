@@ -39,7 +39,7 @@ export function OwnerLinks() {
     <main className="mx-auto flex max-w-[720px] flex-col gap-3 px-4 pb-12 pt-7">
       <div className="flex items-center justify-between gap-3 px-1">
         <h1 className="font-display text-[26px] font-semibold">Your links</h1>
-        <Link href="/" className={buttonClass("primary", "", "sm")}>
+        <Link href="/new" className={buttonClass("primary", "", "sm")}>
           New link
         </Link>
       </div>
