@@ -38,9 +38,9 @@ function FeatureSection({ tint, children }: { tint: string; children: ReactNode 
 
 function AccountLink({ owner }: { owner: ReturnType<typeof useOwner>[0] }) {
   const base = `${pill} min-h-11 border border-border bg-pill px-4 text-sm lg:px-5 lg:text-[15px]`;
-  if (owner === undefined) return <span className="min-h-11 w-[84px]" />;
+  if (owner === undefined) return <span className="min-h-11 w-[168px]" />;
   if (owner) return <Link href="/links" className={`${base} text-ink`}>Your links</Link>;
-  return <a href={signInHref("/links")} className={`${base} text-ink`}>Sign in</a>;
+  return <a href={signInHref("/links")} className={`${base} text-ink`}>Sign in with Google</a>;
 }
 
 export function Home() {
