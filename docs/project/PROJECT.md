@@ -93,8 +93,10 @@ last_reviewed: "2026-11-16"
   evals: `npm run dev:eval` + `npm run eval -- --model <id>`
   (needs a build first so `dist/client` exists)
 - Environments: local (`npm run dev`, local D1) and production Worker `mise`
-  at https://mise.emmnlsttn1.workers.dev (D1 `mise`, deployed 2026-11-16);
-  custom domain pending. Code: https://github.com/localnori1/mise
+  at https://mise.sadyadesign.com (custom domain attached in the Cloudflare
+  dashboard under the Worker's Domains and Routes; the workers.dev address
+  also still works) with D1 `mise`, first deployed 2026-11-16.
+  Code: https://github.com/localnori1/mise
 - Deployment/rollback: `npm run build` then `npx wrangler deploy`; schema with
   `npx wrangler d1 migrations apply mise --remote`; rollback via Workers
   versions (`wrangler rollback`). Security headers: `public/_headers` (pages)

@@ -28,7 +28,7 @@ review, a first commit, then deployment to Cloudflare.
   session; calls reserved before spending; near-cap wrap-up).
 - AI spend so far ~$2 of the $10 gateway credit (estimate).
 - Pushed to https://github.com/localnori1/mise (`main`).
-- Deployed 2026-11-16 to https://mise.emmnlsttn1.workers.dev: production D1
+- Deployed 2026-11-16 to https://mise.sadyadesign.com (custom domain): production D1
   with migrations 0001-0002, `IP_HASH_SALT` secret, security headers.
 - ADR-003: owners sign in with Google (`/links`), "Who gets the brief"
   removed, respondents get the document (PDF via browser print, Markdown,
@@ -55,12 +55,11 @@ review, a first commit, then deployment to Cloudflare.
 
 ## Blockers and decisions needed
 
-1. Custom domain: the owner's partner is adding it (Worker > Domains & Routes).
-   `emmnlsttn1` in the workers.dev address comes from the owner's email;
-   consider disabling workers.dev once the domain works.
+1. The workers.dev address (`mise.emmnlsttn1.workers.dev`) still works and
+   contains the owner's email handle; consider disabling it.
 2. Google sign-in app (free): create an OAuth client with redirect URIs
    `http://localhost:5173/auth/google/callback` and
-   `https://<final host>/auth/google/callback`; put the client ID in
+   `https://mise.sadyadesign.com/auth/google/callback`; put the client ID in
    `wrangler.jsonc` `GOOGLE_CLIENT_ID`; owner sets `GOOGLE_CLIENT_SECRET` in
    the Cloudflare dashboard; redeploy; test sign-in live. Until then live
    sign-in shows "Sign-in isn't set up yet".
@@ -68,4 +67,4 @@ review, a first commit, then deployment to Cloudflare.
 
 ## Exact next step
 
-Wait for the custom domain, then set up the Google sign-in app against it.
+Set up the Google sign-in app against mise.sadyadesign.com, then ship.

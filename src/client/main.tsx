@@ -1,9 +1,11 @@
 import { StrictMode, useEffect } from "react";
 import { createRoot } from "react-dom/client";
 import { buttonClass } from "./components/Button";
+import { Example } from "./pages/Example";
 import { Home } from "./pages/Home";
 import { OwnerDocument } from "./pages/OwnerDocument";
 import { OwnerLinks } from "./pages/OwnerLinks";
+import { Privacy } from "./pages/Privacy";
 import { Respondent } from "./pages/Respondent";
 import { Setup } from "./pages/Setup";
 import { Link, useLocation } from "./router";
@@ -34,6 +36,8 @@ function App() {
   const parts = path.split("/").filter(Boolean).map(decodeURIComponent);
 
   if (parts.length === 0) return <Home />;
+  if (parts[0] === "example" && parts.length === 1) return <Example />;
+  if (parts[0] === "privacy" && parts.length === 1) return <Privacy />;
   if (parts[0] === "new" && parts.length === 1) return <Setup key={search} search={search} />;
   if (parts[0] === "s" && parts.length === 2) return <Respondent key={parts[1]} token={parts[1]} />;
   if (parts[0] === "links" && parts.length === 1) return <OwnerLinks />;

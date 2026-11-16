@@ -17,6 +17,13 @@
   --color-assumed-text: #9a4a0a;
   --color-track: #d5d9e0;
   --color-danger: #b42318;
+  --color-navy: #252a3a;
+  --color-body: #3a3f48;
+  --color-subtle: #f1f2f5;
+  --color-pill: #eceef3;
+  --color-stroke: #8a919c;
+  --color-tint-blue: #eef3fd;
+  --color-tint-cream: #fbf4ea;
 
   --font-sans: Inter, system-ui, sans-serif;
   --font-display: "Space Grotesk", Inter, system-ui, sans-serif;
@@ -158,6 +165,14 @@
   .doc th {
     print-color-adjust: exact;
   }
+}
+
+/* Horizontal scrollers (landing carousel) without a visible scrollbar. */
+.no-sb {
+  scrollbar-width: none;
+}
+.no-sb::-webkit-scrollbar {
+  display: none;
 }
 
 @keyframes typing {

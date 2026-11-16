@@ -8,7 +8,7 @@ interviewer walks them through a short, structured conversation on their phone,
 and when they confirm their answers, both of you get a formatted document: an
 Elicitation Session Summary or a Pre-Audit Brief.
 
-**Live app:** https://mise.emmnlsttn1.workers.dev
+**Live app:** https://mise.sadyadesign.com
 
 | Welcome | Conversation | Step cards | Priorities | Landing |
 | --- | --- | --- | --- | --- |
